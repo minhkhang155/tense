@@ -382,14 +382,6 @@
             <div class="topic-icon">📖</div>
             <div class="topic-name">Mix Stories</div>
           </div>
-          <div class="topic-card" onclick="startTopic('questions')" style="border-color:#2196F3">
-            <div class="topic-icon">❓</div>
-            <div class="topic-name">Questions</div>
-          </div>
-          <div class="topic-card" onclick="startTopic('negatives')" style="border-color:#F44336">
-            <div class="topic-icon">🚫</div>
-            <div class="topic-name">Don't / Didn't</div>
-          </div>
           <div class="topic-card" onclick="showLearnScreen()" style="border-color:#4CAF50">
             <div class="topic-icon">📚</div>
             <div class="topic-name">Học kiến thức</div>
@@ -422,987 +414,735 @@
 
 <script>
 // ============ DATA - Cambridge Style ============
+// ============ DATA - Cambridge Style (All Signal Words) ============
 var STORIES = {
   daily: [
-    // Story 1: Lily's Morning Routine
+    // Story 1: Every Day signals
     {
       bg: 'bg-sunny',
       scenes: [
         {
           image: '🌅👧',
-          text: 'This is Lily. She <span class="highlight-green">wakes up</span> at 7 o\'clock <span class="highlight">every morning</span>.',
-          question: 'Lily wakes up at 7...',
-          choices: ['every morning ☀️', 'yesterday morning 🌙'],
+          text: 'Lily <span class="highlight-green">wakes up</span> at 7 <span class="highlight">every day</span>.',
+          question: 'Lily ___ up at 7 every day.',
+          choices: ['wakes ☀️', 'woke 🌙'],
           correct: 0,
-          feedback: 'Yes! Every morning = mỗi sáng 👍',
-          tip: '☀️ "every morning" - việc Lily làm mỗi ngày!'
+          feedback: 'Yes! "every day" → wakes',
+          tip: '☀️ every day = mỗi ngày → hiện tại'
         },
         {
-          image: '🦷👧',
-          text: 'Lily <span class="highlight-green">brushes</span> her teeth <span class="highlight">every morning</span>. Clean teeth!',
-          question: 'Lily ___ her teeth every morning.',
-          choices: ['brushes 🦷', 'brushed 🦷'],
+          image: '🚫🍬',
+          text: 'She <span class="highlight-green">doesn\'t eat</span> candy <span class="highlight">every day</span>.',
+          question: 'She ___ eat candy every day.',
+          choices: ['doesn\'t 🚫', 'didn\'t 🚫'],
           correct: 0,
-          feedback: 'Great! Mỗi sáng Lily đánh răng 🪥',
-          tip: '🦷 "every morning" → brushes'
+          feedback: 'Great! every day + phủ định → doesn\'t',
+          tip: '🚫 every day → doesn\'t'
         },
         {
-          image: '🍳👧',
-          text: 'Lily <span class="highlight-green">eats</span> breakfast <span class="highlight">every day</span>. She likes eggs!',
-          question: 'Lily ___ breakfast every day.',
-          choices: ['eats 🍳', 'ate 🍳'],
+          image: '❓🏫',
+          text: '"<span class="highlight-green">Does she go</span> to school <span class="highlight">every day</span>?"',
+          question: '___ she go to school every day?',
+          choices: ['Does ❓', 'Did ❓'],
           correct: 0,
-          feedback: 'Great! Every day → eats 🌟',
-          tip: '🔄 "every day" - việc làm mỗi ngày → eats'
+          feedback: 'Perfect! every day + câu hỏi → Does',
+          tip: '❓ every day → Does...?'
         },
         {
-          image: '🚶‍♀️🏫',
-          text: 'She <span class="highlight-green">walks</span> to school <span class="highlight">every day</span>. Her school is near.',
-          question: 'Lily ___ to school every day.',
-          choices: ['walks 🚶‍♀️', 'walked 🚶‍♀️'],
+          image: '🦷👦',
+          text: 'Tom <span class="highlight-green">brushes</span> his teeth <span class="highlight">every morning</span>.',
+          question: 'Tom ___ his teeth every morning.',
+          choices: ['brushes ☀️', 'brushed 🌙'],
           correct: 0,
-          feedback: 'Perfect! Mỗi ngày Lily đi bộ đến trường 🎒',
-          tip: '🏫 Việc lặp lại mỗi ngày → walks'
+          feedback: 'Wonderful! "every morning" → brushes',
+          tip: '☀️ every morning = mỗi sáng → hiện tại'
         },
         {
-          image: '📚👧',
-          text: 'Lily <span class="highlight-green">studies</span> English <span class="highlight">every afternoon</span>. She loves it!',
-          question: 'Lily ___ English every afternoon.',
-          choices: ['studies 📖', 'studied 📖'],
+          image: '🚫☕',
+          text: 'He <span class="highlight-green">doesn\'t drink</span> coffee <span class="highlight">every morning</span>.',
+          question: 'He ___ drink coffee every morning.',
+          choices: ['doesn\'t 🚫', 'didn\'t 🚫'],
           correct: 0,
-          feedback: 'Wonderful! Lily học tiếng Anh mỗi chiều ⭐',
-          tip: '📚 "every afternoon" → việc làm thường xuyên'
+          feedback: 'Excellent! every morning + phủ định → doesn\'t',
+          tip: '🚫 every morning → doesn\'t'
         },
         {
-          image: '😴🛏️',
-          text: 'At night, Lily <span class="highlight-green">goes</span> to bed at 9 o\'clock. Good night!',
-          question: 'Lily ___ to bed at 9 every night.',
-          choices: ['goes 😴', 'went 😴'],
+          image: '❓🍳',
+          text: '"<span class="highlight-green">Does Mom cook</span> <span class="highlight">every morning</span>?"',
+          question: '___ Mom cook every morning?',
+          choices: ['Does ❓', 'Did ❓'],
           correct: 0,
-          feedback: 'Excellent! Lily đi ngủ lúc 9 giờ mỗi tối 🌙',
-          tip: '🌙 Thói quen mỗi tối → goes'
+          feedback: 'Great! every morning + câu hỏi → Does',
+          tip: '❓ every morning → Does...?'
         }
       ]
     },
-    // Story 2: Tom and Max in the Park
+    // Story 2: Every Night / Every Week
     {
-      bg: 'bg-park',
+      bg: 'bg-night',
       scenes: [
         {
-          image: '👦🐕',
-          text: 'This is Tom and his dog Max. They <span class="highlight-green">play</span> in the park <span class="highlight">every weekend</span>.',
-          question: 'Tom and Max ___ in the park every weekend.',
-          choices: ['play 🎾', 'played 🎾'],
+          image: '📖👧',
+          text: 'Lily <span class="highlight-green">reads</span> books <span class="highlight">every night</span>.',
+          question: 'Lily ___ books every night.',
+          choices: ['reads ☀️', 'read 🌙'],
           correct: 0,
-          feedback: 'Yes! Mỗi cuối tuần Tom và Max chơi trong công viên 🌳',
-          tip: '🏃 "every weekend" → việc làm thường xuyên'
+          feedback: 'Yes! "every night" → reads',
+          tip: '☀️ every night = mỗi tối → hiện tại'
         },
         {
-          image: '🐕💨',
-          text: 'Max <span class="highlight-green">runs</span> very fast! He <span class="highlight-green">loves</span> to catch the ball.',
-          question: 'Max ___ very fast.',
-          choices: ['runs 🏃', 'ran 🏃'],
+          image: '🚫📺',
+          text: 'She <span class="highlight-green">doesn\'t watch</span> TV <span class="highlight">every night</span>.',
+          question: 'She ___ watch TV every night.',
+          choices: ['doesn\'t 🚫', 'didn\'t 🚫'],
           correct: 0,
-          feedback: 'Great! Max chạy rất nhanh 🐕',
-          tip: '🐕 Điều Max luôn làm → runs'
+          feedback: 'Great! every night + phủ định → doesn\'t',
+          tip: '🚫 every night → doesn\'t'
         },
         {
-          image: '🦆🌊',
-          text: 'There are ducks in the pond. The ducks <span class="highlight-green">swim</span> <span class="highlight">every day</span>.',
-          question: 'The ducks ___ every day.',
-          choices: ['swim 🦆', 'swam 🦆'],
+          image: '❓😴',
+          text: '"<span class="highlight-green">Does she sleep</span> early <span class="highlight">every night</span>?"',
+          question: '___ she sleep early every night?',
+          choices: ['Does ❓', 'Did ❓'],
           correct: 0,
-          feedback: 'Perfect! Những chú vịt bơi mỗi ngày 🌊',
-          tip: '🦆 "every day" → swim'
+          feedback: 'Perfect! every night + câu hỏi → Does',
+          tip: '❓ every night → Does...?'
         },
         {
-          image: '🍦👦',
-          text: 'Tom <span class="highlight-green">buys</span> ice cream <span class="highlight">every weekend</span>. Yummy!',
-          question: 'Tom ___ ice cream every weekend.',
-          choices: ['buys 🍦', 'bought 🍦'],
+          image: '⚽👦',
+          text: 'Tom <span class="highlight-green">plays</span> football <span class="highlight">every week</span>.',
+          question: 'Tom ___ football every week.',
+          choices: ['plays ☀️', 'played 🌙'],
           correct: 0,
-          feedback: 'Wonderful! Tom mua kem mỗi cuối tuần 🍦',
-          tip: '🍦 "every weekend" → buys'
+          feedback: 'Wonderful! "every week" → plays',
+          tip: '☀️ every week = mỗi tuần → hiện tại'
         },
         {
-          image: '☀️😊',
-          text: 'The sun <span class="highlight-green">shines</span> in the sky. It\'s a beautiful day!',
-          question: 'The sun ___ in the sky.',
-          choices: ['shines ☀️', 'shined ☀️'],
+          image: '🚫🏊',
+          text: 'He <span class="highlight-green">doesn\'t swim</span> <span class="highlight">every week</span>.',
+          question: 'He ___ swim every week.',
+          choices: ['doesn\'t 🚫', 'didn\'t 🚫'],
           correct: 0,
-          feedback: 'Wonderful! Mặt trời tỏa sáng - điều luôn xảy ra ☀️',
-          tip: '☀️ Sự thật luôn đúng → shines'
+          feedback: 'Excellent! every week + phủ định → doesn\'t',
+          tip: '🚫 every week → doesn\'t'
+        },
+        {
+          image: '❓🎾',
+          text: '"<span class="highlight-green">Do they play</span> tennis <span class="highlight">every week</span>?"',
+          question: '___ they play tennis every week?',
+          choices: ['Do ❓', 'Did ❓'],
+          correct: 0,
+          feedback: 'Great! every week + they → Do',
+          tip: '❓ every week → Do...?'
         }
       ]
     },
-    // Story 3: My Family
+    // Story 3: Always / Usually
     {
       bg: 'bg-home',
       scenes: [
         {
-          image: '👨‍👩‍👧‍👦🏠',
-          text: 'This is my family. We <span class="highlight-green">live</span> in a big house.',
-          question: 'My family ___ in a big house.',
-          choices: ['lives 🏠', 'lived 🏠'],
+          image: '🍎👧',
+          text: 'Lily <span class="highlight">always</span> <span class="highlight-green">eats</span> fruit.',
+          question: 'Lily always ___ fruit.',
+          choices: ['eats ☀️', 'ate 🌙'],
           correct: 0,
-          feedback: 'Yes! Gia đình sống trong nhà lớn 🏠',
-          tip: '🏠 Sự thật → lives'
+          feedback: 'Yes! "always" → eats',
+          tip: '☀️ always = luôn luôn → hiện tại'
         },
         {
-          image: '👨🍳',
-          text: 'Dad <span class="highlight-green">cooks</span> dinner <span class="highlight">every evening</span>. He\'s a great cook!',
-          question: 'Dad ___ dinner every evening.',
-          choices: ['cooks 🍳', 'cooked 🍳'],
+          image: '🚫🍭',
+          text: 'She <span class="highlight">always</span> <span class="highlight-green">doesn\'t eat</span> too much candy.',
+          question: 'She ___ eat too much candy.',
+          choices: ['doesn\'t 🚫', 'didn\'t 🚫'],
           correct: 0,
-          feedback: 'Great! Bố nấu cơm mỗi tối 👨‍🍳',
-          tip: '🍳 "every evening" → cooks'
+          feedback: 'Great! always + phủ định → doesn\'t',
+          tip: '🚫 always → doesn\'t'
         },
         {
-          image: '👩📖',
-          text: 'Mom <span class="highlight-green">reads</span> books <span class="highlight">every night</span>. She loves reading!',
-          question: 'Mom ___ books every night.',
-          choices: ['reads 📖', 'read 📖'],
+          image: '❓📚',
+          text: '"<span class="highlight-green">Does she always study</span> hard?"',
+          question: '___ she always study hard?',
+          choices: ['Does ❓', 'Did ❓'],
           correct: 0,
-          feedback: 'Perfect! Mẹ đọc sách mỗi tối 📚',
-          tip: '📖 "every night" → reads'
+          feedback: 'Perfect! always + câu hỏi → Does',
+          tip: '❓ always → Does...?'
         },
         {
-          image: '👧🎹',
-          text: 'My sister <span class="highlight-green">plays</span> the piano <span class="highlight">every day</span>.',
-          question: 'My sister ___ the piano every day.',
-          choices: ['plays 🎹', 'played 🎹'],
+          image: '🚶👦',
+          text: 'Tom <span class="highlight">usually</span> <span class="highlight-green">walks</span> to school.',
+          question: 'Tom usually ___ to school.',
+          choices: ['walks ☀️', 'walked 🌙'],
           correct: 0,
-          feedback: 'Wonderful! Chị chơi piano mỗi ngày 🎶',
-          tip: '🎹 "every day" → plays'
+          feedback: 'Wonderful! "usually" → walks',
+          tip: '☀️ usually = thường → hiện tại'
         },
         {
-          image: '👦🎮',
-          text: 'My brother <span class="highlight-green">plays</span> video games <span class="highlight">every weekend</span>.',
-          question: 'My brother ___ video games every weekend.',
-          choices: ['plays 🎮', 'played 🎮'],
+          image: '🚫🚌',
+          text: 'He <span class="highlight">usually</span> <span class="highlight-green">doesn\'t take</span> the bus.',
+          question: 'He usually ___ take the bus.',
+          choices: ['doesn\'t 🚫', 'didn\'t 🚫'],
           correct: 0,
-          feedback: 'Excellent! Anh chơi game mỗi cuối tuần 🎮',
-          tip: '🎮 "every weekend" → plays'
+          feedback: 'Excellent! usually + phủ định → doesn\'t',
+          tip: '🚫 usually → doesn\'t'
+        },
+        {
+          image: '❓🏃',
+          text: '"<span class="highlight-green">Does he usually run</span> in the morning?"',
+          question: '___ he usually run in the morning?',
+          choices: ['Does ❓', 'Did ❓'],
+          correct: 0,
+          feedback: 'Great! usually + câu hỏi → Does',
+          tip: '❓ usually → Does...?'
         }
       ]
     },
-    // Story 4: At School
+    // Story 4: Often / Sometimes
     {
-      bg: 'bg-school',
+      bg: 'bg-park',
       scenes: [
         {
-          image: '🏫👧👦',
-          text: 'We <span class="highlight-green">go</span> to school <span class="highlight">every day</span>. School is fun!',
-          question: 'We ___ to school every day.',
-          choices: ['go 🏫', 'went 🏫'],
+          image: '🎮👧',
+          text: 'Lily <span class="highlight">often</span> <span class="highlight-green">plays</span> games.',
+          question: 'Lily often ___ games.',
+          choices: ['plays ☀️', 'played 🌙'],
           correct: 0,
-          feedback: 'Yes! Chúng mình đi học mỗi ngày 📚',
-          tip: '🏫 "every day" → go'
+          feedback: 'Yes! "often" → plays',
+          tip: '☀️ often = thường xuyên → hiện tại'
         },
         {
-          image: '👩‍🏫📝',
-          text: 'The teacher <span class="highlight-green">teaches</span> us English <span class="highlight">every day</span>.',
-          question: 'The teacher ___ us English every day.',
-          choices: ['teaches 👩‍🏫', 'taught 👩‍🏫'],
+          image: '🚫😢',
+          text: 'She <span class="highlight">often</span> <span class="highlight-green">doesn\'t cry</span>. She\'s brave!',
+          question: 'She often ___ cry.',
+          choices: ['doesn\'t 🚫', 'didn\'t 🚫'],
           correct: 0,
-          feedback: 'Great! Cô giáo dạy tiếng Anh mỗi ngày ✏️',
-          tip: '👩‍🏫 "every day" → teaches'
+          feedback: 'Great! often + phủ định → doesn\'t',
+          tip: '🚫 often → doesn\'t'
         },
         {
-          image: '📚✍️',
-          text: 'We <span class="highlight-green">write</span> in our notebooks <span class="highlight">every day</span>.',
-          question: 'We ___ in our notebooks every day.',
-          choices: ['write ✍️', 'wrote ✍️'],
+          image: '❓🎨',
+          text: '"<span class="highlight-green">Does she often draw</span> pictures?"',
+          question: '___ she often draw pictures?',
+          choices: ['Does ❓', 'Did ❓'],
           correct: 0,
-          feedback: 'Perfect! Chúng mình viết bài mỗi ngày 📝',
-          tip: '✍️ "every day" → write'
+          feedback: 'Perfect! often + câu hỏi → Does',
+          tip: '❓ often → Does...?'
         },
         {
-          image: '🍎🥪',
-          text: 'At lunchtime, we <span class="highlight-green">eat</span> lunch at school <span class="highlight">every day</span>.',
-          question: 'We ___ lunch at school every day.',
-          choices: ['eat 🍎', 'ate 🍎'],
+          image: '🍦👦',
+          text: 'Tom <span class="highlight">sometimes</span> <span class="highlight-green">eats</span> ice cream.',
+          question: 'Tom sometimes ___ ice cream.',
+          choices: ['eats ☀️', 'ate 🌙'],
           correct: 0,
-          feedback: 'Wonderful! Chúng mình ăn trưa ở trường mỗi ngày 🥪',
-          tip: '🍎 "every day" → eat'
+          feedback: 'Wonderful! "sometimes" → eats',
+          tip: '☀️ sometimes = đôi khi → hiện tại'
         },
         {
-          image: '⚽🏃',
-          text: 'After school, we <span class="highlight-green">play</span> sports <span class="highlight">every afternoon</span>.',
-          question: 'We ___ sports every afternoon.',
-          choices: ['play ⚽', 'played ⚽'],
+          image: '🚫🎸',
+          text: 'He <span class="highlight">sometimes</span> <span class="highlight-green">doesn\'t practice</span> guitar.',
+          question: 'He sometimes ___ practice guitar.',
+          choices: ['doesn\'t 🚫', 'didn\'t 🚫'],
           correct: 0,
-          feedback: 'Excellent! Chúng mình chơi thể thao mỗi chiều 🏃',
-          tip: '⚽ "every afternoon" → play'
+          feedback: 'Excellent! sometimes + phủ định → doesn\'t',
+          tip: '🚫 sometimes → doesn\'t'
+        },
+        {
+          image: '❓🎬',
+          text: '"<span class="highlight-green">Do you sometimes watch</span> movies?"',
+          question: '___ you sometimes watch movies?',
+          choices: ['Do ❓', 'Did ❓'],
+          correct: 0,
+          feedback: 'Great! sometimes + you → Do',
+          tip: '❓ sometimes → Do...?'
         }
       ]
     }
   ],
   yesterday: [
-    // Story 1: Lily's Special Sunday
+    // Story 1: Yesterday
     {
       bg: 'bg-night',
       scenes: [
         {
           image: '🌙👧',
-          text: '<span class="highlight-orange">Yesterday</span>, Lily <span class="highlight-orange">woke up</span> late. It was Sunday!',
-          question: 'Yesterday, Lily ___ up late.',
-          choices: ['woke 🛏️', 'wakes 🛏️'],
+          text: 'Lily <span class="highlight-orange">woke up</span> late <span class="highlight-orange">yesterday</span>.',
+          question: '___, Lily woke up late.',
+          choices: ['Yesterday 🌙', 'Every day ☀️'],
           correct: 0,
-          feedback: 'Yes! Hôm qua Lily dậy muộn 😴',
-          tip: '🌙 "yesterday" → đã xảy ra → woke'
+          feedback: 'Yes! "yesterday" → quá khứ',
+          tip: '🌙 yesterday = hôm qua → quá khứ'
         },
         {
-          image: '🥞👨‍🍳',
-          text: 'Dad <span class="highlight-orange">made</span> pancakes for breakfast <span class="highlight-orange">yesterday</span>. Yummy!',
-          question: 'Yesterday, Dad ___ pancakes.',
-          choices: ['made 🥞', 'makes 🥞'],
+          image: '🚫🏫',
+          text: 'She <span class="highlight-orange">didn\'t go</span> to school <span class="highlight-orange">yesterday</span>.',
+          question: 'Yesterday, she ___ go to school.',
+          choices: ['didn\'t 🚫', 'doesn\'t 🚫'],
           correct: 0,
-          feedback: 'Great! Hôm qua bố làm bánh pancake 😋',
-          tip: '🥞 "yesterday" → đã xong → made'
+          feedback: 'Great! yesterday + phủ định → didn\'t',
+          tip: '🚫 yesterday → didn\'t'
         },
         {
-          image: '🎢👨‍👩‍👧',
-          text: 'The family <span class="highlight-orange">went</span> to the park <span class="highlight-orange">yesterday</span>. They had fun!',
-          question: 'Yesterday, the family ___ to the park.',
-          choices: ['went 🎢', 'go 🎢'],
+          image: '❓🛏️',
+          text: '"<span class="highlight-orange">Did she sleep</span> well <span class="highlight-orange">yesterday</span>?"',
+          question: '___ she sleep well yesterday?',
+          choices: ['Did ❓', 'Does ❓'],
           correct: 0,
-          feedback: 'Perfect! Hôm qua cả nhà đi công viên 🎉',
-          tip: '🌳 "yesterday" - việc đã xảy ra → went'
+          feedback: 'Perfect! yesterday + câu hỏi → Did',
+          tip: '❓ yesterday → Did...?'
         },
         {
-          image: '🍦😋',
-          text: 'Lily <span class="highlight-orange">ate</span> ice cream <span class="highlight-orange">yesterday</span>. It was delicious!',
-          question: 'Yesterday, Lily ___ ice cream.',
-          choices: ['ate 🍦', 'eats 🍦'],
+          image: '🍕👦',
+          text: 'Tom <span class="highlight-orange">ate</span> pizza <span class="highlight-orange">yesterday</span>.',
+          question: 'Yesterday, Tom ___ pizza.',
+          choices: ['ate 🌙', 'eats ☀️'],
           correct: 0,
-          feedback: 'Wonderful! Hôm qua Lily ăn kem 🍦',
-          tip: '🍦 "yesterday" → ate (không phải eats)'
+          feedback: 'Wonderful! yesterday → ate',
+          tip: '🌙 yesterday → quá khứ'
         },
         {
-          image: '🎬🍿',
-          text: 'They <span class="highlight-orange">watched</span> a movie <span class="highlight-orange">last night</span>. It was funny!',
-          question: 'Last night, they ___ a movie.',
-          choices: ['watched 🎬', 'watch 🎬'],
+          image: '🚫🥗',
+          text: 'He <span class="highlight-orange">didn\'t eat</span> salad <span class="highlight-orange">yesterday</span>.',
+          question: 'Yesterday, he didn\'t ___ salad.',
+          choices: ['eat 🚫', 'ate 🚫'],
           correct: 0,
-          feedback: 'Excellent! Tối qua họ xem phim 🍿',
-          tip: '🎬 "last night" → watched'
+          feedback: 'Excellent! Sau didn\'t → eat (dạng gốc)',
+          tip: '⚠️ didn\'t + eat (KHÔNG phải ate!)'
         },
         {
-          image: '😴💤',
-          text: 'At night, everyone <span class="highlight-orange">slept</span> well. What a great day!',
-          question: 'Last night, everyone ___ well.',
-          choices: ['slept 😴', 'sleeps 😴'],
+          image: '❓🎮',
+          text: '"<span class="highlight-orange">Did he play</span> games <span class="highlight-orange">yesterday</span>?"',
+          question: 'Did he ___ games yesterday?',
+          choices: ['play ❓', 'played ❓'],
           correct: 0,
-          feedback: 'Perfect! Tối qua mọi người ngủ ngon 🌙',
-          tip: '😴 "last night" - đã qua → slept'
+          feedback: 'Great! Sau Did → play (dạng gốc)',
+          tip: '⚠️ Did + play (KHÔNG phải played!)'
         }
       ]
     },
-    // Story 2: Tom's Test
+    // Story 2: Last night
+    {
+      bg: 'bg-night',
+      scenes: [
+        {
+          image: '📺👨‍👩‍👧',
+          text: 'We <span class="highlight-orange">watched</span> a movie <span class="highlight-orange">last night</span>.',
+          question: '___, we watched a movie.',
+          choices: ['Last night 🌙', 'Every night ☀️'],
+          correct: 0,
+          feedback: 'Yes! "last night" → quá khứ',
+          tip: '🌙 last night = tối qua → quá khứ'
+        },
+        {
+          image: '🚫📖',
+          text: 'Lily <span class="highlight-orange">didn\'t read</span> books <span class="highlight-orange">last night</span>.',
+          question: 'Last night, Lily ___ read books.',
+          choices: ['didn\'t 🚫', 'doesn\'t 🚫'],
+          correct: 0,
+          feedback: 'Great! last night + phủ định → didn\'t',
+          tip: '🚫 last night → didn\'t'
+        },
+        {
+          image: '❓😴',
+          text: '"<span class="highlight-orange">Did you sleep</span> early <span class="highlight-orange">last night</span>?"',
+          question: '___ you sleep early last night?',
+          choices: ['Did ❓', 'Do ❓'],
+          correct: 0,
+          feedback: 'Perfect! last night + câu hỏi → Did',
+          tip: '❓ last night → Did...?'
+        },
+        {
+          image: '🍝👨',
+          text: 'Dad <span class="highlight-orange">cooked</span> pasta <span class="highlight-orange">last night</span>.',
+          question: 'Last night, Dad ___ pasta.',
+          choices: ['cooked 🌙', 'cooks ☀️'],
+          correct: 0,
+          feedback: 'Wonderful! last night → cooked',
+          tip: '🌙 last night → quá khứ'
+        },
+        {
+          image: '🚫🍰',
+          text: 'We <span class="highlight-orange">didn\'t have</span> dessert <span class="highlight-orange">last night</span>.',
+          question: 'Last night, we didn\'t ___ dessert.',
+          choices: ['have 🚫', 'had 🚫'],
+          correct: 0,
+          feedback: 'Excellent! Sau didn\'t → have (dạng gốc)',
+          tip: '⚠️ didn\'t + have (KHÔNG phải had!)'
+        },
+        {
+          image: '❓🎬',
+          text: '"<span class="highlight-orange">Did they come</span> over <span class="highlight-orange">last night</span>?"',
+          question: 'Did they ___ over last night?',
+          choices: ['come ❓', 'came ❓'],
+          correct: 0,
+          feedback: 'Great! Sau Did → come (dạng gốc)',
+          tip: '⚠️ Did + come (KHÔNG phải came!)'
+        }
+      ]
+    },
+    // Story 3: Last week / Last month
     {
       bg: 'bg-school',
       scenes: [
         {
-          image: '📚👦',
-          text: '<span class="highlight-orange">Last week</span>, Tom <span class="highlight-orange">had</span> a test at school.',
-          question: 'Last week, Tom ___ a test.',
-          choices: ['had 📝', 'has 📝'],
+          image: '📝👧',
+          text: 'Lily <span class="highlight-orange">had</span> a test <span class="highlight-orange">last week</span>.',
+          question: '___, Lily had a test.',
+          choices: ['Last week 🌙', 'Every week ☀️'],
           correct: 0,
-          feedback: 'Yes! Tuần trước Tom có bài kiểm tra 📚',
-          tip: '📅 "last week" - tuần trước → had'
+          feedback: 'Yes! "last week" → quá khứ',
+          tip: '🌙 last week = tuần trước → quá khứ'
         },
         {
-          image: '✏️📖',
-          text: 'He <span class="highlight-orange">studied</span> very hard <span class="highlight-orange">last week</span>.',
-          question: 'Tom ___ very hard last week.',
-          choices: ['studied 📖', 'studies 📖'],
+          image: '🚫😰',
+          text: 'She <span class="highlight-orange">didn\'t fail</span> the test <span class="highlight-orange">last week</span>.',
+          question: 'Last week, she ___ fail the test.',
+          choices: ['didn\'t 🚫', 'doesn\'t 🚫'],
           correct: 0,
-          feedback: 'Great! Tom đã học rất chăm 💪',
-          tip: '✏️ "last week" → studied'
+          feedback: 'Great! last week + phủ định → didn\'t',
+          tip: '🚫 last week → didn\'t'
         },
         {
-          image: '✅💯',
-          text: 'Tom <span class="highlight-orange">got</span> 100 points! He was very happy!',
-          question: 'Tom ___ 100 points!',
-          choices: ['got 🏆', 'gets 🏆'],
+          image: '❓💯',
+          text: '"<span class="highlight-orange">Did she get</span> 100 points <span class="highlight-orange">last week</span>?"',
+          question: '___ she get 100 points last week?',
+          choices: ['Did ❓', 'Does ❓'],
           correct: 0,
-          feedback: 'Perfect! Tom được 100 điểm! 🎉',
-          tip: '💯 Việc đã xảy ra → got'
+          feedback: 'Perfect! last week + câu hỏi → Did',
+          tip: '❓ last week → Did...?'
         },
         {
-          image: '🎁👨‍👩‍👦',
-          text: 'Mom and Dad <span class="highlight-orange">gave</span> Tom a gift <span class="highlight-orange">yesterday</span>.',
-          question: 'Yesterday, Mom and Dad ___ Tom a gift.',
-          choices: ['gave 🎁', 'give 🎁'],
+          image: '🎂👦',
+          text: 'Tom <span class="highlight-orange">celebrated</span> his birthday <span class="highlight-orange">last month</span>.',
+          question: '___, Tom celebrated his birthday.',
+          choices: ['Last month 🌙', 'Every month ☀️'],
           correct: 0,
-          feedback: 'Wonderful! Hôm qua bố mẹ tặng quà cho Tom 🎁',
-          tip: '🎁 "yesterday" → gave'
+          feedback: 'Wonderful! "last month" → quá khứ',
+          tip: '🌙 last month = tháng trước → quá khứ'
         },
         {
-          image: '😊🙏',
-          text: 'Tom <span class="highlight-orange">said</span> "Thank you!" He was so happy!',
-          question: 'Tom ___ "Thank you!"',
-          choices: ['said 😊', 'says 😊'],
+          image: '🚫🎁',
+          text: 'He <span class="highlight-orange">didn\'t get</span> a bike <span class="highlight-orange">last month</span>.',
+          question: 'Last month, he didn\'t ___ a bike.',
+          choices: ['get 🚫', 'got 🚫'],
           correct: 0,
-          feedback: 'Excellent! Tom nói "Cảm ơn!" 🙏',
-          tip: '😊 Việc đã xảy ra → said'
+          feedback: 'Excellent! Sau didn\'t → get (dạng gốc)',
+          tip: '⚠️ didn\'t + get (KHÔNG phải got!)'
+        },
+        {
+          image: '❓🎉',
+          text: '"<span class="highlight-orange">Did friends come</span> to the party <span class="highlight-orange">last month</span>?"',
+          question: 'Did friends ___ to the party last month?',
+          choices: ['come ❓', 'came ❓'],
+          correct: 0,
+          feedback: 'Great! Sau Did → come (dạng gốc)',
+          tip: '⚠️ Did + come (KHÔNG phải came!)'
         }
       ]
     },
-    // Story 3: Birthday Party
-    {
-      bg: 'bg-home',
-      scenes: [
-        {
-          image: '🎂👧',
-          text: '<span class="highlight-orange">Yesterday</span> was Lily\'s birthday! She <span class="highlight-orange">turned</span> 8 years old.',
-          question: 'Yesterday, Lily ___ 8 years old.',
-          choices: ['turned 🎂', 'turns 🎂'],
-          correct: 0,
-          feedback: 'Yes! Hôm qua Lily tròn 8 tuổi! 🎉',
-          tip: '🎂 "yesterday" → turned'
-        },
-        {
-          image: '🎈🎊',
-          text: 'Mom <span class="highlight-orange">decorated</span> the house with balloons <span class="highlight-orange">yesterday</span>.',
-          question: 'Yesterday, Mom ___ the house.',
-          choices: ['decorated 🎈', 'decorates 🎈'],
-          correct: 0,
-          feedback: 'Great! Hôm qua mẹ trang trí nhà 🎊',
-          tip: '🎈 "yesterday" → decorated'
-        },
-        {
-          image: '👫🎉',
-          text: 'Lily\'s friends <span class="highlight-orange">came</span> to the party <span class="highlight-orange">yesterday</span>.',
-          question: 'Yesterday, Lily\'s friends ___ to the party.',
-          choices: ['came 👫', 'come 👫'],
-          correct: 0,
-          feedback: 'Perfect! Hôm qua bạn bè đến dự tiệc 🎉',
-          tip: '👫 "yesterday" → came'
-        },
-        {
-          image: '🎤🎵',
-          text: 'They <span class="highlight-orange">sang</span> "Happy Birthday" <span class="highlight-orange">yesterday</span>.',
-          question: 'Yesterday, they ___ "Happy Birthday".',
-          choices: ['sang 🎤', 'sing 🎤'],
-          correct: 0,
-          feedback: 'Wonderful! Hôm qua họ hát "Happy Birthday" 🎵',
-          tip: '🎤 "yesterday" → sang'
-        },
-        {
-          image: '🎁😍',
-          text: 'Lily <span class="highlight-orange">got</span> many presents. She <span class="highlight-orange">loved</span> them all!',
-          question: 'Lily ___ many presents yesterday.',
-          choices: ['got 🎁', 'gets 🎁'],
-          correct: 0,
-          feedback: 'Excellent! Lily nhận được nhiều quà 🎁',
-          tip: '🎁 Việc đã xảy ra → got'
-        },
-        {
-          image: '🍰😋',
-          text: 'Everyone <span class="highlight-orange">ate</span> birthday cake. It was chocolate!',
-          question: 'Everyone ___ birthday cake.',
-          choices: ['ate 🍰', 'eats 🍰'],
-          correct: 0,
-          feedback: 'Yummy! Mọi người ăn bánh sinh nhật 🎂',
-          tip: '🍰 Việc đã xảy ra → ate'
-        }
-      ]
-    },
-    // Story 4: Trip to the Zoo
+    // Story 4: Last year / ...ago / in 2023
     {
       bg: 'bg-park',
       scenes: [
         {
-          image: '🦁🐘',
-          text: '<span class="highlight-orange">Last Sunday</span>, we <span class="highlight-orange">went</span> to the zoo.',
-          question: 'Last Sunday, we ___ to the zoo.',
-          choices: ['went 🦁', 'go 🦁'],
+          image: '✈️👨‍👩‍👧',
+          text: 'We <span class="highlight-orange">went</span> to Japan <span class="highlight-orange">last year</span>.',
+          question: '___, we went to Japan.',
+          choices: ['Last year 🌙', 'Every year ☀️'],
           correct: 0,
-          feedback: 'Yes! Chủ nhật trước chúng mình đi sở thú 🐘',
-          tip: '🦁 "last Sunday" → went'
+          feedback: 'Yes! "last year" → quá khứ',
+          tip: '🌙 last year = năm ngoái → quá khứ'
         },
         {
-          image: '🐒🍌',
-          text: 'We <span class="highlight-orange">saw</span> many monkeys. They <span class="highlight-orange">ate</span> bananas!',
-          question: 'We ___ many monkeys at the zoo.',
-          choices: ['saw 🐒', 'see 🐒'],
+          image: '🚫🏔️',
+          text: 'We <span class="highlight-orange">didn\'t climb</span> a mountain <span class="highlight-orange">last year</span>.',
+          question: 'Last year, we ___ climb a mountain.',
+          choices: ['didn\'t 🚫', 'don\'t 🚫'],
           correct: 0,
-          feedback: 'Great! Chúng mình thấy nhiều khỉ 🐒',
-          tip: '🐒 Việc đã xảy ra → saw'
+          feedback: 'Great! last year + phủ định → didn\'t',
+          tip: '🚫 last year → didn\'t'
         },
         {
-          image: '🐘💦',
-          text: 'The elephants <span class="highlight-orange">played</span> with water. It was fun to watch!',
-          question: 'The elephants ___ with water.',
-          choices: ['played 🐘', 'play 🐘'],
+          image: '❓🌊',
+          text: '"<span class="highlight-orange">Did you swim</span> in the sea <span class="highlight-orange">last year</span>?"',
+          question: '___ you swim in the sea last year?',
+          choices: ['Did ❓', 'Do ❓'],
           correct: 0,
-          feedback: 'Perfect! Những chú voi chơi với nước 💦',
-          tip: '🐘 Việc đã xảy ra → played'
+          feedback: 'Perfect! last year + câu hỏi → Did',
+          tip: '❓ last year → Did...?'
         },
         {
-          image: '🦒📸',
-          text: 'Dad <span class="highlight-orange">took</span> photos of the giraffes <span class="highlight-orange">yesterday</span>.',
-          question: 'Yesterday, Dad ___ photos of the giraffes.',
-          choices: ['took 📸', 'takes 📸'],
+          image: '🎓👧',
+          text: 'Lily <span class="highlight-orange">started</span> school <span class="highlight-orange">2 years ago</span>.',
+          question: '2 years ___, Lily started school.',
+          choices: ['ago 🌙', 'every ☀️'],
           correct: 0,
-          feedback: 'Wonderful! Hôm qua bố chụp ảnh hươu cao cổ 🦒',
-          tip: '📸 "yesterday" → took'
+          feedback: 'Wonderful! "ago" → quá khứ',
+          tip: '🌙 ...ago = cách đây... → quá khứ'
         },
         {
-          image: '🍕😋',
-          text: 'We <span class="highlight-orange">ate</span> pizza for lunch at the zoo.',
-          question: 'We ___ pizza for lunch.',
-          choices: ['ate 🍕', 'eat 🍕'],
+          image: '🐕👦',
+          text: 'Tom <span class="highlight-orange">got</span> a dog <span class="highlight-orange">in 2023</span>.',
+          question: '___, Tom got a dog.',
+          choices: ['In 2023 🌙', 'Every year ☀️'],
           correct: 0,
-          feedback: 'Yummy! Chúng mình ăn pizza ở sở thú 🍕',
-          tip: '🍕 Việc đã xảy ra → ate'
+          feedback: 'Excellent! "in 2023" → quá khứ',
+          tip: '🌙 in 2023 = năm 2023 → quá khứ'
         },
         {
-          image: '🚗😴',
-          text: 'On the way home, I <span class="highlight-orange">slept</span> in the car. I was tired!',
-          question: 'I ___ in the car on the way home.',
-          choices: ['slept 😴', 'sleep 😴'],
+          image: '❓🏠',
+          text: '"<span class="highlight-orange">Did they move</span> house <span class="highlight-orange">3 years ago</span>?"',
+          question: 'Did they ___ house 3 years ago?',
+          choices: ['move ❓', 'moved ❓'],
           correct: 0,
-          feedback: 'Excellent! Con ngủ trên xe khi về nhà 🚗',
-          tip: '😴 Việc đã xảy ra → slept'
+          feedback: 'Great! Sau Did → move (dạng gốc)',
+          tip: '⚠️ Did + move (KHÔNG phải moved!)'
         }
       ]
     }
   ],
   stories: [
-    // Mixed stories comparing every day vs yesterday
+    // Story 1: Every day vs Yesterday
     {
       bg: 'bg-home',
       scenes: [
         {
-          image: '👧📅',
-          text: 'Lily\'s day: She <span class="highlight-green">wakes up</span> at 7 <span class="highlight">every morning</span>.',
-          question: 'Every morning, Lily...',
-          choices: ['wakes up at 7 ☀️', 'woke up at 7 🌙'],
+          image: '☀️👧',
+          text: 'Lily <span class="highlight-green">eats</span> breakfast <span class="highlight">every day</span>.',
+          question: 'Every day → Lily ___ breakfast.',
+          choices: ['eats ☀️', 'ate 🌙'],
           correct: 0,
-          feedback: 'Yes! Mỗi sáng = every morning → wakes up',
-          tip: '☀️ Every = mỗi → việc làm thường xuyên'
+          feedback: 'Yes! every day → eats',
+          tip: '☀️ every day → hiện tại'
         },
         {
-          image: '👧🌙',
-          text: 'But <span class="highlight-orange">yesterday</span>, Lily <span class="highlight-orange">woke up</span> at 9! She was late!',
-          question: 'Yesterday, Lily...',
-          choices: ['woke up at 9 😱', 'wakes up at 9 ☀️'],
+          image: '🌙👧',
+          text: '<span class="highlight-orange">Yesterday</span>, she <span class="highlight-orange">ate</span> pancakes!',
+          question: 'Yesterday → she ___ pancakes.',
+          choices: ['ate 🌙', 'eats ☀️'],
           correct: 0,
-          feedback: 'Yes! Hôm qua = yesterday → woke up',
-          tip: '🌙 Yesterday = hôm qua → việc đã xảy ra'
+          feedback: 'Great! yesterday → ate',
+          tip: '🌙 yesterday → quá khứ'
         },
         {
-          image: '🍎👧',
-          text: 'Lily <span class="highlight-green">eats</span> an apple <span class="highlight">every day</span>. Apples are healthy!',
-          question: 'Every day, Lily ___ an apple.',
-          choices: ['eats 🍎', 'ate 🍎'],
+          image: '🚫☀️',
+          text: 'She <span class="highlight-green">doesn\'t drink</span> coffee <span class="highlight">every morning</span>.',
+          question: 'Every morning → she ___ drink coffee.',
+          choices: ['doesn\'t ☀️', 'didn\'t 🌙'],
           correct: 0,
-          feedback: 'Great! Mỗi ngày Lily ăn táo 🍎',
-          tip: '🍎 "every day" → eats'
+          feedback: 'Perfect! every morning → doesn\'t',
+          tip: '☀️ every morning → doesn\'t'
         },
         {
-          image: '🍕👧',
-          text: 'But <span class="highlight-orange">yesterday</span>, she <span class="highlight-orange">ate</span> pizza! It was her birthday!',
-          question: 'Yesterday, Lily ___ pizza.',
-          choices: ['ate 🍕', 'eats 🍕'],
+          image: '🚫🌙',
+          text: '<span class="highlight-orange">Last night</span>, she <span class="highlight-orange">didn\'t drink</span> milk.',
+          question: 'Last night → she ___ drink milk.',
+          choices: ['didn\'t 🌙', 'doesn\'t ☀️'],
           correct: 0,
-          feedback: 'Perfect! Hôm qua Lily ăn pizza 🎂',
-          tip: '🍕 "yesterday" → ate'
+          feedback: 'Wonderful! last night → didn\'t',
+          tip: '🌙 last night → didn\'t'
         },
         {
-          image: '🚶‍♀️🏫',
-          text: 'Lily <span class="highlight-green">walks</span> to school <span class="highlight">every day</span>.',
-          question: 'Every day, Lily ___ to school.',
-          choices: ['walks 🚶‍♀️', 'walked 🚶‍♀️'],
+          image: '❓☀️',
+          text: '"<span class="highlight-green">Does</span> she go to school <span class="highlight">every day</span>?"',
+          question: 'Every day → ___ she go to school?',
+          choices: ['Does ☀️', 'Did 🌙'],
           correct: 0,
-          feedback: 'Wonderful! Mỗi ngày Lily đi bộ 🏫',
-          tip: '🚶‍♀️ "every day" → walks'
+          feedback: 'Excellent! every day → Does',
+          tip: '☀️ every day → Does...?'
         },
         {
-          image: '🚗👨',
-          text: 'But <span class="highlight-orange">yesterday</span>, Dad <span class="highlight-orange">drove</span> her to school!',
-          question: 'Yesterday, Dad ___ Lily to school.',
-          choices: ['drove 🚗', 'drives 🚗'],
+          image: '❓🌙',
+          text: '"<span class="highlight-orange">Did</span> she go to school <span class="highlight-orange">yesterday</span>?"',
+          question: 'Yesterday → ___ she go to school?',
+          choices: ['Did 🌙', 'Does ☀️'],
           correct: 0,
-          feedback: 'Excellent! Hôm qua bố lái xe đưa Lily 🚗',
-          tip: '🚗 "yesterday" → drove'
+          feedback: 'Great! yesterday → Did',
+          tip: '🌙 yesterday → Did...?'
         }
       ]
     },
-    // Story comparing Tom's routines
+    // Story 2: Always/Usually vs Last week
     {
       bg: 'bg-park',
       scenes: [
         {
-          image: '👦⚽',
-          text: 'Tom <span class="highlight-green">plays</span> football <span class="highlight">every Saturday</span>.',
-          question: 'Every Saturday, Tom ___ football.',
-          choices: ['plays ⚽', 'played ⚽'],
+          image: '⚽☀️',
+          text: 'Tom <span class="highlight">always</span> <span class="highlight-green">plays</span> football on Saturday.',
+          question: 'Always → Tom ___ football.',
+          choices: ['plays ☀️', 'played 🌙'],
           correct: 0,
-          feedback: 'Yes! Mỗi thứ 7 Tom chơi bóng đá ⚽',
-          tip: '⚽ "every Saturday" → plays'
+          feedback: 'Yes! always → plays',
+          tip: '☀️ always → hiện tại'
         },
         {
-          image: '👦⚽🏆',
-          text: 'But <span class="highlight-orange">last Saturday</span>, Tom <span class="highlight-orange">played</span> in a big match!',
-          question: 'Last Saturday, Tom ___ in a big match.',
-          choices: ['played ⚽', 'plays ⚽'],
+          image: '⚽🌙',
+          text: '<span class="highlight-orange">Last Saturday</span>, he <span class="highlight-orange">played</span> in a big match.',
+          question: 'Last Saturday → he ___ in a big match.',
+          choices: ['played 🌙', 'plays ☀️'],
           correct: 0,
-          feedback: 'Great! Thứ 7 trước Tom chơi trận lớn 🏆',
-          tip: '⚽ "last Saturday" → played'
+          feedback: 'Great! last Saturday → played',
+          tip: '🌙 last Saturday → quá khứ'
         },
         {
-          image: '👦🥛',
-          text: 'Tom <span class="highlight-green">drinks</span> milk <span class="highlight">every morning</span>.',
-          question: 'Every morning, Tom ___ milk.',
-          choices: ['drinks 🥛', 'drank 🥛'],
+          image: '🚫☀️',
+          text: 'He <span class="highlight">usually</span> <span class="highlight-green">doesn\'t lose</span>.',
+          question: 'Usually → he ___ lose.',
+          choices: ['doesn\'t ☀️', 'didn\'t 🌙'],
           correct: 0,
-          feedback: 'Perfect! Mỗi sáng Tom uống sữa 🥛',
-          tip: '🥛 "every morning" → drinks'
+          feedback: 'Perfect! usually → doesn\'t',
+          tip: '☀️ usually → doesn\'t'
         },
         {
-          image: '👦🧃',
-          text: 'But <span class="highlight-orange">yesterday</span>, he <span class="highlight-orange">drank</span> orange juice!',
-          question: 'Yesterday, Tom ___ orange juice.',
-          choices: ['drank 🧃', 'drinks 🧃'],
+          image: '🚫🌙',
+          text: 'But <span class="highlight-orange">last week</span>, he <span class="highlight-orange">didn\'t win</span>.',
+          question: 'Last week → he ___ win.',
+          choices: ['didn\'t 🌙', 'doesn\'t ☀️'],
           correct: 0,
-          feedback: 'Wonderful! Hôm qua Tom uống nước cam 🍊',
-          tip: '🧃 "yesterday" → drank'
+          feedback: 'Wonderful! last week → didn\'t',
+          tip: '🌙 last week → didn\'t'
         },
         {
-          image: '👦📚',
-          text: 'Tom <span class="highlight-green">reads</span> books <span class="highlight">every night</span>.',
-          question: 'Every night, Tom ___ books.',
-          choices: ['reads 📚', 'read 📚'],
+          image: '❓☀️',
+          text: '"<span class="highlight-green">Does</span> he <span class="highlight">often</span> score goals?"',
+          question: 'Often → ___ he score goals?',
+          choices: ['Does ☀️', 'Did 🌙'],
           correct: 0,
-          feedback: 'Excellent! Mỗi tối Tom đọc sách 📖',
-          tip: '📚 "every night" → reads'
+          feedback: 'Excellent! often → Does',
+          tip: '☀️ often → Does...?'
         },
         {
-          image: '👦📖✨',
-          text: 'But <span class="highlight-orange">last night</span>, he <span class="highlight-orange">read</span> a very exciting book!',
-          question: 'Last night, Tom ___ an exciting book.',
-          choices: ['read 📖', 'reads 📖'],
+          image: '❓🌙',
+          text: '"<span class="highlight-orange">Did</span> he score <span class="highlight-orange">last month</span>?"',
+          question: 'Last month → ___ he score?',
+          choices: ['Did 🌙', 'Does ☀️'],
           correct: 0,
-          feedback: 'Great! Tối qua Tom đọc sách thú vị 📖',
-          tip: '📖 "last night" → read'
+          feedback: 'Great! last month → Did',
+          tip: '🌙 last month → Did...?'
         }
       ]
     },
-    // Story: Animals at the farm
+    // Story 3: Sometimes vs ...ago
     {
-      bg: 'bg-park',
+      bg: 'bg-home',
       scenes: [
         {
-          image: '🐄🌾',
-          text: 'The cows <span class="highlight-green">eat</span> grass <span class="highlight">every day</span>.',
-          question: 'Every day, the cows ___ grass.',
-          choices: ['eat 🐄', 'ate 🐄'],
+          image: '🎮☀️',
+          text: 'Lily <span class="highlight">sometimes</span> <span class="highlight-green">plays</span> video games.',
+          question: 'Sometimes → Lily ___ video games.',
+          choices: ['plays ☀️', 'played 🌙'],
           correct: 0,
-          feedback: 'Yes! Mỗi ngày bò ăn cỏ 🌾',
-          tip: '🐄 "every day" → eat'
+          feedback: 'Yes! sometimes → plays',
+          tip: '☀️ sometimes → hiện tại'
         },
         {
-          image: '🐄🌽',
-          text: 'But <span class="highlight-orange">yesterday</span>, they <span class="highlight-orange">ate</span> corn too!',
-          question: 'Yesterday, the cows ___ corn.',
-          choices: ['ate 🌽', 'eat 🌽'],
+          image: '🎮🌙',
+          text: 'She <span class="highlight-orange">played</span> a new game <span class="highlight-orange">2 days ago</span>.',
+          question: '2 days ago → she ___ a new game.',
+          choices: ['played 🌙', 'plays ☀️'],
           correct: 0,
-          feedback: 'Great! Hôm qua bò ăn bắp 🌽',
-          tip: '🌽 "yesterday" → ate'
+          feedback: 'Great! ...ago → played',
+          tip: '🌙 ...ago → quá khứ'
         },
         {
-          image: '🐓🌅',
-          text: 'The rooster <span class="highlight-green">crows</span> <span class="highlight">every morning</span>.',
-          question: 'Every morning, the rooster ___.',
-          choices: ['crows 🐓', 'crowed 🐓'],
+          image: '🚫☀️',
+          text: 'She <span class="highlight">sometimes</span> <span class="highlight-green">doesn\'t do</span> homework.',
+          question: 'Sometimes → she ___ do homework.',
+          choices: ['doesn\'t ☀️', 'didn\'t 🌙'],
           correct: 0,
-          feedback: 'Perfect! Mỗi sáng gà trống gáy 🌅',
-          tip: '🐓 "every morning" → crows'
+          feedback: 'Perfect! sometimes → doesn\'t',
+          tip: '☀️ sometimes → doesn\'t'
         },
         {
-          image: '🐓😴',
-          text: 'But <span class="highlight-orange">yesterday</span>, it <span class="highlight-orange">crowed</span> very loudly!',
-          question: 'Yesterday, the rooster ___ very loudly.',
-          choices: ['crowed 🐓', 'crows 🐓'],
+          image: '🚫🌙',
+          text: '<span class="highlight-orange">A week ago</span>, she <span class="highlight-orange">didn\'t finish</span> her project.',
+          question: 'A week ago → she ___ finish her project.',
+          choices: ['didn\'t 🌙', 'doesn\'t ☀️'],
           correct: 0,
-          feedback: 'Wonderful! Hôm qua gà gáy rất to 📢',
-          tip: '🐓 "yesterday" → crowed'
+          feedback: 'Wonderful! ...ago → didn\'t',
+          tip: '🌙 ...ago → didn\'t'
         },
         {
-          image: '🐷🛁',
-          text: 'The farmer <span class="highlight-green">feeds</span> the pigs <span class="highlight">every day</span>.',
-          question: 'Every day, the farmer ___ the pigs.',
-          choices: ['feeds 🐷', 'fed 🐷'],
+          image: '❓☀️',
+          text: '"<span class="highlight-green">Does</span> she <span class="highlight">often</span> help Mom?"',
+          question: 'Often → ___ she help Mom?',
+          choices: ['Does ☀️', 'Did 🌙'],
           correct: 0,
-          feedback: 'Excellent! Mỗi ngày bác nông dân cho heo ăn 🐷',
-          tip: '🐷 "every day" → feeds'
+          feedback: 'Excellent! often → Does',
+          tip: '☀️ often → Does...?'
         },
         {
-          image: '🐷🎉',
-          text: 'But <span class="highlight-orange">yesterday</span>, he <span class="highlight-orange">fed</span> them extra food!',
-          question: 'Yesterday, the farmer ___ them extra food.',
-          choices: ['fed 🐷', 'feeds 🐷'],
+          image: '❓🌙',
+          text: '"<span class="highlight-orange">Did</span> she help <span class="highlight-orange">in 2023</span>?"',
+          question: 'In 2023 → ___ she help?',
+          choices: ['Did 🌙', 'Does ☀️'],
           correct: 0,
-          feedback: 'Great! Hôm qua bác cho heo ăn nhiều hơn 🐷',
-          tip: '🐷 "yesterday" → fed'
+          feedback: 'Great! in 2023 → Did',
+          tip: '🌙 in 2023 → Did...?'
         }
       ]
-    }
-  ],
-  // ========== QUESTIONS ==========
-  questions: [
-    // Story 1: Do you...? Does she...?
+    },
+    // Story 4: All signals mixed
     {
       bg: 'bg-school',
       scenes: [
         {
-          image: '❓👧',
-          text: 'Hỏi bạn: "<span class="highlight-green">Do you</span> like ice cream?" - "Yes, I do!"',
-          question: '___ you like ice cream?',
-          choices: ['Do ❓', 'Does ❓'],
+          image: '🏫',
+          text: 'We <span class="highlight-green">go</span> to school <span class="highlight">every day</span>.',
+          question: 'every day / yesterday → We ___ to school.',
+          choices: ['go (every day) ☀️', 'went (yesterday) 🌙'],
           correct: 0,
-          feedback: 'Yes! Hỏi "you" → dùng "Do" 👍',
-          tip: '❓ Do + you/I/we/they...?'
+          feedback: 'Yes! every day → go',
+          tip: '☀️ every day → hiện tại'
         },
         {
-          image: '❓👦',
-          text: 'Hỏi về Tom: "<span class="highlight-green">Does he</span> like pizza?" - "Yes, he does!"',
-          question: '___ he like pizza?',
-          choices: ['Does ❓', 'Do ❓'],
+          image: '🏫🌙',
+          text: 'We <span class="highlight-orange">went</span> on a field trip <span class="highlight-orange">last Friday</span>.',
+          question: 'last Friday → We ___ on a field trip.',
+          choices: ['went 🌙', 'go ☀️'],
           correct: 0,
-          feedback: 'Great! Hỏi "he" → dùng "Does" 👍',
-          tip: '❓ Does + he/she/it...?'
+          feedback: 'Great! last Friday → went',
+          tip: '🌙 last... → quá khứ'
         },
         {
-          image: '❓👧🏫',
-          text: '"<span class="highlight-green">Does she go</span> to school every day?" - "Yes, she does!"',
-          question: 'Does she ___ to school?',
-          choices: ['go 🏫', 'goes 🏫'],
+          image: '📚',
+          text: 'The teacher <span class="highlight">always</span> <span class="highlight-green">gives</span> homework.',
+          question: 'always → The teacher ___ homework.',
+          choices: ['gives ☀️', 'gave 🌙'],
           correct: 0,
-          feedback: 'Perfect! Sau "Does" → dùng "go" (không thêm s)',
-          tip: '⚠️ Does + she + go (KHÔNG phải goes!)'
+          feedback: 'Perfect! always → gives',
+          tip: '☀️ always → hiện tại'
         },
         {
-          image: '❓🐕',
-          text: '"<span class="highlight-green">Does your dog run</span> fast?" - "Yes, it does!"',
-          question: 'Does your dog ___ fast?',
-          choices: ['run 🐕', 'runs 🐕'],
+          image: '📚🌙',
+          text: 'She <span class="highlight-orange">gave</span> us a lot <span class="highlight-orange">yesterday</span>.',
+          question: 'yesterday → She ___ us a lot.',
+          choices: ['gave 🌙', 'gives ☀️'],
           correct: 0,
-          feedback: 'Wonderful! Sau "Does" → dùng "run"',
-          tip: '⚠️ Does + dog + run (KHÔNG phải runs!)'
+          feedback: 'Wonderful! yesterday → gave',
+          tip: '🌙 yesterday → quá khứ'
         },
         {
-          image: '❓👫',
-          text: '"<span class="highlight-green">Do they play</span> football?" - "Yes, they do!"',
-          question: 'Do they ___ football?',
-          choices: ['play ⚽', 'plays ⚽'],
+          image: '🚫',
+          text: 'I <span class="highlight">usually</span> <span class="highlight-green">don\'t forget</span> my books.',
+          question: 'usually → I ___ forget my books.',
+          choices: ['don\'t ☀️', 'didn\'t 🌙'],
           correct: 0,
-          feedback: 'Excellent! Sau "Do" → dùng "play"',
-          tip: '❓ Do + they + play...?'
-        }
-      ]
-    },
-    // Story 2: Did you...? (Quá khứ)
-    {
-      bg: 'bg-night',
-      scenes: [
-        {
-          image: '❓🌙',
-          text: 'Hỏi về hôm qua: "<span class="highlight-orange">Did you go</span> to school yesterday?"',
-          question: '___ you go to school yesterday?',
-          choices: ['Did 🌙', 'Do ☀️'],
-          correct: 0,
-          feedback: 'Yes! Hỏi về "yesterday" → dùng "Did" 👍',
-          tip: '🌙 Yesterday → Did...?'
+          feedback: 'Excellent! usually → don\'t',
+          tip: '☀️ usually → don\'t'
         },
         {
-          image: '❓👧🍦',
-          text: '"<span class="highlight-orange">Did she eat</span> ice cream yesterday?" - "Yes, she did!"',
-          question: 'Did she ___ ice cream yesterday?',
-          choices: ['eat 🍦', 'ate 🍦'],
+          image: '🚫🌙',
+          text: 'But I <span class="highlight-orange">didn\'t bring</span> my pencil <span class="highlight-orange">3 days ago</span>.',
+          question: '3 days ago → I ___ bring my pencil.',
+          choices: ['didn\'t 🌙', 'don\'t ☀️'],
           correct: 0,
-          feedback: 'Great! Sau "Did" → dùng "eat" (không phải ate)',
-          tip: '⚠️ Did + she + eat (KHÔNG phải ate!)'
-        },
-        {
-          image: '❓👦🎬',
-          text: '"<span class="highlight-orange">Did he watch</span> TV last night?" - "No, he didn\'t."',
-          question: 'Did he ___ TV last night?',
-          choices: ['watch 📺', 'watched 📺'],
-          correct: 0,
-          feedback: 'Perfect! Sau "Did" → dùng "watch"',
-          tip: '⚠️ Did + he + watch (KHÔNG phải watched!)'
-        },
-        {
-          image: '❓👫🎉',
-          text: '"<span class="highlight-orange">Did they come</span> to the party?" - "Yes, they did!"',
-          question: 'Did they ___ to the party?',
-          choices: ['come 🎉', 'came 🎉'],
-          correct: 0,
-          feedback: 'Wonderful! Sau "Did" → dùng "come"',
-          tip: '⚠️ Did + they + come (KHÔNG phải came!)'
-        },
-        {
-          image: '❓🐕🏃',
-          text: '"<span class="highlight-orange">Did the dog run</span> fast yesterday?" - "Yes, it did!"',
-          question: 'Did the dog ___ fast yesterday?',
-          choices: ['run 🐕', 'ran 🐕'],
-          correct: 0,
-          feedback: 'Excellent! Sau "Did" → dùng "run"',
-          tip: '⚠️ Did + dog + run (KHÔNG phải ran!)'
-        }
-      ]
-    },
-    // Story 3: Mixed Do/Does/Did
-    {
-      bg: 'bg-park',
-      scenes: [
-        {
-          image: '☀️❓',
-          text: 'Hỏi thói quen: "___ you brush your teeth <span class="highlight">every morning</span>?"',
-          question: '___ you brush your teeth every morning?',
-          choices: ['Do ☀️', 'Did 🌙'],
-          correct: 0,
-          feedback: 'Yes! "Every morning" → hiện tại → Do',
-          tip: '☀️ Every morning → Do...?'
-        },
-        {
-          image: '🌙❓',
-          text: 'Hỏi về hôm qua: "___ you brush your teeth <span class="highlight-orange">yesterday</span>?"',
-          question: '___ you brush your teeth yesterday?',
-          choices: ['Did 🌙', 'Do ☀️'],
-          correct: 0,
-          feedback: 'Great! "Yesterday" → quá khứ → Did',
-          tip: '🌙 Yesterday → Did...?'
-        },
-        {
-          image: '👧☀️❓',
-          text: '"___ she drink milk <span class="highlight">every day</span>?"',
-          question: '___ she drink milk every day?',
-          choices: ['Does ☀️', 'Did 🌙'],
-          correct: 0,
-          feedback: 'Perfect! "Every day" + "she" → Does',
-          tip: '☀️ Every day + she → Does...?'
-        },
-        {
-          image: '👧🌙❓',
-          text: '"___ she drink milk <span class="highlight-orange">yesterday</span>?"',
-          question: '___ she drink milk yesterday?',
-          choices: ['Did 🌙', 'Does ☀️'],
-          correct: 0,
-          feedback: 'Wonderful! "Yesterday" → Did (cho tất cả)',
-          tip: '🌙 Yesterday → Did...? (I/you/he/she/they)'
-        },
-        {
-          image: '👫☀️❓',
-          text: '"___ they play games <span class="highlight">every weekend</span>?"',
-          question: '___ they play games every weekend?',
-          choices: ['Do ☀️', 'Did 🌙'],
-          correct: 0,
-          feedback: 'Excellent! "Every weekend" + "they" → Do',
-          tip: '☀️ Every weekend → Do...?'
-        },
-        {
-          image: '👫🌙❓',
-          text: '"___ they play games <span class="highlight-orange">last weekend</span>?"',
-          question: '___ they play games last weekend?',
-          choices: ['Did 🌙', 'Do ☀️'],
-          correct: 0,
-          feedback: 'Great! "Last weekend" → Did',
-          tip: '🌙 Last weekend → Did...?'
-        }
-      ]
-    }
-  ],
-  // ========== NEGATIVES ==========
-  negatives: [
-    // Story 1: don't / doesn't
-    {
-      bg: 'bg-home',
-      scenes: [
-        {
-          image: '🚫👧🥦',
-          text: 'Lily <span class="highlight-green">doesn\'t like</span> vegetables. She says "No, thank you!"',
-          question: 'Lily ___ like vegetables.',
-          choices: ['doesn\'t 🚫', 'don\'t 🚫'],
-          correct: 0,
-          feedback: 'Yes! Lily (she) → doesn\'t',
-          tip: '🚫 She/He/It + doesn\'t + like'
-        },
-        {
-          image: '🚫👦🕷️',
-          text: 'Tom <span class="highlight-green">doesn\'t like</span> spiders. They are scary!',
-          question: 'Tom ___ like spiders.',
-          choices: ['doesn\'t 🚫', 'don\'t 🚫'],
-          correct: 0,
-          feedback: 'Great! Tom (he) → doesn\'t',
-          tip: '🚫 He + doesn\'t + like'
-        },
-        {
-          image: '🚫👫☕',
-          text: 'Children <span class="highlight-green">don\'t drink</span> coffee. It\'s for adults!',
-          question: 'Children ___ drink coffee.',
-          choices: ['don\'t 🚫', 'doesn\'t 🚫'],
-          correct: 0,
-          feedback: 'Perfect! Children (they) → don\'t',
-          tip: '🚫 They + don\'t + drink'
-        },
-        {
-          image: '🚫🐱🏊',
-          text: 'Cats <span class="highlight-green">don\'t like</span> water. They hate swimming!',
-          question: 'Cats ___ like water.',
-          choices: ['don\'t 🚫', 'doesn\'t 🚫'],
-          correct: 0,
-          feedback: 'Wonderful! Cats (they) → don\'t',
-          tip: '🚫 Cats (they) + don\'t + like'
-        },
-        {
-          image: '🚫👧🏃',
-          text: 'She <span class="highlight-green">doesn\'t run</span> fast. She walks slowly.',
-          question: 'She doesn\'t ___ fast.',
-          choices: ['run 🏃', 'runs 🏃'],
-          correct: 0,
-          feedback: 'Excellent! Sau "doesn\'t" → run (không thêm s)',
-          tip: '⚠️ doesn\'t + run (KHÔNG phải runs!)'
-        },
-        {
-          image: '🚫👦🎹',
-          text: 'He <span class="highlight-green">doesn\'t play</span> the piano. He plays guitar!',
-          question: 'He doesn\'t ___ the piano.',
-          choices: ['play 🎹', 'plays 🎹'],
-          correct: 0,
-          feedback: 'Great! Sau "doesn\'t" → play',
-          tip: '⚠️ doesn\'t + play (KHÔNG phải plays!)'
-        }
-      ]
-    },
-    // Story 2: didn't (Quá khứ)
-    {
-      bg: 'bg-night',
-      scenes: [
-        {
-          image: '🚫🌙👧🏫',
-          text: '<span class="highlight-orange">Yesterday</span>, Lily <span class="highlight-orange">didn\'t go</span> to school. She was sick.',
-          question: 'Yesterday, Lily ___ go to school.',
-          choices: ['didn\'t 🚫', 'doesn\'t 🚫'],
-          correct: 0,
-          feedback: 'Yes! "Yesterday" → quá khứ → didn\'t',
-          tip: '🌙 Yesterday → didn\'t'
-        },
-        {
-          image: '🚫🌙👦📺',
-          text: 'Tom <span class="highlight-orange">didn\'t watch</span> TV <span class="highlight-orange">last night</span>. He did homework.',
-          question: 'Last night, Tom ___ watch TV.',
-          choices: ['didn\'t 🚫', 'doesn\'t 🚫'],
-          correct: 0,
-          feedback: 'Great! "Last night" → quá khứ → didn\'t',
-          tip: '🌙 Last night → didn\'t'
-        },
-        {
-          image: '🚫🌙👫🍕',
-          text: 'They <span class="highlight-orange">didn\'t eat</span> pizza <span class="highlight-orange">yesterday</span>. They ate noodles.',
-          question: 'Yesterday, they didn\'t ___ pizza.',
-          choices: ['eat 🍕', 'ate 🍕'],
-          correct: 0,
-          feedback: 'Perfect! Sau "didn\'t" → eat (không phải ate)',
-          tip: '⚠️ didn\'t + eat (KHÔNG phải ate!)'
-        },
-        {
-          image: '🚫🌙🐕🏃',
-          text: 'The dog <span class="highlight-orange">didn\'t run</span> <span class="highlight-orange">yesterday</span>. It slept all day.',
-          question: 'Yesterday, the dog didn\'t ___.',
-          choices: ['run 🐕', 'ran 🐕'],
-          correct: 0,
-          feedback: 'Wonderful! Sau "didn\'t" → run (không phải ran)',
-          tip: '⚠️ didn\'t + run (KHÔNG phải ran!)'
-        },
-        {
-          image: '🚫🌙👧🎤',
-          text: 'She <span class="highlight-orange">didn\'t sing</span> at the party <span class="highlight-orange">last week</span>.',
-          question: 'Last week, she didn\'t ___.',
-          choices: ['sing 🎤', 'sang 🎤'],
-          correct: 0,
-          feedback: 'Excellent! Sau "didn\'t" → sing (không phải sang)',
-          tip: '⚠️ didn\'t + sing (KHÔNG phải sang!)'
-        },
-        {
-          image: '🚫🌙👨‍👩‍👧🎢',
-          text: 'We <span class="highlight-orange">didn\'t go</span> to the zoo <span class="highlight-orange">last Sunday</span>.',
-          question: 'Last Sunday, we didn\'t ___ to the zoo.',
-          choices: ['go 🎢', 'went 🎢'],
-          correct: 0,
-          feedback: 'Great! Sau "didn\'t" → go (không phải went)',
-          tip: '⚠️ didn\'t + go (KHÔNG phải went!)'
-        }
-      ]
-    },
-    // Story 3: Mixed don't/doesn't/didn't
-    {
-      bg: 'bg-park',
-      scenes: [
-        {
-          image: '🚫☀️👧',
-          text: 'Lily <span class="highlight-green">doesn\'t eat</span> meat <span class="highlight">every day</span>. She\'s vegetarian.',
-          question: 'Lily ___ eat meat. (every day)',
-          choices: ['doesn\'t 🚫', 'didn\'t 🚫'],
-          correct: 0,
-          feedback: 'Yes! "Every day" + "she" → doesn\'t',
-          tip: '☀️ Every day + she → doesn\'t'
-        },
-        {
-          image: '🚫🌙👧',
-          text: 'But Lily <span class="highlight-orange">didn\'t eat</span> vegetables <span class="highlight-orange">yesterday</span>!',
-          question: 'Yesterday, Lily ___ eat vegetables.',
-          choices: ['didn\'t 🚫', 'doesn\'t 🚫'],
-          correct: 0,
-          feedback: 'Great! "Yesterday" → didn\'t',
-          tip: '🌙 Yesterday → didn\'t'
-        },
-        {
-          image: '🚫☀️👫',
-          text: 'We <span class="highlight-green">don\'t have</span> school on Sunday.',
-          question: 'We ___ have school on Sunday. (every week)',
-          choices: ['don\'t 🚫', 'didn\'t 🚫'],
-          correct: 0,
-          feedback: 'Perfect! "Every week" + "we" → don\'t',
-          tip: '☀️ We + don\'t'
-        },
-        {
-          image: '🚫🌙👫',
-          text: 'We <span class="highlight-orange">didn\'t have</span> school <span class="highlight-orange">last Monday</span>. It was a holiday!',
-          question: 'Last Monday, we ___ have school.',
-          choices: ['didn\'t 🚫', 'don\'t 🚫'],
-          correct: 0,
-          feedback: 'Wonderful! "Last Monday" → didn\'t',
-          tip: '🌙 Last Monday → didn\'t'
-        },
-        {
-          image: '🚫☀️🐱',
-          text: 'My cat <span class="highlight-green">doesn\'t sleep</span> during the day.',
-          question: 'My cat ___ sleep during the day. (usually)',
-          choices: ['doesn\'t 🚫', 'didn\'t 🚫'],
-          correct: 0,
-          feedback: 'Excellent! "Usually" + "cat (it)" → doesn\'t',
-          tip: '☀️ Cat (it) + doesn\'t'
-        },
-        {
-          image: '🚫🌙🐱',
-          text: 'But my cat <span class="highlight-orange">didn\'t sleep</span> well <span class="highlight-orange">last night</span>.',
-          question: 'Last night, my cat ___ sleep well.',
-          choices: ['didn\'t 🚫', 'doesn\'t 🚫'],
-          correct: 0,
-          feedback: 'Great! "Last night" → didn\'t',
-          tip: '🌙 Last night → didn\'t'
+          feedback: 'Great! ...ago → didn\'t',
+          tip: '🌙 ...ago → didn\'t'
         }
       ]
     }
   ]
 };
-
 var WORD_GAMES = {
   matching: [
     { now: 'go', past: 'went', meaning: 'đi' },
