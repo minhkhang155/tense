@@ -355,6 +355,35 @@
       .scene-text { font-size: 1.2rem; }
       .choice-btn { font-size: 1rem; padding: 15px 20px; }
     }
+    
+    /* Level Select */
+    .level-content { text-align: center; padding-top: 30px; }
+    .level-title { font-size: 1.5rem; font-weight: 700; color: white; margin-bottom: 10px; }
+    .level-subtitle { color: rgba(255,255,255,0.8); margin-bottom: 25px; }
+    .level-cards { display: flex; flex-direction: column; gap: 15px; padding: 0 10px; }
+    .level-card {
+      background: white; border-radius: 20px; padding: 20px;
+      display: flex; align-items: center; gap: 15px;
+      cursor: pointer; transition: all 0.3s;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      border: 3px solid transparent;
+    }
+    .level-card:hover { transform: translateY(-3px); }
+    .level-card:active { transform: scale(0.98); }
+    .level-card.easy { border-color: #4CAF50; }
+    .level-card.medium { border-color: #FF9800; }
+    .level-card.hard { border-color: #E91E63; }
+    .level-card .level-icon { font-size: 40px; }
+    .level-card .level-info { text-align: left; flex: 1; }
+    .level-card .level-name { font-size: 1.2rem; font-weight: 700; color: #333; }
+    .level-card .level-desc { font-size: 0.9rem; color: #666; }
+    .level-card .level-time { 
+      background: #f5f5f5; padding: 5px 12px; border-radius: 15px;
+      font-size: 0.85rem; color: #888; font-weight: 600;
+    }
+    .level-card.easy .level-name { color: #2E7D32; }
+    .level-card.medium .level-name { color: #E65100; }
+    .level-card.hard .level-name { color: #C2185B; }
   </style>
 </head>
 <body>
@@ -370,15 +399,15 @@
         <p class="app-tagline">Học tiếng Anh vui vẻ mỗi ngày</p>
         
         <div class="topic-grid">
-          <div class="topic-card daily" onclick="startTopic('daily')">
+          <div class="topic-card daily" onclick="showLevelSelect('daily')">
             <div class="topic-icon">☀️</div>
             <div class="topic-name">Every Day</div>
           </div>
-          <div class="topic-card yesterday" onclick="startTopic('yesterday')">
+          <div class="topic-card yesterday" onclick="showLevelSelect('yesterday')">
             <div class="topic-icon">🌙</div>
             <div class="topic-name">Yesterday</div>
           </div>
-          <div class="topic-card stories" onclick="startTopic('stories')">
+          <div class="topic-card stories" onclick="showLevelSelect('stories')">
             <div class="topic-icon">📖</div>
             <div class="topic-name">Mix Stories</div>
           </div>
@@ -398,6 +427,9 @@
         </div>
       </div>
     </div>
+    
+    <!-- LEVEL SELECT SCREEN -->
+    <div id="levelScreen" class="screen"></div>
     
     <!-- STORY SCREEN -->
     <div id="storyScreen" class="screen"></div>
@@ -752,6 +784,9 @@ var currentScene = 0;
 var stars = 0;
 var totalQuestions = 0;
 var correctAnswers = 0;
+var questionsPerRound = 6; // Số câu mỗi lượt
+var allQuestions = []; // Mảng chứa câu hỏi đã trộn
+var currentQuestionIndex = 0;
 
 // Matching game state
 var matchCards = [];
@@ -761,6 +796,173 @@ var matchedPairs = [];
 // Flashcard state
 var flashcardIndex = 0;
 var isFlipped = false;
+
+// ============ LEVEL SELECT ============
+function showLevelSelect(topic) {
+  playSound('click');
+  currentTopic = topic;
+  
+  var topicName = topic === 'daily' ? '☀️ Every Day' : 
+                  topic === 'yesterday' ? '🌙 Yesterday' : '📖 Mix Stories';
+  
+  var html = '<div class="level-content">' +
+    '<button class="back-btn" onclick="goHome()" style="position:absolute;top:20px;left:20px">← Home</button>' +
+    '<div style="font-size:60px;margin-bottom:15px">' + 
+    (topic === 'daily' ? '☀️' : topic === 'yesterday' ? '🌙' : '📖') + '</div>' +
+    '<div class="level-title">' + topicName + '</div>' +
+    '<div class="level-subtitle">Chọn số câu hỏi con muốn làm:</div>' +
+    
+    '<div class="level-cards">' +
+    '<div class="level-card easy" onclick="startWithLevel(5)">' +
+    '<div class="level-icon">🌱</div>' +
+    '<div class="level-info">' +
+    '<div class="level-name">Nhanh</div>' +
+    '<div class="level-desc">Luyện tập nhẹ nhàng</div>' +
+    '</div>' +
+    '<div class="level-time">5 câu • 3 phút</div>' +
+    '</div>' +
+    
+    '<div class="level-card medium" onclick="startWithLevel(8)">' +
+    '<div class="level-icon">🌿</div>' +
+    '<div class="level-info">' +
+    '<div class="level-name">Vừa phải</div>' +
+    '<div class="level-desc">Ôn tập cơ bản</div>' +
+    '</div>' +
+    '<div class="level-time">8 câu • 5 phút</div>' +
+    '</div>' +
+    
+    '<div class="level-card hard" onclick="startWithLevel(10)">' +
+    '<div class="level-icon">🌳</div>' +
+    '<div class="level-info">' +
+    '<div class="level-name">Thử thách</div>' +
+    '<div class="level-desc">Kiểm tra kiến thức</div>' +
+    '</div>' +
+    '<div class="level-time">10 câu • 8 phút</div>' +
+    '</div>' +
+    
+    '<div class="level-card" onclick="startWithLevel(15)" style="border-color:#9C27B0">' +
+    '<div class="level-icon">🏆</div>' +
+    '<div class="level-info">' +
+    '<div class="level-name" style="color:#7B1FA2">Siêu sao</div>' +
+    '<div class="level-desc">Dành cho cao thủ!</div>' +
+    '</div>' +
+    '<div class="level-time">15 câu • 12 phút</div>' +
+    '</div>' +
+    '</div></div>';
+  
+  document.getElementById('levelScreen').innerHTML = html;
+  showScreen('levelScreen');
+}
+
+function startWithLevel(numQuestions) {
+  playSound('click');
+  questionsPerRound = numQuestions;
+  
+  // Thu thập tất cả câu hỏi từ topic
+  allQuestions = [];
+  var stories = STORIES[currentTopic];
+  
+  stories.forEach(function(story) {
+    story.scenes.forEach(function(scene) {
+      allQuestions.push({
+        bg: story.bg,
+        image: scene.image,
+        text: scene.text,
+        question: scene.question,
+        choices: scene.choices,
+        correct: scene.correct,
+        feedback: scene.feedback,
+        tip: scene.tip
+      });
+    });
+  });
+  
+  // Trộn ngẫu nhiên và lấy số câu cần thiết
+  allQuestions = shuffle(allQuestions).slice(0, questionsPerRound);
+  
+  // Reset state
+  currentQuestionIndex = 0;
+  stars = 0;
+  correctAnswers = 0;
+  totalQuestions = questionsPerRound;
+  
+  // Bắt đầu hiển thị câu hỏi
+  showQuestion();
+}
+
+function showQuestion() {
+  if (currentQuestionIndex >= allQuestions.length) {
+    showResult();
+    return;
+  }
+  
+  var q = allQuestions[currentQuestionIndex];
+  document.getElementById('appContainer').className = 'app-container ' + q.bg;
+  
+  var dotsHtml = '';
+  for (var i = 0; i < totalQuestions; i++) {
+    var dotClass = 'dot';
+    if (i < currentQuestionIndex) dotClass += ' done';
+    else if (i === currentQuestionIndex) dotClass += ' active';
+    dotsHtml += '<div class="' + dotClass + '"></div>';
+  }
+  
+  var html = '<div class="progress-header">' +
+    '<button class="back-btn" onclick="goHome()">← Home</button>' +
+    '<div class="progress-dots">' + dotsHtml + '</div>' +
+    '<div class="star-count">⭐ ' + stars + '</div>' +
+    '</div>' +
+    '<div class="story-scene">' +
+    '<div class="scene-image">' + q.image + '</div>' +
+    '<div class="scene-text">' + q.text + '</div>' +
+    '<div class="scene-question">' + q.question + '</div>' +
+    '<div class="choice-buttons">';
+  
+  q.choices.forEach(function(choice, i) {
+    html += '<button class="choice-btn" id="choice' + i + '" onclick="checkQuestionAnswer(' + i + ')">' + choice + '</button>';
+  });
+  
+  html += '</div><div id="feedbackArea"></div></div>';
+  
+  document.getElementById('storyScreen').innerHTML = html;
+  showScreen('storyScreen');
+}
+
+function checkQuestionAnswer(index) {
+  var q = allQuestions[currentQuestionIndex];
+  var correct = index === q.correct;
+  
+  // Disable all buttons
+  document.querySelectorAll('.choice-btn').forEach(function(btn, i) {
+    btn.disabled = true;
+    if (i === q.correct) btn.classList.add('correct');
+    if (i === index && !correct) btn.classList.add('wrong');
+  });
+  
+  if (correct) {
+    stars++;
+    correctAnswers++;
+    playSound('correct');
+    if (stars % 3 === 0) showConfetti();
+  } else {
+    playSound('wrong');
+  }
+  
+  var feedbackHtml = '<div class="feedback-box ' + (correct ? 'correct' : 'wrong') + '">' +
+    '<div class="feedback-emoji">' + (correct ? '🎉' : '💪') + '</div>' +
+    '<div class="feedback-text">' + q.feedback + '</div>' +
+    '<div class="feedback-tip">' + q.tip + '</div>' +
+    '<button class="next-btn" onclick="nextQuestion()">' +
+    (currentQuestionIndex < totalQuestions - 1 ? 'Tiếp theo →' : 'Xem kết quả 🏆') +
+    '</button></div>';
+  
+  document.getElementById('feedbackArea').innerHTML = feedbackHtml;
+}
+
+function nextQuestion() {
+  currentQuestionIndex++;
+  showQuestion();
+}
 
 // ============ SOUND ============
 function playSound(type) {
@@ -1120,20 +1322,27 @@ function showResult() {
   }
   
   var emoji = percentage >= 80 ? '🏆' : percentage >= 50 ? '🌟' : '💪';
-  var message = percentage >= 80 ? 'Excellent! Con giỏi lắm!' : 
-                percentage >= 50 ? 'Good job! Tiếp tục nhé!' : 
-                'Keep trying! Cố gắng lên nào!';
+  var title = percentage >= 80 ? 'Xuất sắc!' : percentage >= 50 ? 'Tốt lắm!' : 'Cố gắng thêm!';
+  var message = percentage >= 80 ? 'Con làm giỏi lắm! 🎉' : 
+                percentage >= 50 ? 'Tiếp tục phát huy nhé! 👍' : 
+                'Luyện tập thêm con sẽ giỏi hơn! 💪';
   
   document.getElementById('appContainer').className = 'app-container bg-fun';
   
   var html = '<div class="result-content"><div class="result-card">' +
     '<div class="result-emoji">' + emoji + '</div>' +
-    '<div class="result-title">Well Done!</div>' +
+    '<div class="result-title">' + title + '</div>' +
     '<div class="result-stars">' + starsHtml + '</div>' +
+    '<div style="background:#f5f5f5;padding:15px;border-radius:12px;margin:15px 0">' +
+    '<div style="display:flex;justify-content:space-around;text-align:center">' +
+    '<div><div style="font-size:1.5rem;font-weight:700;color:#4CAF50">' + correctAnswers + '</div><div style="font-size:0.85rem;color:#666">Đúng ✓</div></div>' +
+    '<div><div style="font-size:1.5rem;font-weight:700;color:#F44336">' + (totalQuestions - correctAnswers) + '</div><div style="font-size:0.85rem;color:#666">Sai ✗</div></div>' +
+    '<div><div style="font-size:1.5rem;font-weight:700;color:#2196F3">' + percentage + '%</div><div style="font-size:0.85rem;color:#666">Tỷ lệ</div></div>' +
+    '</div></div>' +
     '<div class="result-message">' + message + '</div>' +
     '<div class="result-buttons">' +
-    '<button class="result-btn primary" onclick="startTopic(\'' + currentTopic + '\')">Play Again 🔄</button>' +
-    '<button class="result-btn secondary" onclick="goHome()">Home 🏠</button>' +
+    '<button class="result-btn primary" onclick="showLevelSelect(\'' + currentTopic + '\')">Chơi lại 🔄</button>' +
+    '<button class="result-btn secondary" onclick="goHome()">Về nhà 🏠</button>' +
     '</div></div></div>';
   
   document.getElementById('resultScreen').innerHTML = html;
