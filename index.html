@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>🦉 English Tenses - Học Thì Tiếng Anh</title>
+  <title>🦉 Fun English - Học vui mỗi ngày!</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦉</text></svg>">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
@@ -11,728 +11,699 @@
     
     body {
       font-family: 'Nunito', sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
       min-height: 100vh;
-      padding: 20px;
       overflow-x: hidden;
     }
     
-    .app-container { max-width: 800px; margin: 0 auto; position: relative; }
+    .app-container { max-width: 500px; margin: 0 auto; min-height: 100vh; }
     
-    .floating-shapes { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
-    .shape { position: absolute; opacity: 0.3; animation: float 6s ease-in-out infinite; }
-    .shape:nth-child(1) { top: 10%; left: 10%; font-size: 40px; }
-    .shape:nth-child(2) { top: 20%; right: 15%; animation-delay: 1s; font-size: 35px; }
-    .shape:nth-child(3) { bottom: 30%; left: 5%; animation-delay: 2s; font-size: 45px; }
-    .shape:nth-child(4) { bottom: 15%; right: 10%; animation-delay: 3s; font-size: 38px; }
-    .shape:nth-child(5) { top: 50%; left: 50%; animation-delay: 4s; font-size: 42px; }
+    /* Backgrounds for different themes */
+    .bg-sunny { background: linear-gradient(180deg, #87CEEB 0%, #98D8C8 100%); }
+    .bg-night { background: linear-gradient(180deg, #2C3E50 0%, #4A569D 100%); }
+    .bg-park { background: linear-gradient(180deg, #87CEEB 0%, #90EE90 100%); }
+    .bg-home { background: linear-gradient(180deg, #FFB6C1 0%, #FFECD2 100%); }
+    .bg-school { background: linear-gradient(180deg, #87CEEB 0%, #DDA0DD 100%); }
+    .bg-fun { background: linear-gradient(180deg, #667eea 0%, #764ba2 100%); }
     
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(10deg); }
-    }
-    
-    .sound-toggle {
-      position: fixed; top: 20px; right: 20px; width: 50px; height: 50px;
-      border-radius: 50%; border: none; background: rgba(255,255,255,0.95);
-      font-size: 1.5rem; cursor: pointer; z-index: 100;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    }
-    .sound-toggle:hover { transform: scale(1.1); }
-    
-    .content { position: relative; z-index: 1; }
-    .screen { display: none; }
+    .screen { display: none; min-height: 100vh; padding: 20px; }
     .screen.active { display: block; }
     
-    .home-screen { text-align: center; padding: 40px 20px; }
-    .app-title {
-      font-size: 2.5rem; font-weight: 800; color: white;
-      text-shadow: 3px 3px 0 rgba(0,0,0,0.2); margin-bottom: 10px;
+    /* Sound toggle */
+    .sound-toggle {
+      position: fixed; top: 15px; right: 15px; width: 45px; height: 45px;
+      border-radius: 50%; border: none; background: rgba(255,255,255,0.9);
+      font-size: 1.3rem; cursor: pointer; z-index: 100;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
     }
-    .app-subtitle { font-size: 1.1rem; color: rgba(255,255,255,0.9); margin-bottom: 30px; }
-    .mascot { font-size: 100px; margin: 20px 0; animation: bounce 2s ease infinite; }
     
+    /* HOME SCREEN */
+    .home-content { text-align: center; padding-top: 30px; }
+    .mascot-large { font-size: 100px; animation: bounce 2s ease infinite; }
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-15px); }
     }
+    .app-title {
+      font-size: 2.2rem; font-weight: 800; color: white;
+      text-shadow: 2px 2px 0 rgba(0,0,0,0.2); margin: 15px 0 5px;
+    }
+    .app-tagline { color: rgba(255,255,255,0.9); font-size: 1.1rem; margin-bottom: 30px; }
     
-    .menu-buttons { display: flex; flex-direction: column; gap: 15px; max-width: 280px; margin: 0 auto; }
-    .menu-btn {
-      padding: 16px 28px; font-size: 1.2rem; font-weight: 700; border: none;
-      border-radius: 50px; cursor: pointer; font-family: 'Nunito', sans-serif;
+    .topic-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+    .topic-card {
+      background: white; border-radius: 20px; padding: 20px 15px;
+      text-align: center; cursor: pointer; transition: all 0.3s;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      border: 3px solid transparent;
     }
-    .menu-btn.play {
-      background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
-      color: #5a3e2b; box-shadow: 0 6px 0 #d4904a;
-    }
-    .menu-btn.verbs {
-      background: linear-gradient(135deg, #a8e6cf 0%, #88d8b0 100%);
-      color: #2d6a4f; box-shadow: 0 6px 0 #5fa87f;
-    }
-    .menu-btn.learn {
-      background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-      color: #4a6572; box-shadow: 0 6px 0 #7fb8b6;
-    }
-    .menu-btn:hover { transform: translateY(-3px); }
-    .menu-btn:active { transform: translateY(3px); }
+    .topic-card:hover { transform: translateY(-5px); }
+    .topic-card:active { transform: scale(0.95); }
+    .topic-card .topic-icon { font-size: 45px; margin-bottom: 8px; }
+    .topic-card .topic-name { font-size: 1rem; font-weight: 700; color: #333; }
+    .topic-card.daily { border-color: #4CAF50; }
+    .topic-card.yesterday { border-color: #FF9800; }
+    .topic-card.stories { border-color: #E91E63; }
+    .topic-card.games { border-color: #9C27B0; }
     
-    .game-header {
-      display: flex; justify-content: space-between; align-items: center;
-      background: rgba(255,255,255,0.95); border-radius: 20px;
-      padding: 15px 20px; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;
-    }
-    .back-btn {
-      background: #ff6b6b; color: white; border: none; padding: 10px 20px;
-      border-radius: 25px; font-weight: 700; cursor: pointer; font-family: 'Nunito', sans-serif;
-    }
-    .back-btn:hover { background: #ee5a5a; }
-    
-    .progress-info { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-    .question-counter { font-weight: 700; color: #4a4a4a; }
-    .score-display {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white; padding: 8px 16px; border-radius: 20px; font-weight: 700;
-    }
-    .streak-display {
-      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-      color: white; padding: 8px 16px; border-radius: 20px; font-weight: 700;
+    .streak-banner {
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      color: #5D4037; padding: 12px 20px; border-radius: 15px;
+      margin-top: 25px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
     }
     
-    .progress-bar-container {
-      background: rgba(255,255,255,0.3); border-radius: 10px;
-      height: 10px; margin-bottom: 20px; overflow: hidden;
+    /* STORY SCREEN */
+    .story-scene {
+      background: white; border-radius: 25px; padding: 25px;
+      margin-top: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      min-height: 400px; position: relative;
     }
-    .progress-bar {
-      height: 100%; background: linear-gradient(90deg, #f6d365 0%, #fda085 100%);
-      border-radius: 10px; transition: width 0.5s ease;
+    .scene-image {
+      font-size: 80px; text-align: center; margin-bottom: 20px;
+      animation: fadeIn 0.5s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .scene-text {
+      font-size: 1.4rem; text-align: center; color: #333;
+      line-height: 1.6; margin-bottom: 25px;
+    }
+    .scene-text .highlight {
+      background: linear-gradient(180deg, transparent 60%, #FFEB3B 60%);
+      padding: 0 5px; font-weight: 700;
+    }
+    .scene-text .highlight-green {
+      background: linear-gradient(180deg, transparent 60%, #A5D6A7 60%);
+      padding: 0 5px; font-weight: 700;
+    }
+    .scene-text .highlight-orange {
+      background: linear-gradient(180deg, transparent 60%, #FFCC80 60%);
+      padding: 0 5px; font-weight: 700;
     }
     
-    .question-card {
-      background: rgba(255,255,255,0.98); border-radius: 25px;
-      padding: 30px; box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    .scene-question {
+      background: #FFF9C4; padding: 15px 20px; border-radius: 15px;
+      text-align: center; font-size: 1.2rem; color: #5D4037;
+      margin-bottom: 20px;
     }
-    .question-type-badge {
-      display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white; padding: 8px 20px; border-radius: 25px;
-      font-weight: 700; font-size: 0.9rem; margin-bottom: 20px;
-    }
-    .question-text { font-size: 1.4rem; color: #2d3748; margin-bottom: 25px; line-height: 1.4; }
     
-    .options-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
-    .options-grid.vertical { grid-template-columns: 1fr; }
-    .option-btn {
-      padding: 16px 20px; font-size: 1.1rem; font-weight: 600;
-      border: 3px solid #e2e8f0; border-radius: 15px; background: white;
+    .choice-buttons { display: flex; flex-direction: column; gap: 12px; }
+    .choice-btn {
+      padding: 18px 25px; font-size: 1.2rem; font-weight: 600;
+      border: 3px solid #E0E0E0; border-radius: 15px; background: white;
       cursor: pointer; font-family: 'Nunito', sans-serif; transition: all 0.2s;
+      text-align: left;
     }
-    .option-btn:hover:not(:disabled) { border-color: #667eea; background: #f7fafc; }
-    .option-btn.correct { background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%); border-color: #48bb78; }
-    .option-btn.wrong { background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); border-color: #fc8181; }
+    .choice-btn:hover { border-color: #2196F3; background: #E3F2FD; }
+    .choice-btn.correct {
+      border-color: #4CAF50; background: #E8F5E9;
+      animation: pulse 0.5s ease;
+    }
+    .choice-btn.wrong {
+      border-color: #F44336; background: #FFEBEE;
+      animation: shake 0.5s ease;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
     
-    .explanation {
+    .feedback-box {
       margin-top: 20px; padding: 20px; border-radius: 15px;
-      font-weight: 600; font-size: 1.1rem;
+      text-align: center; animation: fadeIn 0.3s ease;
     }
-    .explanation.correct { background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%); color: #276749; }
-    .explanation.wrong { background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); color: #c53030; }
+    .feedback-box.correct { background: #E8F5E9; }
+    .feedback-box.wrong { background: #FFF3E0; }
+    .feedback-emoji { font-size: 50px; margin-bottom: 10px; }
+    .feedback-text { font-size: 1.1rem; color: #333; margin-bottom: 15px; }
+    .feedback-tip {
+      background: white; padding: 12px 15px; border-radius: 10px;
+      font-size: 1rem; color: #666; margin-bottom: 15px;
+    }
     
     .next-btn {
-      display: block; width: 100%; margin-top: 20px; padding: 16px;
-      font-size: 1.2rem; font-weight: 700; border: none; border-radius: 50px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white; cursor: pointer; font-family: 'Nunito', sans-serif;
+      width: 100%; padding: 15px; font-size: 1.2rem; font-weight: 700;
+      border: none; border-radius: 50px; cursor: pointer;
+      font-family: 'Nunito', sans-serif; transition: all 0.2s;
+      background: linear-gradient(135deg, #667eea, #764ba2); color: white;
     }
     .next-btn:hover { transform: translateY(-2px); }
     
-    .hint-box {
-      background: linear-gradient(135deg, #fff9c4 0%, #ffecd2 100%);
-      padding: 15px 20px; border-radius: 15px; margin-bottom: 20px;
-      font-weight: 600; color: #8b6914;
+    /* Progress */
+    .progress-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 15px;
     }
-    .fill-input-container { display: flex; gap: 15px; flex-wrap: wrap; }
-    .fill-input {
-      flex: 1; min-width: 180px; padding: 16px 20px; font-size: 1.2rem;
-      border: 3px solid #e2e8f0; border-radius: 15px; font-family: 'Nunito', sans-serif;
+    .back-btn {
+      background: rgba(255,255,255,0.9); border: none; padding: 10px 18px;
+      border-radius: 25px; font-weight: 700; cursor: pointer;
+      font-family: 'Nunito', sans-serif; color: #333;
     }
-    .fill-input:focus { outline: none; border-color: #667eea; }
-    .submit-btn {
-      padding: 16px 30px; font-size: 1.1rem; font-weight: 700; border: none;
-      border-radius: 15px; background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
-      color: #5a3e2b; cursor: pointer; font-family: 'Nunito', sans-serif;
+    .progress-dots { display: flex; gap: 8px; }
+    .dot {
+      width: 12px; height: 12px; border-radius: 50%;
+      background: rgba(255,255,255,0.4);
     }
-    .submit-btn:hover { transform: scale(1.05); }
+    .dot.active { background: white; }
+    .dot.done { background: #4CAF50; }
+    .star-count {
+      background: rgba(255,255,255,0.9); padding: 8px 15px;
+      border-radius: 20px; font-weight: 700; color: #FF9800;
+    }
     
-    .sort-hint { color: #718096; font-size: 0.9rem; margin-bottom: 15px; text-align: center; }
-    .words-pool {
-      display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
-      min-height: 50px; padding: 15px; background: rgba(102,126,234,0.1);
-      border-radius: 15px; margin-bottom: 20px;
-    }
-    .draggable-word {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white; padding: 10px 18px; border-radius: 20px;
-      font-weight: 700; cursor: grab; user-select: none;
-      transition: all 0.2s;
-    }
-    .draggable-word:active { cursor: grabbing; }
-    .draggable-word:hover { transform: scale(1.1); }
-    .draggable-word.selected {
-      background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
-      color: #5a3e2b; transform: scale(1.1);
-    }
-    .draggable-word.dragging {
-      opacity: 0.5; transform: scale(1.1);
-    }
-    .sort-containers { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
-    .sort-box {
-      background: white; border: 4px dashed #cbd5e0; border-radius: 15px;
-      padding: 15px; min-height: 120px; cursor: pointer;
-      transition: all 0.2s;
-    }
-    .sort-box:hover, .sort-box.drag-over { border-color: #667eea; background: #f0f4ff; }
-    .sort-box h3 { font-size: 0.95rem; margin-bottom: 10px; }
-    .sort-box.present h3 { color: #38a169; }
-    .sort-box.past h3 { color: #dd6b20; }
-    .sorted-words { display: flex; flex-wrap: wrap; gap: 8px; }
-    .sorted-word { background: #e2e8f0; padding: 8px 12px; border-radius: 12px; font-weight: 600; font-size: 0.85rem; }
-    .sorted-word.correct { background: #c6f6d5; color: #276749; }
-    .sorted-word.wrong { background: #fed7d7; color: #c53030; }
-    
-    .tf-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-    .tf-btn {
-      padding: 20px; font-size: 1.3rem; font-weight: 700;
-      border: 4px solid transparent; border-radius: 15px;
-      cursor: pointer; font-family: 'Nunito', sans-serif;
-    }
-    .tf-btn.true { background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%); color: #276749; }
-    .tf-btn.false { background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); color: #c53030; }
-    .tf-btn:hover:not(:disabled) { transform: scale(1.05); }
-    .tf-btn.correct { border-color: #48bb78; }
-    .tf-btn.wrong { border-color: #fc8181; }
-    
-    .picture-emoji { font-size: 70px; text-align: center; margin-bottom: 20px; }
-    
-    .result-screen { text-align: center; padding: 30px 20px; }
+    /* RESULT SCREEN */
+    .result-content { text-align: center; padding-top: 40px; }
     .result-card {
-      background: rgba(255,255,255,0.98); border-radius: 25px;
-      padding: 35px; box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+      background: white; border-radius: 25px; padding: 35px 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
     }
-    .result-title {
-      font-size: 2rem; font-weight: 800; margin-bottom: 15px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    .result-emoji { font-size: 80px; margin-bottom: 15px; }
+    .result-title { font-size: 1.8rem; font-weight: 800; color: #333; margin-bottom: 10px; }
+    .result-stars { font-size: 45px; margin: 15px 0; }
+    .result-message { font-size: 1.1rem; color: #666; margin-bottom: 25px; }
+    .result-buttons { display: flex; flex-direction: column; gap: 12px; }
+    .result-btn {
+      padding: 15px 25px; font-size: 1.1rem; font-weight: 700;
+      border: none; border-radius: 50px; cursor: pointer;
+      font-family: 'Nunito', sans-serif;
     }
-    .result-emoji { font-size: 80px; margin: 15px 0; }
-    .stars-display { font-size: 50px; margin: 15px 0; }
-    .result-score { font-size: 1.3rem; color: #4a5568; margin-bottom: 10px; }
-    .result-message { font-size: 1.1rem; color: #718096; margin-bottom: 25px; }
-    .result-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
-    
-    .lesson-card {
-      background: rgba(255,255,255,0.98); border-radius: 25px;
-      padding: 25px; margin-bottom: 20px;
+    .result-btn.primary {
+      background: linear-gradient(135deg, #4CAF50, #8BC34A); color: white;
     }
-    .lesson-title { font-size: 1.5rem; font-weight: 800; color: #2d3748; margin-bottom: 20px; }
-    .tense-box { background: #f7fafc; border-radius: 15px; padding: 20px; margin-bottom: 15px; }
-    .tense-box h3 { font-size: 1.2rem; margin-bottom: 10px; }
-    .tense-box.present h3 { color: #38a169; }
-    .tense-box.past h3 { color: #dd6b20; }
-    .signal-words { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
-    .signal-word { padding: 6px 14px; border-radius: 15px; font-weight: 700; font-size: 0.85rem; }
-    .signal-word.present { background: #c6f6d5; color: #276749; }
-    .signal-word.past { background: #feebc8; color: #c05621; }
-    .examples { background: white; border-radius: 10px; padding: 15px; }
-    .example-sentence { padding: 8px 0; border-bottom: 1px solid #edf2f7; color: #4a5568; }
-    .example-sentence:last-child { border-bottom: none; }
-    
-    .irregular-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-    .irregular-table th, .irregular-table td { padding: 10px; text-align: center; border-bottom: 2px solid #edf2f7; }
-    .irregular-table th { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
-    
-    .verb-menu { text-align: center; }
-    .verb-title { font-size: 1.8rem; font-weight: 800; color: white; margin-bottom: 10px; }
-    .verb-subtitle { color: rgba(255,255,255,0.9); margin-bottom: 25px; }
-    .verb-stats { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
-    .verb-stats span { background: rgba(255,255,255,0.2); padding: 10px 18px; border-radius: 20px; color: white; font-weight: 600; }
-    .verb-mode-buttons { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; max-width: 350px; margin: 0 auto; }
-    .verb-mode-btn {
-      background: white; border: none; border-radius: 15px; padding: 20px 12px;
-      cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 6px;
+    .result-btn.secondary {
+      background: #F5F5F5; color: #333;
     }
-    .verb-mode-btn:hover { transform: translateY(-5px); }
-    .verb-mode-btn .mode-icon { font-size: 2rem; }
-    .verb-mode-btn .mode-name { font-size: 1.1rem; font-weight: 700; color: #2d3748; }
-    .verb-mode-btn .mode-desc { font-size: 0.8rem; color: #718096; }
-    .verb-mode-btn.flashcard { border-bottom: 4px solid #667eea; }
-    .verb-mode-btn.match { border-bottom: 4px solid #f093fb; }
-    .verb-mode-btn.fill { border-bottom: 4px solid #f6d365; }
-    .verb-mode-btn.test { border-bottom: 4px solid #84fab0; }
     
-    .flashcard-mode { max-width: 450px; margin: 0 auto; }
-    .flashcard-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
-    .flashcard-progress { background: rgba(255,255,255,0.9); padding: 10px 18px; border-radius: 20px; font-weight: 700; color: #4a5568; }
-    .flashcard { perspective: 1000px; cursor: pointer; margin-bottom: 25px; }
-    .flashcard-inner { position: relative; width: 100%; height: 250px; transition: transform 0.6s; transform-style: preserve-3d; }
-    .flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
-    .flashcard-front, .flashcard-back {
-      position: absolute; width: 100%; height: 100%; backface-visibility: hidden;
-      border-radius: 20px; display: flex; flex-direction: column;
-      align-items: center; justify-content: center; padding: 25px;
+    /* LEARN SCREEN - Visual Patterns */
+    .pattern-card {
+      background: white; border-radius: 20px; padding: 25px;
+      margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
-    .flashcard-front { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
-    .flashcard-back { background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%); color: #2d3748; transform: rotateY(180deg); }
-    .flashcard-label { font-size: 0.95rem; font-weight: 600; opacity: 0.8; margin-bottom: 10px; }
-    .flashcard-word { font-size: 3rem; font-weight: 800; margin-bottom: 15px; }
-    .flashcard-hint { font-size: 0.85rem; opacity: 0.7; }
-    .flashcard-pair { font-size: 1.1rem; font-weight: 600; margin-top: 10px; padding: 10px 18px; background: rgba(255,255,255,0.5); border-radius: 12px; }
-    .flashcard-buttons { display: flex; gap: 12px; justify-content: center; }
-    .flashcard-btn { padding: 12px 22px; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; font-family: 'Nunito', sans-serif; }
-    .flashcard-btn.prev, .flashcard-btn.next { background: white; color: #4a5568; }
-    .flashcard-btn.shuffle { background: linear-gradient(135deg, #f6d365 0%, #fda085 100%); color: #5a3e2b; }
-    .flashcard-btn:hover { transform: scale(1.05); }
+    .pattern-title {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 1.3rem; font-weight: 700; color: #333; margin-bottom: 20px;
+    }
+    .pattern-title .icon { font-size: 30px; }
     
-    .match-mode { max-width: 550px; margin: 0 auto; }
-    .match-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-    .match-score { background: rgba(255,255,255,0.9); padding: 10px 18px; border-radius: 20px; font-weight: 700; color: #4a5568; }
-    .match-title { text-align: center; color: white; font-size: 1.2rem; margin-bottom: 20px; }
-    .match-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
+    .example-row {
+      display: flex; align-items: center; gap: 15px;
+      padding: 15px; margin-bottom: 10px; border-radius: 12px;
+      background: #F5F5F5;
+    }
+    .example-row .emoji { font-size: 35px; }
+    .example-row .sentence { font-size: 1.1rem; color: #333; }
+    .example-row .sentence strong { color: #4CAF50; }
+    .example-row .sentence .past { color: #FF9800; }
+    
+    .tip-bubble {
+      background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+      padding: 15px 20px; border-radius: 15px;
+      display: flex; align-items: flex-start; gap: 12px;
+      margin-top: 15px;
+    }
+    .tip-bubble .bulb { font-size: 25px; }
+    .tip-bubble .tip-text { font-size: 1rem; color: #1565C0; }
+    
+    /* Visual comparison */
+    .compare-box {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 15px;
+      margin: 20px 0;
+    }
+    .compare-side {
+      padding: 20px 15px; border-radius: 15px; text-align: center;
+    }
+    .compare-side.now { background: #E8F5E9; }
+    .compare-side.past { background: #FFF3E0; }
+    .compare-side .label {
+      font-weight: 700; margin-bottom: 10px; font-size: 1rem;
+    }
+    .compare-side.now .label { color: #2E7D32; }
+    .compare-side.past .label { color: #E65100; }
+    .compare-side .time-words {
+      display: flex; flex-wrap: wrap; gap: 6px; justify-content: center;
+      margin-bottom: 12px;
+    }
+    .time-word {
+      background: white; padding: 5px 12px; border-radius: 20px;
+      font-size: 0.85rem; font-weight: 600;
+    }
+    .compare-side.now .time-word { color: #4CAF50; }
+    .compare-side.past .time-word { color: #FF9800; }
+    .compare-side .example {
+      background: white; padding: 10px; border-radius: 10px;
+      font-size: 0.95rem; color: #333;
+    }
+    
+    /* Word cards for irregular verbs */
+    .word-pairs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .word-pair {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      background: #F5F5F5; padding: 12px; border-radius: 12px;
+    }
+    .word-pair .now { color: #4CAF50; font-weight: 700; }
+    .word-pair .arrow { color: #999; }
+    .word-pair .past { color: #FF9800; font-weight: 700; }
+    .word-pair .meaning { color: #999; font-size: 0.85rem; }
+    
+    /* Matching game */
+    .match-instruction {
+      text-align: center; color: white; font-size: 1.1rem;
+      margin-bottom: 20px; padding: 15px;
+      background: rgba(255,255,255,0.2); border-radius: 15px;
+    }
+    .match-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+    }
     .match-card {
-      padding: 15px 10px; border: none; border-radius: 12px; font-size: 1.1rem;
-      font-weight: 700; cursor: pointer; font-family: 'Nunito', sans-serif;
+      padding: 18px 10px; border-radius: 15px; font-size: 1.1rem;
+      font-weight: 700; cursor: pointer; text-align: center;
+      font-family: 'Nunito', sans-serif; border: none;
+      transition: all 0.2s;
     }
-    .match-card.base { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
-    .match-card.past { background: linear-gradient(135deg, #f6d365 0%, #fda085 100%); color: #5a3e2b; }
-    .match-card.selected { transform: scale(1.1); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
-    .match-card.matched { background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%); color: #276749; opacity: 0.7; }
-    .match-card:hover:not(.matched) { transform: scale(1.05); }
-    .match-complete { text-align: center; background: rgba(255,255,255,0.95); padding: 25px; border-radius: 15px; }
-    .match-complete p { font-size: 1.3rem; font-weight: 700; color: #2d3748; margin-bottom: 15px; }
+    .match-card.type-now { background: #E8F5E9; color: #2E7D32; }
+    .match-card.type-past { background: #FFF3E0; color: #E65100; }
+    .match-card.selected { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+    .match-card.matched { opacity: 0.5; cursor: default; }
     
-    .verb-fill-mode { max-width: 450px; margin: 0 auto; }
-    .verb-fill-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
-    .verb-fill-progress, .verb-fill-score { background: rgba(255,255,255,0.9); padding: 10px 18px; border-radius: 20px; font-weight: 700; color: #4a5568; }
-    .verb-fill-card { background: rgba(255,255,255,0.98); border-radius: 20px; padding: 30px; text-align: center; }
-    .verb-fill-card h3 { font-size: 1.2rem; color: #4a5568; margin-bottom: 15px; }
-    .verb-fill-word { font-size: 3rem; font-weight: 800; color: #667eea; margin-bottom: 25px; }
-    .verb-fill-input {
-      width: 100%; max-width: 280px; padding: 16px 20px; font-size: 1.4rem;
-      text-align: center; border: 3px solid #e2e8f0; border-radius: 15px;
-      font-family: 'Nunito', sans-serif; font-weight: 600; margin-bottom: 15px;
+    .match-score {
+      text-align: center; margin-top: 20px;
+      background: white; padding: 15px; border-radius: 15px;
+      font-size: 1.2rem; font-weight: 700;
     }
-    .verb-fill-input:focus { outline: none; border-color: #667eea; }
-    .verb-fill-result { margin-top: 20px; padding: 20px; border-radius: 12px; }
-    .verb-fill-result.correct { background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%); }
-    .verb-fill-result.wrong { background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); }
-    .verb-fill-result p { font-size: 1.1rem; font-weight: 600; margin-bottom: 15px; color: #2d3748; }
     
-    .confetti-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1000; }
-    .confetti { position: absolute; width: 12px; height: 12px; animation: confettiFall 3s linear forwards; }
+    /* Flashcards */
+    .flashcard-container { perspective: 1000px; margin: 20px 0; }
+    .flashcard {
+      width: 100%; height: 200px; cursor: pointer;
+      position: relative; transform-style: preserve-3d;
+      transition: transform 0.6s;
+    }
+    .flashcard.flipped { transform: rotateY(180deg); }
+    .flashcard-face {
+      position: absolute; width: 100%; height: 100%;
+      backface-visibility: hidden; border-radius: 20px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .flashcard-front { background: linear-gradient(135deg, #E8F5E9, #C8E6C9); }
+    .flashcard-back {
+      background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
+      transform: rotateY(180deg);
+    }
+    .flashcard-word { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; }
+    .flashcard-front .flashcard-word { color: #2E7D32; }
+    .flashcard-back .flashcard-word { color: #E65100; }
+    .flashcard-label { font-size: 1rem; color: #666; }
+    .flashcard-meaning { font-size: 1.1rem; color: #666; margin-top: 10px; }
+    .flashcard-hint { font-size: 0.9rem; color: #999; margin-top: 15px; }
+    
+    .flashcard-nav {
+      display: flex; justify-content: center; gap: 15px; margin-top: 20px;
+    }
+    .flashcard-btn {
+      padding: 12px 25px; border-radius: 25px; font-weight: 700;
+      cursor: pointer; font-family: 'Nunito', sans-serif; border: none;
+      background: white; color: #333;
+    }
+    .flashcard-btn:hover { background: #F5F5F5; }
+    
+    /* Confetti */
+    .confetti-container {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 1000;
+    }
+    .confetti {
+      position: absolute; width: 10px; height: 10px;
+      animation: confettiFall 3s linear forwards;
+    }
     @keyframes confettiFall {
       0% { transform: translateY(-100%) rotate(0deg); opacity: 1; }
       100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
     }
     
-    @media (max-width: 600px) {
-      .app-title { font-size: 2rem; }
-      .question-text { font-size: 1.2rem; }
-      .sort-containers { grid-template-columns: 1fr; }
-      .tf-buttons { grid-template-columns: 1fr; }
-      .match-grid { grid-template-columns: repeat(3, 1fr); }
-      .verb-fill-word { font-size: 2.5rem; }
-      .flashcard-word { font-size: 2.5rem; }
+    /* Responsive */
+    @media (max-width: 400px) {
+      .app-title { font-size: 1.8rem; }
+      .scene-text { font-size: 1.2rem; }
+      .choice-btn { font-size: 1rem; padding: 15px 20px; }
     }
   </style>
 </head>
 <body>
-  <div class="app-container">
-    <div class="floating-shapes">
-      <span class="shape">📚</span><span class="shape">✨</span>
-      <span class="shape">🌟</span><span class="shape">🎯</span><span class="shape">🏆</span>
-    </div>
-    
+  <div class="app-container bg-fun" id="appContainer">
     <button class="sound-toggle" id="soundToggle" onclick="toggleSound()">🔊</button>
     <div id="confettiContainer" class="confetti-container"></div>
     
-    <div class="content">
-      <div id="homeScreen" class="screen active">
-        <div class="home-screen">
-          <h1 class="app-title">🌈 English Tenses</h1>
-          <p class="app-subtitle">Học phân biệt thì Hiện tại & Quá khứ</p>
-          <div class="mascot">🦉</div>
-          <div class="menu-buttons">
-            <button class="menu-btn play" onclick="initGame()">🎮 Chơi ngay!</button>
-            <button class="menu-btn verbs" onclick="showVerbMenu()">🔄 Học động từ BQT</button>
-            <button class="menu-btn learn" onclick="showLesson()">📖 Học bài</button>
+    <!-- HOME SCREEN -->
+    <div id="homeScreen" class="screen active">
+      <div class="home-content">
+        <div class="mascot-large">🦉</div>
+        <h1 class="app-title">Fun English!</h1>
+        <p class="app-tagline">Học tiếng Anh vui vẻ mỗi ngày</p>
+        
+        <div class="topic-grid">
+          <div class="topic-card daily" onclick="startTopic('daily')">
+            <div class="topic-icon">☀️</div>
+            <div class="topic-name">Every Day</div>
+          </div>
+          <div class="topic-card yesterday" onclick="startTopic('yesterday')">
+            <div class="topic-icon">🌙</div>
+            <div class="topic-name">Yesterday</div>
+          </div>
+          <div class="topic-card stories" onclick="startTopic('stories')">
+            <div class="topic-icon">📖</div>
+            <div class="topic-name">Stories</div>
+          </div>
+          <div class="topic-card games" onclick="startTopic('games')">
+            <div class="topic-icon">🎮</div>
+            <div class="topic-name">Word Games</div>
           </div>
         </div>
+        
+        <div class="streak-banner" id="streakBanner">
+          <span>🔥</span>
+          <span id="streakText">Bắt đầu học nào!</span>
+        </div>
       </div>
-      
-      <div id="gameScreen" class="screen"></div>
-      <div id="resultScreen" class="screen"></div>
-      <div id="lessonScreen" class="screen"></div>
-      <div id="verbScreen" class="screen"></div>
     </div>
+    
+    <!-- STORY SCREEN -->
+    <div id="storyScreen" class="screen"></div>
+    
+    <!-- RESULT SCREEN -->
+    <div id="resultScreen" class="screen"></div>
+    
+    <!-- LEARN SCREEN -->
+    <div id="learnScreen" class="screen"></div>
+    
+    <!-- GAME SCREEN -->
+    <div id="gameScreen" class="screen"></div>
   </div>
 
 <script>
-// ========== DATA ==========
-var QUESTIONS = {
-  multiple: [
-    // === EVERY DAY / EVERY MORNING / EVERY NIGHT ===
-    { question: 'I ___ to school every day.', options: ['go', 'went', 'going'], correct: 0, explanation: '"Every day" = mỗi ngày → hiện tại "go"' },
-    { question: 'My cat ___ milk every morning.', options: ['drinks', 'drank', 'drinking'], correct: 0, explanation: '"Every morning" → hiện tại "drinks"' },
-    { question: 'He ___ his homework every day.', options: ['did', 'does', 'doing'], correct: 1, explanation: '"Every day" → hiện tại "does"' },
-    { question: 'Mom ___ dinner every evening.', options: ['cooked', 'cooks', 'cooking'], correct: 1, explanation: '"Every evening" → hiện tại "cooks"' },
-    { question: 'She ___ her teeth every night.', options: ['brush', 'brushes', 'brushed'], correct: 1, explanation: '"Every night" → hiện tại "brushes"' },
-    { question: 'Dad ___ to work every morning.', options: ['drive', 'drives', 'drove'], correct: 1, explanation: '"Every morning" → hiện tại "drives"' },
-    { question: 'The baby ___ a lot every day.', options: ['cry', 'cries', 'cried'], correct: 1, explanation: '"Every day" → hiện tại "cries"' },
-    { question: 'My brother ___ video games every weekend.', options: ['plays', 'played', 'play'], correct: 0, explanation: '"Every weekend" → hiện tại "plays"' },
-    { question: 'Birds ___ in the morning.', options: ['sing', 'sings', 'sang'], correct: 1, explanation: 'Thói quen → hiện tại "sings"' },
-    { question: 'The dog ___ loudly every night.', options: ['bark', 'barks', 'barked'], correct: 1, explanation: '"Every night" → hiện tại "barks"' },
-    
-    // === YESTERDAY / LAST NIGHT / LAST WEEK ===
-    { question: 'She ___ a book yesterday.', options: ['reads', 'read', 'reading'], correct: 1, explanation: '"Yesterday" → quá khứ "read"' },
-    { question: 'They ___ football last Sunday.', options: ['play', 'played', 'plays'], correct: 1, explanation: '"Last Sunday" → quá khứ "played"' },
-    { question: 'We ___ a movie last night.', options: ['watch', 'watched', 'watches'], correct: 1, explanation: '"Last night" → quá khứ "watched"' },
-    { question: 'I ___ my grandma last weekend.', options: ['visit', 'visited', 'visits'], correct: 1, explanation: '"Last weekend" → quá khứ "visited"' },
-    { question: 'We ___ to the zoo last month.', options: ['go', 'went', 'goes'], correct: 1, explanation: '"Last month" → quá khứ "went"' },
-    { question: 'She ___ a cake yesterday.', options: ['makes', 'make', 'made'], correct: 2, explanation: '"Yesterday" → quá khứ "made"' },
-    { question: 'Tom ___ his bike last week.', options: ['rides', 'ride', 'rode'], correct: 2, explanation: '"Last week" → quá khứ "rode"' },
-    { question: 'I ___ a new toy yesterday.', options: ['buy', 'bought', 'buys'], correct: 1, explanation: '"Yesterday" → quá khứ "bought"' },
-    { question: 'They ___ to music last night.', options: ['listen', 'listened', 'listens'], correct: 1, explanation: '"Last night" → quá khứ "listened"' },
-    { question: 'Dad ___ the car yesterday.', options: ['washes', 'wash', 'washed'], correct: 2, explanation: '"Yesterday" → quá khứ "washed"' },
-    { question: 'My sister ___ a letter last Monday.', options: ['writes', 'wrote', 'write'], correct: 1, explanation: '"Last Monday" → quá khứ "wrote"' },
-    { question: 'The children ___ in the pool last summer.', options: ['swim', 'swam', 'swims'], correct: 1, explanation: '"Last summer" → quá khứ "swam"' },
-    
-    // === ALWAYS / USUALLY / OFTEN ===
-    { question: 'Birds ___ in the sky.', options: ['fly', 'flew', 'flying'], correct: 0, explanation: 'Sự thật → hiện tại "fly"' },
-    { question: 'I always ___ breakfast at 7 AM.', options: ['eat', 'ate', 'eats'], correct: 0, explanation: '"Always" → hiện tại "eat"' },
-    { question: 'She usually ___ to bed early.', options: ['go', 'goes', 'went'], correct: 1, explanation: '"Usually" → hiện tại "goes"' },
-    { question: 'They often ___ in the park.', options: ['run', 'runs', 'ran'], correct: 0, explanation: '"Often" → hiện tại "run"' },
-    { question: 'He sometimes ___ his room.', options: ['clean', 'cleans', 'cleaned'], correct: 1, explanation: '"Sometimes" → hiện tại "cleans"' },
-    { question: 'The sun ___ in the East.', options: ['rise', 'rises', 'rose'], correct: 1, explanation: 'Sự thật → hiện tại "rises"' },
-    { question: 'Water ___ at 100 degrees.', options: ['boil', 'boils', 'boiled'], correct: 1, explanation: 'Sự thật khoa học → hiện tại "boils"' },
-    { question: 'Dogs ___ bones.', options: ['like', 'likes', 'liked'], correct: 0, explanation: 'Sự thật → hiện tại "like"' },
-    
-    // === AGO / THIS MORNING ===
-    { question: 'I ___ a sandwich two hours ago.', options: ['eat', 'ate', 'eats'], correct: 1, explanation: '"Ago" → quá khứ "ate"' },
-    { question: 'She ___ her keys three days ago.', options: ['loses', 'lose', 'lost'], correct: 2, explanation: '"Ago" → quá khứ "lost"' },
-    { question: 'We ___ to London in 2022.', options: ['travel', 'traveled', 'travels'], correct: 1, explanation: '"In 2022" → quá khứ "traveled"' },
-    { question: 'Tom ___ his first word a year ago.', options: ['say', 'says', 'said'], correct: 2, explanation: '"A year ago" → quá khứ "said"' },
-    { question: 'I ___ breakfast this morning.', options: ['have', 'has', 'had'], correct: 2, explanation: '"This morning" (đã qua) → quá khứ "had"' },
-    { question: 'The movie ___ at 8 PM yesterday.', options: ['start', 'starts', 'started'], correct: 2, explanation: '"Yesterday" → quá khứ "started"' },
-    
-    // === ĐỘNG TỪ BẤT QUY TẮC ===
-    { question: 'I ___ a strange dream last night.', options: ['have', 'has', 'had'], correct: 2, explanation: '"Last night" → quá khứ "had"' },
-    { question: 'She ___ me a gift yesterday.', options: ['give', 'gives', 'gave'], correct: 2, explanation: '"Yesterday" → quá khứ "gave"' },
-    { question: 'We ___ a bird in the garden this morning.', options: ['see', 'sees', 'saw'], correct: 2, explanation: '"This morning" → quá khứ "saw"' },
-    { question: 'He ___ home late last night.', options: ['come', 'comes', 'came'], correct: 2, explanation: '"Last night" → quá khứ "came"' },
-    { question: 'I ___ my phone yesterday.', options: ['find', 'found', 'finds'], correct: 1, explanation: '"Yesterday" → quá khứ "found"' },
-    { question: 'Mom ___ us a story yesterday.', options: ['tell', 'told', 'tells'], correct: 1, explanation: '"Yesterday" → quá khứ "told"' },
-    { question: 'I ___ a glass of water an hour ago.', options: ['drink', 'drank', 'drinks'], correct: 1, explanation: '"An hour ago" → quá khứ "drank"' },
-    { question: 'She ___ a beautiful song last night.', options: ['sing', 'sang', 'sings'], correct: 1, explanation: '"Last night" → quá khứ "sang"' },
-    { question: 'Dad ___ the newspaper every morning.', options: ['read', 'reads', 'reading'], correct: 1, explanation: '"Every morning" → hiện tại "reads"' },
-    { question: 'The teacher ___ us English last year.', options: ['teach', 'taught', 'teaches'], correct: 1, explanation: '"Last year" → quá khứ "taught"' },
-    { question: 'I ___ a lot about history yesterday.', options: ['learn', 'learned', 'learns'], correct: 1, explanation: '"Yesterday" → quá khứ "learned"' },
-    { question: 'She ___ her bag at school last week.', options: ['leave', 'left', 'leaves'], correct: 1, explanation: '"Last week" → quá khứ "left"' },
-    
-    // === CÂU PHỦ ĐỊNH - HIỆN TẠI ===
-    { question: 'I ___ like spiders.', options: ['don\'t', 'doesn\'t', 'didn\'t'], correct: 0, explanation: 'I + don\'t + động từ gốc' },
-    { question: 'She ___ eat vegetables.', options: ['don\'t', 'doesn\'t', 'didn\'t'], correct: 1, explanation: 'She + doesn\'t + động từ gốc' },
-    { question: 'He ___ go to school on Sunday.', options: ['don\'t', 'doesn\'t', 'didn\'t'], correct: 1, explanation: 'He + doesn\'t + động từ gốc' },
-    { question: 'They ___ like homework.', options: ['don\'t', 'doesn\'t', 'didn\'t'], correct: 0, explanation: 'They + don\'t + động từ gốc' },
-    { question: 'My cat ___ like water.', options: ['don\'t', 'doesn\'t', 'didn\'t'], correct: 1, explanation: 'My cat (it) + doesn\'t' },
-    { question: 'We ___ watch TV every day.', options: ['don\'t', 'doesn\'t', 'didn\'t'], correct: 0, explanation: 'We + don\'t + động từ gốc' },
-    { question: 'The baby ___ sleep well.', options: ['don\'t', 'doesn\'t', 'didn\'t'], correct: 1, explanation: 'The baby (it) + doesn\'t' },
-    { question: 'I ___ have a pet.', options: ['don\'t', 'doesn\'t', 'didn\'t'], correct: 0, explanation: 'I + don\'t + động từ gốc' },
-    { question: 'She doesn\'t ___ meat.', options: ['eat', 'eats', 'ate'], correct: 0, explanation: 'Sau doesn\'t → động từ GỐC!' },
-    { question: 'He doesn\'t ___ English.', options: ['speaks', 'speak', 'spoke'], correct: 1, explanation: 'Sau doesn\'t → động từ GỐC!' },
-    { question: 'They don\'t ___ coffee.', options: ['drinks', 'drink', 'drank'], correct: 1, explanation: 'Sau don\'t → động từ GỐC!' },
-    { question: 'My mom doesn\'t ___ fast food.', options: ['like', 'likes', 'liked'], correct: 0, explanation: 'Sau doesn\'t → động từ GỐC!' },
-    
-    // === CÂU PHỦ ĐỊNH - QUÁ KHỨ ===
-    { question: 'I ___ go to school yesterday.', options: ['don\'t', 'doesn\'t', 'didn\'t'], correct: 2, explanation: '"Yesterday" → quá khứ → didn\'t' },
-    { question: 'She ___ watch TV last night.', options: ['don\'t', 'doesn\'t', 'didn\'t'], correct: 2, explanation: '"Last night" → quá khứ → didn\'t' },
-    { question: 'They ___ play football last Sunday.', options: ['don\'t', 'doesn\'t', 'didn\'t'], correct: 2, explanation: '"Last Sunday" → quá khứ → didn\'t' },
-    { question: 'He ___ eat breakfast this morning.', options: ['don\'t', 'doesn\'t', 'didn\'t'], correct: 2, explanation: '"This morning" đã qua → didn\'t' },
-    { question: 'We ___ see the movie last week.', options: ['don\'t', 'doesn\'t', 'didn\'t'], correct: 2, explanation: '"Last week" → quá khứ → didn\'t' },
-    { question: 'I didn\'t ___ to the party yesterday.', options: ['go', 'goes', 'went'], correct: 0, explanation: 'Sau didn\'t → động từ GỐC!' },
-    { question: 'She didn\'t ___ her homework last night.', options: ['do', 'does', 'did'], correct: 0, explanation: 'Sau didn\'t → động từ GỐC!' },
-    { question: 'They didn\'t ___ the test yesterday.', options: ['took', 'take', 'takes'], correct: 1, explanation: 'Sau didn\'t → động từ GỐC!' },
-    { question: 'He didn\'t ___ me a gift.', options: ['give', 'gives', 'gave'], correct: 0, explanation: 'Sau didn\'t → động từ GỐC!' },
-    { question: 'We didn\'t ___ to music last night.', options: ['listen', 'listens', 'listened'], correct: 0, explanation: 'Sau didn\'t → động từ GỐC!' },
-    
-    // === CÂU HỎI - HIỆN TẠI (Do/Does) ===
-    { question: '___ you like pizza?', options: ['Do', 'Does', 'Did'], correct: 0, explanation: 'You → Do' },
-    { question: '___ she go to school every day?', options: ['Do', 'Does', 'Did'], correct: 1, explanation: 'She → Does' },
-    { question: '___ he play football?', options: ['Do', 'Does', 'Did'], correct: 1, explanation: 'He → Does' },
-    { question: '___ they watch TV every night?', options: ['Do', 'Does', 'Did'], correct: 0, explanation: 'They → Do' },
-    { question: '___ your cat like fish?', options: ['Do', 'Does', 'Did'], correct: 1, explanation: 'Your cat (it) → Does' },
-    { question: '___ we have homework today?', options: ['Do', 'Does', 'Did'], correct: 0, explanation: 'We → Do' },
-    { question: 'Does she ___ English?', options: ['speak', 'speaks', 'spoke'], correct: 0, explanation: 'Sau Does → động từ GỐC!' },
-    { question: 'Do they ___ coffee every morning?', options: ['drink', 'drinks', 'drank'], correct: 0, explanation: 'Sau Do → động từ GỐC!' },
-    { question: 'Does he ___ to school by bus?', options: ['go', 'goes', 'went'], correct: 0, explanation: 'Sau Does → động từ GỐC!' },
-    { question: 'Do you ___ vegetables?', options: ['like', 'likes', 'liked'], correct: 0, explanation: 'Sau Do → động từ GỐC!' },
-    
-    // === CÂU HỎI - QUÁ KHỨ (Did) ===
-    { question: '___ you go to school yesterday?', options: ['Do', 'Does', 'Did'], correct: 2, explanation: '"Yesterday" → quá khứ → Did' },
-    { question: '___ she watch TV last night?', options: ['Do', 'Does', 'Did'], correct: 2, explanation: '"Last night" → quá khứ → Did' },
-    { question: '___ they play football last Sunday?', options: ['Do', 'Does', 'Did'], correct: 2, explanation: '"Last Sunday" → quá khứ → Did' },
-    { question: '___ he eat breakfast this morning?', options: ['Do', 'Does', 'Did'], correct: 2, explanation: '"This morning" đã qua → Did' },
-    { question: 'Did you ___ to the party yesterday?', options: ['go', 'goes', 'went'], correct: 0, explanation: 'Sau Did → động từ GỐC!' },
-    { question: 'Did she ___ her homework last night?', options: ['do', 'does', 'did'], correct: 0, explanation: 'Sau Did → động từ GỐC!' },
-    { question: 'Did they ___ the movie last week?', options: ['see', 'sees', 'saw'], correct: 0, explanation: 'Sau Did → động từ GỐC!' },
-    { question: 'Did he ___ you a gift?', options: ['give', 'gives', 'gave'], correct: 0, explanation: 'Sau Did → động từ GỐC!' }
+// ============ DATA - Cambridge Style ============
+var STORIES = {
+  daily: [
+    {
+      bg: 'bg-sunny',
+      scenes: [
+        {
+          image: '🌅👧',
+          text: 'This is Lily. She <span class="highlight-green">wakes up</span> at 7 o\'clock <span class="highlight">every morning</span>.',
+          question: 'Lily wakes up at 7...',
+          choices: ['every morning ☀️', 'yesterday morning 🌙'],
+          correct: 0,
+          feedback: 'Yes! Every morning = mỗi sáng 👍',
+          tip: '☀️ "every morning" - việc Lily làm mỗi ngày!'
+        },
+        {
+          image: '🍳👧',
+          text: 'Lily <span class="highlight-green">eats</span> breakfast <span class="highlight">every day</span>. She likes eggs!',
+          question: 'Lily ___ breakfast every day.',
+          choices: ['eats 🍳', 'ate 🍳'],
+          correct: 0,
+          feedback: 'Great! Every day → eats 🌟',
+          tip: '🔄 "every day" - việc làm mỗi ngày → eats'
+        },
+        {
+          image: '🚶‍♀️🏫',
+          text: 'She <span class="highlight-green">walks</span> to school <span class="highlight">every day</span>. Her school is near her house.',
+          question: 'Lily ___ to school every day.',
+          choices: ['walks 🚶‍♀️', 'walked 🚶‍♀️'],
+          correct: 0,
+          feedback: 'Perfect! Mỗi ngày Lily đi bộ đến trường 🎒',
+          tip: '🏫 Việc lặp lại mỗi ngày → walks'
+        },
+        {
+          image: '📚👧',
+          text: 'Lily <span class="highlight-green">studies</span> English <span class="highlight">every afternoon</span>. She loves it!',
+          question: 'Lily ___ English every afternoon.',
+          choices: ['studies 📖', 'studied 📖'],
+          correct: 0,
+          feedback: 'Wonderful! Lily học tiếng Anh mỗi chiều ⭐',
+          tip: '📚 "every afternoon" → việc làm thường xuyên'
+        },
+        {
+          image: '😴🛏️',
+          text: 'At night, Lily <span class="highlight-green">goes</span> to bed at 9 o\'clock. Good night, Lily!',
+          question: 'Lily ___ to bed at 9 every night.',
+          choices: ['goes 😴', 'went 😴'],
+          correct: 0,
+          feedback: 'Excellent! Lily đi ngủ lúc 9 giờ mỗi tối 🌙',
+          tip: '🌙 Thói quen mỗi tối → goes'
+        }
+      ]
+    },
+    {
+      bg: 'bg-park',
+      scenes: [
+        {
+          image: '👦🐕',
+          text: 'This is Tom and his dog Max. They <span class="highlight-green">play</span> in the park <span class="highlight">every weekend</span>.',
+          question: 'Tom and Max ___ in the park every weekend.',
+          choices: ['play 🎾', 'played 🎾'],
+          correct: 0,
+          feedback: 'Yes! Mỗi cuối tuần Tom và Max chơi trong công viên 🌳',
+          tip: '🏃 "every weekend" → việc làm thường xuyên'
+        },
+        {
+          image: '🐕💨',
+          text: 'Max <span class="highlight-green">runs</span> very fast! He <span class="highlight-green">loves</span> to catch the ball.',
+          question: 'Max ___ very fast.',
+          choices: ['runs 🏃', 'ran 🏃'],
+          correct: 0,
+          feedback: 'Great! Max chạy rất nhanh 🐕',
+          tip: '🐕 Điều Max luôn làm → runs'
+        },
+        {
+          image: '🦆🌊',
+          text: 'There are ducks in the pond. The ducks <span class="highlight-green">swim</span> <span class="highlight">every day</span>.',
+          question: 'The ducks ___ every day.',
+          choices: ['swim 🦆', 'swam 🦆'],
+          correct: 0,
+          feedback: 'Perfect! Những chú vịt bơi mỗi ngày 🌊',
+          tip: '🦆 "every day" → swim'
+        },
+        {
+          image: '☀️😊',
+          text: 'The sun <span class="highlight-green">shines</span> in the sky. It\'s a beautiful day!',
+          question: 'The sun ___ in the sky.',
+          choices: ['shines ☀️', 'shined ☀️'],
+          correct: 0,
+          feedback: 'Wonderful! Mặt trời tỏa sáng - điều luôn xảy ra ☀️',
+          tip: '☀️ Sự thật luôn đúng → shines'
+        }
+      ]
+    }
   ],
-  fill: [
-    // === QUÁ KHỨ - ĐỘNG TỪ CÓ QUY TẮC ===
-    { sentence: 'They ___ (play) games yesterday.', answer: 'played', hint: '"Yesterday"! Thêm -ed' },
-    { sentence: 'She ___ (watch) TV last night.', answer: 'watched', hint: '"Last night"! Thêm -ed' },
-    { sentence: 'I ___ (walk) to school yesterday.', answer: 'walked', hint: '"Yesterday"! Thêm -ed' },
-    { sentence: 'Mom ___ (cook) dinner last evening.', answer: 'cooked', hint: '"Last evening"! Thêm -ed' },
-    { sentence: 'We ___ (visit) grandma last weekend.', answer: 'visited', hint: '"Last weekend"! Thêm -ed' },
-    { sentence: 'He ___ (help) his mom yesterday.', answer: 'helped', hint: '"Yesterday"! Thêm -ed' },
-    { sentence: 'The baby ___ (cry) a lot yesterday.', answer: 'cried', hint: '"Yesterday"! cry → cried' },
-    { sentence: 'She ___ (study) English last year.', answer: 'studied', hint: '"Last year"! study → studied' },
-    { sentence: 'They ___ (dance) at the party last night.', answer: 'danced', hint: '"Last night"! Thêm -d' },
-    { sentence: 'I ___ (clean) my room yesterday.', answer: 'cleaned', hint: '"Yesterday"! Thêm -ed' },
-    { sentence: 'He ___ (finish) homework last night.', answer: 'finished', hint: '"Last night"! Thêm -ed' },
-    { sentence: 'We ___ (play) tennis last Sunday.', answer: 'played', hint: '"Last Sunday"! Thêm -ed' },
-    
-    // === QUÁ KHỨ - ĐỘNG TỪ BẤT QUY TẮC ===
-    { sentence: 'I ___ (eat) breakfast this morning.', answer: 'ate', hint: '"This morning" đã qua! eat → ate' },
-    { sentence: 'We ___ (see) a rainbow last week.', answer: 'saw', hint: '"Last week"! see → saw' },
-    { sentence: 'She ___ (go) to the park yesterday.', answer: 'went', hint: '"Yesterday"! go → went' },
-    { sentence: 'I ___ (have) a good dream last night.', answer: 'had', hint: '"Last night"! have → had' },
-    { sentence: 'He ___ (come) home late yesterday.', answer: 'came', hint: '"Yesterday"! come → came' },
-    { sentence: 'Mom ___ (make) a cake last Sunday.', answer: 'made', hint: '"Last Sunday"! make → made' },
-    { sentence: 'We ___ (take) many photos last holiday.', answer: 'took', hint: '"Last holiday"! take → took' },
-    { sentence: 'I ___ (get) a new bike last month.', answer: 'got', hint: '"Last month"! get → got' },
-    { sentence: 'The children ___ (run) in the park yesterday.', answer: 'ran', hint: '"Yesterday"! run → ran' },
-    { sentence: 'She ___ (swim) in the sea last summer.', answer: 'swam', hint: '"Last summer"! swim → swam' },
-    { sentence: 'Dad ___ (drive) to work yesterday.', answer: 'drove', hint: '"Yesterday"! drive → drove' },
-    { sentence: 'I ___ (write) a letter last week.', answer: 'wrote', hint: '"Last week"! write → wrote' },
-    { sentence: 'She ___ (sing) a song at the party.', answer: 'sang', hint: 'Party đã kết thúc! sing → sang' },
-    { sentence: 'We ___ (drink) juice this morning.', answer: 'drank', hint: '"This morning" đã qua! drink → drank' },
-    { sentence: 'He ___ (give) me a present yesterday.', answer: 'gave', hint: '"Yesterday"! give → gave' },
-    { sentence: 'I ___ (find) my keys last night.', answer: 'found', hint: '"Last night"! find → found' },
-    { sentence: 'She ___ (tell) me a secret yesterday.', answer: 'told', hint: '"Yesterday"! tell → told' },
-    { sentence: 'They ___ (buy) a new car last month.', answer: 'bought', hint: '"Last month"! buy → bought' },
-    
-    // === HIỆN TẠI ĐƠN ===
-    { sentence: 'She ___ (go) to school every day.', answer: 'goes', hint: '"Every day"! she → goes' },
-    { sentence: 'My dog ___ (like) bones.', answer: 'likes', hint: 'Sự thật! Thêm -s' },
-    { sentence: 'He ___ (drink) water every day.', answer: 'drinks', hint: '"Every day"! Thêm -s' },
-    { sentence: 'The sun ___ (rise) in the East.', answer: 'rises', hint: 'Sự thật! Thêm -s' },
-    { sentence: 'She ___ (brush) her teeth every night.', answer: 'brushes', hint: '"Every night"! brush → brushes' },
-    { sentence: 'My mom ___ (cook) dinner every day.', answer: 'cooks', hint: '"Every day"! Thêm -s' },
-    { sentence: 'He ___ (watch) TV every evening.', answer: 'watches', hint: '"Every evening"! watch → watches' },
-    { sentence: 'She ___ (study) English every day.', answer: 'studies', hint: '"Every day"! study → studies' },
-    { sentence: 'The baby ___ (cry) every night.', answer: 'cries', hint: '"Every night"! cry → cries' },
-    { sentence: 'He always ___ (do) his homework.', answer: 'does', hint: '"Always"! he → does' },
-    { sentence: 'My sister ___ (read) books every weekend.', answer: 'reads', hint: '"Every weekend"! Thêm -s' },
-    { sentence: 'The cat ___ (sleep) all day.', answer: 'sleeps', hint: 'Thói quen! Thêm -s' },
-    
-    // === CÂU PHỦ ĐỊNH ===
-    { sentence: 'I ___ (not like) spiders.', answer: 'don\'t like', hint: 'I + don\'t + động từ gốc' },
-    { sentence: 'She ___ (not eat) meat.', answer: 'doesn\'t eat', hint: 'She + doesn\'t + động từ gốc' },
-    { sentence: 'He ___ (not play) football.', answer: 'doesn\'t play', hint: 'He + doesn\'t + động từ gốc' },
-    { sentence: 'They ___ (not watch) TV every day.', answer: 'don\'t watch', hint: 'They + don\'t + động từ gốc' },
-    { sentence: 'My dog ___ (not like) cats.', answer: 'doesn\'t like', hint: 'My dog (it) + doesn\'t' },
-    { sentence: 'I ___ (not go) to school yesterday.', answer: 'didn\'t go', hint: '"Yesterday" → didn\'t + động từ gốc!' },
-    { sentence: 'She ___ (not watch) TV last night.', answer: 'didn\'t watch', hint: '"Last night" → didn\'t + động từ gốc!' },
-    { sentence: 'They ___ (not play) games yesterday.', answer: 'didn\'t play', hint: '"Yesterday" → didn\'t + động từ gốc!' },
-    { sentence: 'He ___ (not eat) breakfast this morning.', answer: 'didn\'t eat', hint: '"This morning" → didn\'t + động từ gốc!' },
-    { sentence: 'We ___ (not see) the movie last week.', answer: 'didn\'t see', hint: '"Last week" → didn\'t + động từ gốc!' },
-    
-    // === CÂU HỎI ===
-    { sentence: '___ you like ice cream? (do/does)', answer: 'Do', hint: 'You → Do' },
-    { sentence: '___ she go to school every day? (do/does)', answer: 'Does', hint: 'She → Does' },
-    { sentence: '___ he play football? (do/does)', answer: 'Does', hint: 'He → Does' },
-    { sentence: '___ they watch TV? (do/does)', answer: 'Do', hint: 'They → Do' },
-    { sentence: '___ you go to school yesterday? (do/does/did)', answer: 'Did', hint: '"Yesterday" → Did' },
-    { sentence: '___ she eat breakfast this morning? (do/does/did)', answer: 'Did', hint: '"This morning" đã qua → Did' },
-    { sentence: 'Does she ___ (speak) English?', answer: 'speak', hint: 'Sau Does → động từ GỐC!' },
-    { sentence: 'Did you ___ (go) to the party?', answer: 'go', hint: 'Sau Did → động từ GỐC!' },
-    { sentence: 'Did he ___ (eat) lunch yesterday?', answer: 'eat', hint: 'Sau Did → động từ GỐC!' },
-    { sentence: 'Do they ___ (like) pizza?', answer: 'like', hint: 'Sau Do → động từ GỐC!' }
+  yesterday: [
+    {
+      bg: 'bg-night',
+      scenes: [
+        {
+          image: '🌙👧',
+          text: '<span class="highlight-orange">Yesterday</span>, Lily <span class="highlight-orange">woke up</span> late. It was Sunday!',
+          question: 'Yesterday, Lily ___ up late.',
+          choices: ['woke 🛏️', 'wakes 🛏️'],
+          correct: 0,
+          feedback: 'Yes! Hôm qua Lily dậy muộn 😴',
+          tip: '🌙 "yesterday" → đã xảy ra → woke'
+        },
+        {
+          image: '🥞👨‍🍳',
+          text: 'Dad <span class="highlight-orange">made</span> pancakes for breakfast <span class="highlight-orange">yesterday</span>. Yummy!',
+          question: 'Yesterday, Dad ___ pancakes.',
+          choices: ['made 🥞', 'makes 🥞'],
+          correct: 0,
+          feedback: 'Great! Hôm qua bố làm bánh pancake 😋',
+          tip: '🥞 "yesterday" → đã xong → made'
+        },
+        {
+          image: '🎢👨‍👩‍👧',
+          text: 'The family <span class="highlight-orange">went</span> to the park <span class="highlight-orange">yesterday</span>. They had fun!',
+          question: 'Yesterday, the family ___ to the park.',
+          choices: ['went 🎢', 'go 🎢'],
+          correct: 0,
+          feedback: 'Perfect! Hôm qua cả nhà đi công viên 🎉',
+          tip: '🌳 "yesterday" - việc đã xảy ra → went'
+        },
+        {
+          image: '🍦😋',
+          text: 'Lily <span class="highlight-orange">ate</span> ice cream <span class="highlight-orange">yesterday</span>. It was delicious!',
+          question: 'Yesterday, Lily ___ ice cream.',
+          choices: ['ate 🍦', 'eats 🍦'],
+          correct: 0,
+          feedback: 'Wonderful! Hôm qua Lily ăn kem 🍦',
+          tip: '🍦 "yesterday" → ate (không phải eats)'
+        },
+        {
+          image: '😴💤',
+          text: 'At night, everyone <span class="highlight-orange">slept</span> well. What a great day!',
+          question: 'Last night, everyone ___ well.',
+          choices: ['slept 😴', 'sleeps 😴'],
+          correct: 0,
+          feedback: 'Excellent! Tối qua mọi người ngủ ngon 🌙',
+          tip: '😴 "last night" - đã qua → slept'
+        }
+      ]
+    },
+    {
+      bg: 'bg-school',
+      scenes: [
+        {
+          image: '📚👦',
+          text: '<span class="highlight-orange">Last week</span>, Tom <span class="highlight-orange">had</span> a test at school.',
+          question: 'Last week, Tom ___ a test.',
+          choices: ['had 📝', 'has 📝'],
+          correct: 0,
+          feedback: 'Yes! Tuần trước Tom có bài kiểm tra 📚',
+          tip: '📅 "last week" - tuần trước → had'
+        },
+        {
+          image: '✏️📖',
+          text: 'He <span class="highlight-orange">studied</span> very hard <span class="highlight-orange">last week</span>.',
+          question: 'Tom ___ very hard last week.',
+          choices: ['studied 📖', 'studies 📖'],
+          correct: 0,
+          feedback: 'Great! Tom đã học rất chăm 💪',
+          tip: '✏️ "last week" → studied'
+        },
+        {
+          image: '✅💯',
+          text: 'Tom <span class="highlight-orange">got</span> 100 points! He was very happy!',
+          question: 'Tom ___ 100 points!',
+          choices: ['got 🏆', 'gets 🏆'],
+          correct: 0,
+          feedback: 'Perfect! Tom được 100 điểm! 🎉',
+          tip: '💯 Việc đã xảy ra → got'
+        },
+        {
+          image: '🎁👨‍👩‍👦',
+          text: 'Mom and Dad <span class="highlight-orange">gave</span> Tom a gift <span class="highlight-orange">yesterday</span>.',
+          question: 'Yesterday, Mom and Dad ___ Tom a gift.',
+          choices: ['gave 🎁', 'give 🎁'],
+          correct: 0,
+          feedback: 'Wonderful! Hôm qua bố mẹ tặng quà cho Tom 🎁',
+          tip: '🎁 "yesterday" → gave'
+        }
+      ]
+    }
   ],
-  truefalse: [
-    // === VỀ TỪ NHẬN BIẾT THÌ ===
-    { statement: '"Yesterday" dùng với thì quá khứ', correct: true, explanation: 'Đúng! "Yesterday" = hôm qua → quá khứ' },
-    { statement: '"Every day" dùng với thì quá khứ', correct: false, explanation: 'Sai! "Every day" = mỗi ngày → hiện tại' },
-    { statement: '"Last night" dùng với thì hiện tại', correct: false, explanation: 'Sai! "Last night" = tối qua → quá khứ' },
-    { statement: '"Always" dùng với thì hiện tại', correct: true, explanation: 'Đúng! "Always" = luôn luôn → hiện tại' },
-    { statement: '"Ago" là từ nhận biết thì quá khứ', correct: true, explanation: 'Đúng! "Ago" = trước đây → quá khứ' },
-    { statement: '"Usually" dùng với thì quá khứ', correct: false, explanation: 'Sai! "Usually" = thường → hiện tại' },
-    { statement: '"Last week" dùng với thì quá khứ', correct: true, explanation: 'Đúng! "Last week" = tuần trước → quá khứ' },
-    { statement: '"Every morning" dùng với thì hiện tại', correct: true, explanation: 'Đúng! "Every morning" = mỗi sáng → hiện tại' },
-    { statement: '"Sometimes" là từ nhận biết thì quá khứ', correct: false, explanation: 'Sai! "Sometimes" = đôi khi → hiện tại' },
-    { statement: '"In 2020" dùng với thì quá khứ', correct: true, explanation: 'Đúng! Năm trong quá khứ → quá khứ' },
-    { statement: '"Often" dùng với thì hiện tại', correct: true, explanation: 'Đúng! "Often" = thường xuyên → hiện tại' },
-    { statement: '"Last summer" dùng với thì hiện tại', correct: false, explanation: 'Sai! "Last summer" = mùa hè trước → quá khứ' },
-    
-    // === VỀ CÁCH CHIA ĐỘNG TỪ ===
-    { statement: '"Played" là dạng quá khứ của "play"', correct: true, explanation: 'Đúng! play + ed = played' },
-    { statement: '"Go - went" là động từ bất quy tắc', correct: true, explanation: 'Đúng! Go → went (không thêm -ed)' },
-    { statement: 'Thêm -ed vào "eat" thành "eated"', correct: false, explanation: 'Sai! "Eat" bất quy tắc → "ate"' },
-    { statement: '"Watched" là dạng quá khứ của "watch"', correct: true, explanation: 'Đúng! watch + ed = watched' },
-    { statement: '"See - saw" là động từ bất quy tắc', correct: true, explanation: 'Đúng! See → saw' },
-    { statement: 'Quá khứ của "have" là "haved"', correct: false, explanation: 'Sai! Have bất quy tắc → "had"' },
-    { statement: 'Quá khứ của "make" là "made"', correct: true, explanation: 'Đúng! Make → made' },
-    { statement: 'Quá khứ của "come" là "comed"', correct: false, explanation: 'Sai! Come bất quy tắc → came' },
-    { statement: '"Studied" là dạng quá khứ của "study"', correct: true, explanation: 'Đúng! study → studied (y → ied)' },
-    { statement: 'Quá khứ của "swim" là "swimmed"', correct: false, explanation: 'Sai! Swim bất quy tắc → swam' },
-    { statement: 'Quá khứ của "run" là "ran"', correct: true, explanation: 'Đúng! Run → ran' },
-    { statement: 'Quá khứ của "take" là "taked"', correct: false, explanation: 'Sai! Take bất quy tắc → took' },
-    
-    // === VỀ QUY TẮC THÌ ===
-    { statement: 'Thì hiện tại dùng để nói về thói quen', correct: true, explanation: 'Đúng! Thói quen → hiện tại' },
-    { statement: 'Thì quá khứ dùng để nói về việc xảy ra hôm qua', correct: true, explanation: 'Đúng! Việc đã xảy ra → quá khứ' },
-    { statement: 'Sự thật khoa học dùng thì quá khứ', correct: false, explanation: 'Sai! Sự thật luôn đúng → hiện tại' },
-    { statement: 'Với "she/he", động từ hiện tại thêm -s hoặc -es', correct: true, explanation: 'Đúng! She goes, He watches' },
-    { statement: 'Động từ quá khứ có quy tắc thêm -ed', correct: true, explanation: 'Đúng! play → played' },
-    
-    // === VỀ CÂU PHỦ ĐỊNH ===
-    { statement: 'Câu "I doesn\'t like fish" là đúng', correct: false, explanation: 'Sai! I + don\'t (không phải doesn\'t)' },
-    { statement: 'Câu "She don\'t eat meat" là đúng', correct: false, explanation: 'Sai! She + doesn\'t (không phải don\'t)' },
-    { statement: 'Sau "doesn\'t", động từ giữ nguyên dạng gốc', correct: true, explanation: 'Đúng! She doesn\'t go (không phải goes)' },
-    { statement: 'Sau "didn\'t", động từ về dạng gốc', correct: true, explanation: 'Đúng! I didn\'t go (không phải went)' },
-    { statement: 'Câu "He didn\'t went to school" là đúng', correct: false, explanation: 'Sai! Sau didn\'t → go (dạng gốc)' },
-    { statement: 'Câu "She doesn\'t likes cats" là đúng', correct: false, explanation: 'Sai! Sau doesn\'t → like (dạng gốc)' },
-    { statement: '"Don\'t" dùng với I, You, We, They', correct: true, explanation: 'Đúng! I don\'t, You don\'t, We don\'t, They don\'t' },
-    { statement: '"Doesn\'t" dùng với He, She, It', correct: true, explanation: 'Đúng! He doesn\'t, She doesn\'t, It doesn\'t' },
-    { statement: '"Didn\'t" dùng cho tất cả chủ ngữ ở quá khứ', correct: true, explanation: 'Đúng! I/You/He/She/We/They didn\'t' },
-    
-    // === VỀ CÂU HỎI ===
-    { statement: 'Câu "Does you like pizza?" là đúng', correct: false, explanation: 'Sai! You → Do (không phải Does)' },
-    { statement: 'Câu "Do she go to school?" là đúng', correct: false, explanation: 'Sai! She → Does (không phải Do)' },
-    { statement: '"Do" dùng với I, You, We, They trong câu hỏi', correct: true, explanation: 'Đúng! Do you/we/they...?' },
-    { statement: '"Does" dùng với He, She, It trong câu hỏi', correct: true, explanation: 'Đúng! Does he/she/it...?' },
-    { statement: '"Did" dùng cho tất cả chủ ngữ ở câu hỏi quá khứ', correct: true, explanation: 'Đúng! Did I/you/he/she/we/they...?' },
-    { statement: 'Câu "Did you went to school?" là đúng', correct: false, explanation: 'Sai! Sau Did → go (dạng gốc)' },
-    { statement: 'Câu "Does she speaks English?" là đúng', correct: false, explanation: 'Sai! Sau Does → speak (dạng gốc)' },
-    { statement: 'Sau Do/Does/Did, động từ về dạng gốc', correct: true, explanation: 'Đúng! Do you go? Does she go? Did you go?' }
-  ],
-  picture: [
-    // === THIÊN NHIÊN & SỰ THẬT ===
-    { image: '🌅', question: 'Chọn câu đúng:', options: ['The sun rises every day.', 'The sun rised yesterday.'], correct: 0, explanation: 'Sự thật → hiện tại "rises"!' },
-    { image: '🌙', question: 'Mặt trăng xuất hiện mỗi đêm:', options: ['The moon appears every night.', 'The moon appeared every night.'], correct: 0, explanation: '"Mỗi đêm" → hiện tại!' },
-    { image: '🌧️', question: 'Hôm qua trời mưa:', options: ['It rains yesterday.', 'It rained yesterday.'], correct: 1, explanation: '"Hôm qua" → quá khứ!' },
-    { image: '⭐', question: 'Sao sáng mỗi đêm:', options: ['Stars shine every night.', 'Stars shined every night.'], correct: 0, explanation: '"Mỗi đêm" → hiện tại!' },
-    
-    // === SINH HOẠT HẰNG NGÀY ===
-    { image: '📚', question: 'Lisa đọc sách mỗi tối:', options: ['Lisa reads every night.', 'Lisa read every night.'], correct: 0, explanation: '"Mỗi tối" → hiện tại!' },
-    { image: '🦷', question: 'Tom đánh răng mỗi sáng:', options: ['Tom brushes teeth every morning.', 'Tom brushed teeth every morning.'], correct: 0, explanation: '"Mỗi sáng" → hiện tại!' },
-    { image: '🛏️', question: 'Bé ngủ lúc 9 giờ mỗi tối:', options: ['The baby sleeps at 9 PM.', 'The baby slept at 9 PM.'], correct: 0, explanation: 'Thói quen → hiện tại!' },
-    { image: '🍳', question: 'Mẹ nấu bữa sáng mỗi ngày:', options: ['Mom cooks breakfast every day.', 'Mom cooked breakfast every day.'], correct: 0, explanation: '"Mỗi ngày" → hiện tại!' },
-    
-    // === SỰ KIỆN QUÁ KHỨ ===
-    { image: '🎂', question: 'Hôm qua là sinh nhật Tom:', options: ['Tom has a party.', 'Tom had a party.'], correct: 1, explanation: '"Hôm qua" → quá khứ!' },
-    { image: '🏊', question: 'Tuần trước Tom đi bơi:', options: ['Tom swims last week.', 'Tom swam last week.'], correct: 1, explanation: '"Last week" → quá khứ!' },
-    { image: '🎁', question: 'Hôm qua mẹ tặng quà:', options: ['Mom gives a gift yesterday.', 'Mom gave a gift yesterday.'], correct: 1, explanation: '"Yesterday" → quá khứ!' },
-    { image: '✈️', question: 'Năm ngoái gia đình đi du lịch:', options: ['The family travels last year.', 'The family traveled last year.'], correct: 1, explanation: '"Last year" → quá khứ!' },
-    { image: '🎬', question: 'Tối qua chúng tôi xem phim:', options: ['We watch a movie last night.', 'We watched a movie last night.'], correct: 1, explanation: '"Last night" → quá khứ!' },
-    { image: '🎤', question: 'Cô ấy hát ở buổi tiệc hôm qua:', options: ['She sings at the party.', 'She sang at the party.'], correct: 1, explanation: '"Hôm qua" → quá khứ!' },
-    
-    // === THÓI QUEN ===
-    { image: '🍎', question: 'Mary ăn táo mỗi ngày:', options: ['Mary eats an apple every day.', 'Mary ate an apple every day.'], correct: 0, explanation: '"Every day" → hiện tại!' },
-    { image: '🚌', question: 'Học sinh đi xe buýt mỗi ngày:', options: ['Students take the bus every day.', 'Students took the bus every day.'], correct: 0, explanation: '"Every day" → hiện tại!' },
-    { image: '🏃', question: 'Bố chạy bộ mỗi sáng:', options: ['Dad runs every morning.', 'Dad ran every morning.'], correct: 0, explanation: '"Every morning" → hiện tại!' },
-    { image: '🎮', question: 'Anh trai chơi game mỗi cuối tuần:', options: ['My brother plays games every weekend.', 'My brother played games every weekend.'], correct: 0, explanation: '"Every weekend" → hiện tại!' },
-    
-    // === ĐỘNG VẬT ===
-    { image: '🐕', question: 'Con chó sủa mỗi đêm:', options: ['The dog barks every night.', 'The dog barked every night.'], correct: 0, explanation: '"Every night" → hiện tại!' },
-    { image: '🐱', question: 'Hôm qua con mèo bắt chuột:', options: ['The cat catches a mouse yesterday.', 'The cat caught a mouse yesterday.'], correct: 1, explanation: '"Yesterday" → quá khứ!' },
-    { image: '🐦', question: 'Chim hót mỗi sáng:', options: ['Birds sing every morning.', 'Birds sang every morning.'], correct: 0, explanation: '"Every morning" → hiện tại!' },
-    { image: '🐟', question: 'Cá bơi trong nước:', options: ['Fish swim in water.', 'Fish swam in water.'], correct: 0, explanation: 'Sự thật → hiện tại!' },
-    
-    // === BỮA ĂN ===
-    { image: '🍕', question: 'Tối qua chúng tôi ăn pizza:', options: ['We eat pizza last night.', 'We ate pizza last night.'], correct: 1, explanation: '"Last night" → quá khứ!' },
-    { image: '🍦', question: 'Hôm qua bé ăn kem:', options: ['The baby eats ice cream yesterday.', 'The baby ate ice cream yesterday.'], correct: 1, explanation: '"Yesterday" → quá khứ!' },
-    { image: '🥛', question: 'Em bé uống sữa mỗi ngày:', options: ['The baby drinks milk every day.', 'The baby drank milk every day.'], correct: 0, explanation: '"Every day" → hiện tại!' },
-    
-    // === HỌC TẬP ===
-    { image: '✏️', question: 'Học sinh viết bài mỗi ngày:', options: ['Students write every day.', 'Students wrote every day.'], correct: 0, explanation: '"Every day" → hiện tại!' },
-    { image: '📝', question: 'Hôm qua tôi làm bài kiểm tra:', options: ['I take a test yesterday.', 'I took a test yesterday.'], correct: 1, explanation: '"Yesterday" → quá khứ!' },
-    { image: '🎒', question: 'Em bé đi học mỗi ngày:', options: ['The child goes to school every day.', 'The child went to school every day.'], correct: 0, explanation: '"Every day" → hiện tại!' },
-    { image: '📖', question: 'Cô giáo dạy chúng tôi hôm qua:', options: ['The teacher teaches us yesterday.', 'The teacher taught us yesterday.'], correct: 1, explanation: '"Yesterday" → quá khứ!' },
-    
-    // === CÂU PHỦ ĐỊNH ===
-    { image: '🥦', question: 'Tom không thích rau:', options: ['Tom don\'t like vegetables.', 'Tom doesn\'t like vegetables.'], correct: 1, explanation: 'Tom (he) + doesn\'t!' },
-    { image: '🕷️', question: 'Cô ấy không thích nhện:', options: ['She don\'t like spiders.', 'She doesn\'t like spiders.'], correct: 1, explanation: 'She + doesn\'t!' },
-    { image: '☕', question: 'Tôi không uống cà phê:', options: ['I doesn\'t drink coffee.', 'I don\'t drink coffee.'], correct: 1, explanation: 'I + don\'t!' },
-    { image: '🏫', question: 'Anh ấy không đi học hôm qua:', options: ['He didn\'t go to school.', 'He didn\'t went to school.'], correct: 0, explanation: 'Sau didn\'t → động từ GỐC (go)!' },
-    { image: '📺', question: 'Họ không xem TV tối qua:', options: ['They didn\'t watch TV.', 'They didn\'t watched TV.'], correct: 0, explanation: 'Sau didn\'t → động từ GỐC!' },
-    { image: '🍔', question: 'Cô ấy không ăn sáng hôm qua:', options: ['She didn\'t ate breakfast.', 'She didn\'t eat breakfast.'], correct: 1, explanation: 'Sau didn\'t → động từ GỐC!' },
-    { image: '⚽', question: 'Chúng tôi không chơi bóng tuần trước:', options: ['We didn\'t played football.', 'We didn\'t play football.'], correct: 1, explanation: 'Sau didn\'t → động từ GỐC!' },
-    { image: '🎵', question: 'Anh ấy không nghe nhạc mỗi ngày:', options: ['He don\'t listen to music.', 'He doesn\'t listen to music.'], correct: 1, explanation: 'He + doesn\'t!' },
-    
-    // === CÂU HỎI ===
-    { image: '🍕', question: 'Bạn có thích pizza không?', options: ['Does you like pizza?', 'Do you like pizza?'], correct: 1, explanation: 'You → Do!' },
-    { image: '🏫', question: 'Cô ấy có đi học mỗi ngày không?', options: ['Do she go to school?', 'Does she go to school?'], correct: 1, explanation: 'She → Does!' },
-    { image: '⚽', question: 'Anh ấy có chơi bóng đá không?', options: ['Does he plays football?', 'Does he play football?'], correct: 1, explanation: 'Sau Does → động từ GỐC!' },
-    { image: '📺', question: 'Bạn có xem TV tối qua không?', options: ['Did you watch TV?', 'Did you watched TV?'], correct: 0, explanation: 'Sau Did → động từ GỐC!' },
-    { image: '🎂', question: 'Cô ấy có đi dự tiệc hôm qua không?', options: ['Did she went to the party?', 'Did she go to the party?'], correct: 1, explanation: 'Sau Did → động từ GỐC!' },
-    { image: '📖', question: 'Họ có làm bài tập tối qua không?', options: ['Did they do homework?', 'Did they did homework?'], correct: 0, explanation: 'Sau Did → động từ GỐC (do)!' },
-    { image: '🍎', question: 'Con mèo có thích cá không?', options: ['Do your cat like fish?', 'Does your cat like fish?'], correct: 1, explanation: 'Your cat (it) → Does!' },
-    { image: '🎮', question: 'Các bạn có chơi game không?', options: ['Does they play games?', 'Do they play games?'], correct: 1, explanation: 'They → Do!' }
-  ],
-  sort: [
-    { instruction: 'Phân loại từ thời gian!', words: ['yesterday', 'every day', 'last week', 'always', 'ago', 'now'], presentWords: ['every day', 'always', 'now'], pastWords: ['yesterday', 'last week', 'ago'] },
-    { instruction: 'Phân loại động từ!', words: ['played', 'eat', 'went', 'like', 'watched', 'run'], presentWords: ['eat', 'like', 'run'], pastWords: ['played', 'went', 'watched'] },
-    { instruction: 'Kéo từ vào đúng thì!', words: ['usually', 'last year', 'often', 'two days ago', 'sometimes', 'last Monday'], presentWords: ['usually', 'often', 'sometimes'], pastWords: ['last year', 'two days ago', 'last Monday'] },
-    { instruction: 'Phân loại từ thời gian!', words: ['every morning', 'last night', 'every week', 'yesterday', 'last month', 'every evening'], presentWords: ['every morning', 'every week', 'every evening'], pastWords: ['last night', 'yesterday', 'last month'] },
-    { instruction: 'Động từ nào ở thì nào?', words: ['sang', 'drink', 'ate', 'sleep', 'came', 'walk'], presentWords: ['drink', 'sleep', 'walk'], pastWords: ['sang', 'ate', 'came'] },
-    { instruction: 'Phân loại các từ!', words: ['last summer', 'every night', 'a week ago', 'always', 'in 2020', 'usually'], presentWords: ['every night', 'always', 'usually'], pastWords: ['last summer', 'a week ago', 'in 2020'] },
-    { instruction: 'Kéo động từ vào đúng cột!', words: ['made', 'make', 'took', 'take', 'gave', 'give'], presentWords: ['make', 'take', 'give'], pastWords: ['made', 'took', 'gave'] },
-    { instruction: 'Phân loại động từ!', words: ['wrote', 'write', 'saw', 'see', 'had', 'have'], presentWords: ['write', 'see', 'have'], pastWords: ['wrote', 'saw', 'had'] },
-    { instruction: 'Từ nào thuộc thì nào?', words: ['last Friday', 'every Sunday', 'three years ago', 'often', 'yesterday morning', 'sometimes'], presentWords: ['every Sunday', 'often', 'sometimes'], pastWords: ['last Friday', 'three years ago', 'yesterday morning'] },
-    { instruction: 'Phân loại động từ!', words: ['swam', 'swim', 'ran', 'run', 'drank', 'drink'], presentWords: ['swim', 'run', 'drink'], pastWords: ['swam', 'ran', 'drank'] }
+  stories: [
+    {
+      bg: 'bg-home',
+      scenes: [
+        {
+          image: '👧📅',
+          text: 'Lily\'s day: She <span class="highlight-green">wakes up</span> at 7 <span class="highlight">every morning</span>.',
+          question: 'Every morning, Lily...',
+          choices: ['wakes up at 7 ☀️', 'woke up at 7 🌙'],
+          correct: 0,
+          feedback: 'Yes! Mỗi sáng = every morning → wakes up',
+          tip: '☀️ Every = mỗi → việc làm thường xuyên'
+        },
+        {
+          image: '👧🌙',
+          text: 'But <span class="highlight-orange">yesterday</span>, Lily <span class="highlight-orange">woke up</span> at 9! She was late!',
+          question: 'Yesterday, Lily...',
+          choices: ['woke up at 9 😱', 'wakes up at 9 ☀️'],
+          correct: 0,
+          feedback: 'Yes! Hôm qua = yesterday → woke up',
+          tip: '🌙 Yesterday = hôm qua → việc đã xảy ra'
+        },
+        {
+          image: '🍎👧',
+          text: 'Lily <span class="highlight-green">eats</span> an apple <span class="highlight">every day</span>. Apples are healthy!',
+          question: 'Every day, Lily ___ an apple.',
+          choices: ['eats 🍎', 'ate 🍎'],
+          correct: 0,
+          feedback: 'Great! Mỗi ngày Lily ăn táo 🍎',
+          tip: '🍎 "every day" → eats'
+        },
+        {
+          image: '🍕👧',
+          text: 'But <span class="highlight-orange">yesterday</span>, she <span class="highlight-orange">ate</span> pizza! It was her birthday!',
+          question: 'Yesterday, Lily ___ pizza.',
+          choices: ['ate 🍕', 'eats 🍕'],
+          correct: 0,
+          feedback: 'Perfect! Hôm qua Lily ăn pizza 🎂',
+          tip: '🍕 "yesterday" → ate'
+        },
+        {
+          image: '🚶‍♀️🏫',
+          text: 'Lily <span class="highlight-green">walks</span> to school <span class="highlight">every day</span>.',
+          question: 'Every day, Lily ___ to school.',
+          choices: ['walks 🚶‍♀️', 'walked 🚶‍♀️'],
+          correct: 0,
+          feedback: 'Wonderful! Mỗi ngày Lily đi bộ 🏫',
+          tip: '🚶‍♀️ "every day" → walks'
+        },
+        {
+          image: '🚗👨',
+          text: 'But <span class="highlight-orange">yesterday</span>, Dad <span class="highlight-orange">drove</span> her to school!',
+          question: 'Yesterday, Dad ___ Lily to school.',
+          choices: ['drove 🚗', 'drives 🚗'],
+          correct: 0,
+          feedback: 'Excellent! Hôm qua bố lái xe đưa Lily 🚗',
+          tip: '🚗 "yesterday" → drove'
+        }
+      ]
+    }
   ]
 };
 
-var IRREGULAR_VERBS = [
-  {base:'go',past:'went'},{base:'eat',past:'ate'},{base:'see',past:'saw'},{base:'have',past:'had'},
-  {base:'come',past:'came'},{base:'make',past:'made'},{base:'take',past:'took'},{base:'get',past:'got'},
-  {base:'run',past:'ran'},{base:'swim',past:'swam'},{base:'drink',past:'drank'},{base:'sing',past:'sang'},
-  {base:'write',past:'wrote'},{base:'read',past:'read'},{base:'give',past:'gave'},{base:'find',past:'found'},
-  {base:'tell',past:'told'},{base:'say',past:'said'},{base:'buy',past:'bought'},{base:'bring',past:'brought'},
-  {base:'think',past:'thought'},{base:'catch',past:'caught'},{base:'teach',past:'taught'},{base:'sit',past:'sat'},
-  {base:'sleep',past:'slept'},{base:'keep',past:'kept'},{base:'leave',past:'left'},{base:'lose',past:'lost'},
-  {base:'drive',past:'drove'},{base:'fly',past:'flew'},{base:'know',past:'knew'},{base:'grow',past:'grew'},
-  {base:'begin',past:'began'},{base:'break',past:'broke'},{base:'speak',past:'spoke'},{base:'wear',past:'wore'}
-];
-
-var TIME_SIGNALS = {
-  present: ['every day','always','usually','sometimes','often','now','every morning'],
-  past: ['yesterday','last week','last night','ago','last year','last month']
+var WORD_GAMES = {
+  matching: [
+    { now: 'go', past: 'went', meaning: 'đi' },
+    { now: 'eat', past: 'ate', meaning: 'ăn' },
+    { now: 'see', past: 'saw', meaning: 'thấy' },
+    { now: 'have', past: 'had', meaning: 'có' },
+    { now: 'make', past: 'made', meaning: 'làm' },
+    { now: 'come', past: 'came', meaning: 'đến' },
+    { now: 'take', past: 'took', meaning: 'lấy' },
+    { now: 'give', past: 'gave', meaning: 'cho' },
+    { now: 'run', past: 'ran', meaning: 'chạy' },
+    { now: 'swim', past: 'swam', meaning: 'bơi' },
+    { now: 'drink', past: 'drank', meaning: 'uống' },
+    { now: 'sing', past: 'sang', meaning: 'hát' },
+    { now: 'sleep', past: 'slept', meaning: 'ngủ' },
+    { now: 'write', past: 'wrote', meaning: 'viết' },
+    { now: 'read', past: 'read', meaning: 'đọc' },
+    { now: 'buy', past: 'bought', meaning: 'mua' },
+    { now: 'get', past: 'got', meaning: 'lấy/được' },
+    { now: 'sit', past: 'sat', meaning: 'ngồi' },
+    { now: 'stand', past: 'stood', meaning: 'đứng' },
+    { now: 'fly', past: 'flew', meaning: 'bay' }
+  ]
 };
 
-// ========== STATE ==========
+// ============ STATE ============
 var soundEnabled = true;
-var gameQuestions = [];
-var currentQ = 0;
-var score = 0;
-var streak = 0;
-var sortedPresent = [];
-var sortedPast = [];
-var remainingWords = [];
-var selectedWord = null;
-var verbMode = 'menu';
-var shuffledVerbs = [];
-var currentVerbIdx = 0;
-var showVerbAns = false;
-var verbScore = 0;
-var verbTotal = 0;
-var matchPairs = [];
-var selectedMatch = null;
-var matchedPairs = [];
-var testVerbs = [];
-var testIdx = 0;
+var currentTopic = '';
+var currentStory = 0;
+var currentScene = 0;
+var stars = 0;
+var totalQuestions = 0;
+var correctAnswers = 0;
 
-// ========== SOUND ==========
+// Matching game state
+var matchCards = [];
+var selectedCard = null;
+var matchedPairs = [];
+
+// Flashcard state
+var flashcardIndex = 0;
+var isFlipped = false;
+
+// ============ SOUND ============
 function playSound(type) {
   if (!soundEnabled) return;
   try {
@@ -751,8 +722,8 @@ function playSound(type) {
       osc.start(ctx.currentTime);
       osc.stop(ctx.currentTime + 0.4);
     } else if (type === 'wrong') {
-      osc.frequency.setValueAtTime(311, ctx.currentTime);
-      osc.frequency.setValueAtTime(277, ctx.currentTime + 0.15);
+      osc.frequency.setValueAtTime(330, ctx.currentTime);
+      osc.frequency.setValueAtTime(294, ctx.currentTime + 0.15);
       gain.gain.setValueAtTime(0.2, ctx.currentTime);
       gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
       osc.start(ctx.currentTime);
@@ -763,13 +734,6 @@ function playSound(type) {
       gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.05);
       osc.start(ctx.currentTime);
       osc.stop(ctx.currentTime + 0.05);
-    } else if (type === 'flip') {
-      osc.frequency.setValueAtTime(600, ctx.currentTime);
-      osc.frequency.setValueAtTime(900, ctx.currentTime + 0.05);
-      gain.gain.setValueAtTime(0.15, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
-      osc.start(ctx.currentTime);
-      osc.stop(ctx.currentTime + 0.1);
     } else if (type === 'complete') {
       [523, 659, 784, 1047].forEach(function(freq, i) {
         var o = ctx.createOscillator();
@@ -781,14 +745,13 @@ function playSound(type) {
         o.start(ctx.currentTime + i * 0.15);
         o.stop(ctx.currentTime + i * 0.15 + 0.2);
       });
-    } else if (type === 'match') {
-      osc.frequency.setValueAtTime(440, ctx.currentTime);
-      osc.frequency.setValueAtTime(554, ctx.currentTime + 0.08);
-      osc.frequency.setValueAtTime(659, ctx.currentTime + 0.16);
-      gain.gain.setValueAtTime(0.25, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+    } else if (type === 'flip') {
+      osc.frequency.setValueAtTime(600, ctx.currentTime);
+      osc.frequency.setValueAtTime(900, ctx.currentTime + 0.05);
+      gain.gain.setValueAtTime(0.15, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
       osc.start(ctx.currentTime);
-      osc.stop(ctx.currentTime + 0.3);
+      osc.stop(ctx.currentTime + 0.1);
     }
   } catch(e) {}
 }
@@ -796,14 +759,13 @@ function playSound(type) {
 function toggleSound() {
   soundEnabled = !soundEnabled;
   document.getElementById('soundToggle').textContent = soundEnabled ? '🔊' : '🔇';
-  playSound('click');
 }
 
-// ========== CONFETTI ==========
+// ============ CONFETTI ============
 function showConfetti() {
   var container = document.getElementById('confettiContainer');
   container.innerHTML = '';
-  var colors = ['#f6d365','#fda085','#667eea','#764ba2','#84fab0'];
+  var colors = ['#FFD700','#FF6B6B','#4CAF50','#2196F3','#E91E63'];
   for (var i = 0; i < 30; i++) {
     var c = document.createElement('div');
     c.className = 'confetti';
@@ -816,20 +778,20 @@ function showConfetti() {
   setTimeout(function() { container.innerHTML = ''; }, 3000);
 }
 
-// ========== NAVIGATION ==========
+// ============ NAVIGATION ============
 function showScreen(id) {
-  var screens = document.querySelectorAll('.screen');
-  for (var i = 0; i < screens.length; i++) {
-    screens[i].classList.remove('active');
-  }
+  document.querySelectorAll('.screen').forEach(function(s) {
+    s.classList.remove('active');
+  });
   document.getElementById(id).classList.add('active');
 }
 
 function goHome() {
+  document.getElementById('appContainer').className = 'app-container bg-fun';
   showScreen('homeScreen');
 }
 
-// ========== SHUFFLE ==========
+// ============ SHUFFLE ============
 function shuffle(arr) {
   var a = arr.slice();
   for (var i = a.length - 1; i > 0; i--) {
@@ -839,698 +801,337 @@ function shuffle(arr) {
   return a;
 }
 
-// ========== GAME ==========
-function initGame() {
-  var all = [];
-  QUESTIONS.multiple.forEach(function(q) { all.push({type:'multiple', data:q}); });
-  QUESTIONS.fill.forEach(function(q) { all.push({type:'fill', data:q}); });
-  QUESTIONS.truefalse.forEach(function(q) { all.push({type:'truefalse', data:q}); });
-  QUESTIONS.picture.forEach(function(q) { all.push({type:'picture', data:q}); });
-  QUESTIONS.sort.forEach(function(q) { all.push({type:'sort', data:q}); });
-  
-  gameQuestions = shuffle(all).slice(0, 10);
-  currentQ = 0;
-  score = 0;
-  streak = 0;
-  
-  showScreen('gameScreen');
-  renderQuestion();
-}
-
-function renderQuestion() {
-  var q = gameQuestions[currentQ];
-  var html = '<div class="game-header">' +
-    '<button class="back-btn" onclick="goHome()">← Về</button>' +
-    '<div class="progress-info">' +
-    '<span class="question-counter">Câu ' + (currentQ + 1) + '/' + gameQuestions.length + '</span>' +
-    '<span class="score-display">⭐ ' + score + '</span>' +
-    (streak >= 2 ? '<span class="streak-display">🔥 ' + streak + '</span>' : '') +
-    '</div></div>' +
-    '<div class="progress-bar-container"><div class="progress-bar" style="width:' + ((currentQ + 1) / gameQuestions.length * 100) + '%"></div></div>';
-  
-  html += '<div class="question-card">';
-  
-  if (q.type === 'multiple') {
-    html += '<div class="question-type-badge">🎯 Chọn đáp án đúng</div>' +
-      '<h2 class="question-text">' + q.data.question + '</h2>' +
-      '<div class="options-grid">';
-    for (var i = 0; i < q.data.options.length; i++) {
-      html += '<button class="option-btn" id="opt' + i + '" onclick="answerMultiple(' + i + ')">' + q.data.options[i] + '</button>';
-    }
-    html += '</div><div id="explanation"></div>';
-  }
-  else if (q.type === 'fill') {
-    html += '<div class="question-type-badge">✏️ Điền vào chỗ trống</div>' +
-      '<h2 class="question-text">' + q.data.sentence + '</h2>' +
-      '<div class="hint-box">💡 Gợi ý: ' + q.data.hint + '</div>' +
-      '<div class="fill-input-container">' +
-      '<input type="text" class="fill-input" id="fillInput" placeholder="Nhập đáp án..." onkeypress="if(event.key===\'Enter\')answerFill()">' +
-      '<button class="submit-btn" id="fillSubmit" onclick="answerFill()">Kiểm tra</button>' +
-      '</div><div id="explanation"></div>';
-  }
-  else if (q.type === 'truefalse') {
-    html += '<div class="question-type-badge">✅ Đúng hay Sai?</div>' +
-      '<h2 class="question-text">' + q.data.statement + '</h2>' +
-      '<div class="tf-buttons">' +
-      '<button class="tf-btn true" id="tfTrue" onclick="answerTF(true)">✓ Đúng</button>' +
-      '<button class="tf-btn false" id="tfFalse" onclick="answerTF(false)">✗ Sai</button>' +
-      '</div><div id="explanation"></div>';
-  }
-  else if (q.type === 'picture') {
-    html += '<div class="question-type-badge">🖼️ Nhìn hình chọn câu</div>' +
-      '<div class="picture-emoji">' + q.data.image + '</div>' +
-      '<h2 class="question-text">' + q.data.question + '</h2>' +
-      '<div class="options-grid vertical">';
-    for (var i = 0; i < q.data.options.length; i++) {
-      html += '<button class="option-btn" id="opt' + i + '" onclick="answerMultiple(' + i + ')">' + q.data.options[i] + '</button>';
-    }
-    html += '</div><div id="explanation"></div>';
-  }
-  else if (q.type === 'sort') {
-    remainingWords = shuffle(q.data.words.slice());
-    sortedPresent = [];
-    sortedPast = [];
-    selectedWord = null;
-    html += '<div class="question-type-badge">🎮 Phân loại từ</div>' +
-      '<h2 class="question-text">' + q.data.instruction + '</h2>' +
-      '<p class="sort-hint">👆 Kéo thả hoặc chạm vào từ rồi chạm vào ô!</p>' +
-      '<div class="words-pool" id="wordsPool"></div>' +
-      '<div class="sort-containers">' +
-      '<div class="sort-box present" onclick="dropWord(\'present\')" ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="dropOnBox(event, \'present\')"><h3>🌟 Hiện tại</h3><div class="sorted-words" id="presentWords"></div></div>' +
-      '<div class="sort-box past" onclick="dropWord(\'past\')" ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="dropOnBox(event, \'past\')"><h3>⏰ Quá khứ</h3><div class="sorted-words" id="pastWords"></div></div>' +
-      '</div>' +
-      '<button class="submit-btn" id="sortSubmit" onclick="checkSort()" style="display:none;width:100%">Kiểm tra</button>' +
-      '<div id="explanation"></div>';
-  }
-  
-  html += '</div>';
-  document.getElementById('gameScreen').innerHTML = html;
-  
-  if (q.type === 'sort') renderSortWords();
-}
-
-function renderSortWords() {
-  var poolHtml = '';
-  for (var i = 0; i < remainingWords.length; i++) {
-    var w = remainingWords[i];
-    poolHtml += '<div class="draggable-word' + (selectedWord === w ? ' selected' : '') + '" draggable="true" ondragstart="dragStart(event, \'' + w + '\')" ondragend="dragEnd(event)" onclick="selectWord(\'' + w + '\')">' + w + '</div>';
-  }
-  document.getElementById('wordsPool').innerHTML = poolHtml;
-  
-  var presHtml = '';
-  for (var i = 0; i < sortedPresent.length; i++) {
-    presHtml += '<span class="sorted-word">' + sortedPresent[i] + '</span>';
-  }
-  document.getElementById('presentWords').innerHTML = presHtml;
-  
-  var pastHtml = '';
-  for (var i = 0; i < sortedPast.length; i++) {
-    pastHtml += '<span class="sorted-word">' + sortedPast[i] + '</span>';
-  }
-  document.getElementById('pastWords').innerHTML = pastHtml;
-  
-  document.getElementById('sortSubmit').style.display = remainingWords.length === 0 ? 'block' : 'none';
-}
-
-var draggedWord = null;
-
-function dragStart(e, word) {
-  draggedWord = word;
-  e.target.classList.add('dragging');
-  e.dataTransfer.effectAllowed = 'move';
-}
-
-function dragEnd(e) {
-  e.target.classList.remove('dragging');
-  draggedWord = null;
-  // Remove drag-over class from all boxes
-  var boxes = document.querySelectorAll('.sort-box');
-  for (var i = 0; i < boxes.length; i++) {
-    boxes[i].classList.remove('drag-over');
-  }
-}
-
-function allowDrop(e) {
-  e.preventDefault();
-  e.currentTarget.classList.add('drag-over');
-}
-
-function dragLeave(e) {
-  e.currentTarget.classList.remove('drag-over');
-}
-
-function dropOnBox(e, target) {
-  e.preventDefault();
-  e.currentTarget.classList.remove('drag-over');
-  if (draggedWord) {
-    playSound('click');
-    if (target === 'present') sortedPresent.push(draggedWord);
-    else sortedPast.push(draggedWord);
-    remainingWords = remainingWords.filter(function(x) { return x !== draggedWord; });
-    draggedWord = null;
-    selectedWord = null;
-    renderSortWords();
-  }
-}
-
-function selectWord(w) {
+// ============ TOPIC START ============
+function startTopic(topic) {
   playSound('click');
-  selectedWord = selectedWord === w ? null : w;
-  renderSortWords();
-}
-
-function dropWord(target) {
-  if (!selectedWord) return;
-  playSound('click');
-  if (target === 'present') sortedPresent.push(selectedWord);
-  else sortedPast.push(selectedWord);
-  remainingWords = remainingWords.filter(function(x) { return x !== selectedWord; });
-  selectedWord = null;
-  renderSortWords();
-}
-
-function answerMultiple(idx) {
-  var q = gameQuestions[currentQ];
-  var correct = idx === q.data.correct;
+  currentTopic = topic;
   
-  var btns = document.querySelectorAll('.option-btn');
-  for (var i = 0; i < btns.length; i++) {
-    btns[i].disabled = true;
-    if (i === q.data.correct) btns[i].classList.add('correct');
-    if (i === idx && !correct) btns[i].classList.add('wrong');
+  if (topic === 'games') {
+    showGameMenu();
+  } else if (STORIES[topic]) {
+    currentStory = Math.floor(Math.random() * STORIES[topic].length);
+    currentScene = 0;
+    stars = 0;
+    correctAnswers = 0;
+    totalQuestions = STORIES[topic][currentStory].scenes.length;
+    showStory();
+  }
+}
+
+// ============ STORY ============
+function showStory() {
+  var story = STORIES[currentTopic][currentStory];
+  var scene = story.scenes[currentScene];
+  
+  document.getElementById('appContainer').className = 'app-container ' + story.bg;
+  
+  var dotsHtml = '';
+  for (var i = 0; i < story.scenes.length; i++) {
+    var dotClass = 'dot';
+    if (i < currentScene) dotClass += ' done';
+    else if (i === currentScene) dotClass += ' active';
+    dotsHtml += '<div class="' + dotClass + '"></div>';
   }
   
-  showAnswerFeedback(correct, q.data.explanation);
+  var html = '<div class="progress-header">' +
+    '<button class="back-btn" onclick="goHome()">← Home</button>' +
+    '<div class="progress-dots">' + dotsHtml + '</div>' +
+    '<div class="star-count">⭐ ' + stars + '</div>' +
+    '</div>' +
+    '<div class="story-scene">' +
+    '<div class="scene-image">' + scene.image + '</div>' +
+    '<div class="scene-text">' + scene.text + '</div>' +
+    '<div class="scene-question">' + scene.question + '</div>' +
+    '<div class="choice-buttons">';
+  
+  scene.choices.forEach(function(choice, i) {
+    html += '<button class="choice-btn" id="choice' + i + '" onclick="checkAnswer(' + i + ')">' + choice + '</button>';
+  });
+  
+  html += '</div><div id="feedbackArea"></div></div>';
+  
+  document.getElementById('storyScreen').innerHTML = html;
+  showScreen('storyScreen');
 }
 
-function answerFill() {
-  var q = gameQuestions[currentQ];
-  var input = document.getElementById('fillInput');
-  var correct = input.value.toLowerCase().trim() === q.data.answer.toLowerCase();
+function checkAnswer(index) {
+  var story = STORIES[currentTopic][currentStory];
+  var scene = story.scenes[currentScene];
+  var correct = index === scene.correct;
   
-  input.disabled = true;
-  document.getElementById('fillSubmit').style.display = 'none';
+  // Disable all buttons
+  document.querySelectorAll('.choice-btn').forEach(function(btn, i) {
+    btn.disabled = true;
+    if (i === scene.correct) btn.classList.add('correct');
+    if (i === index && !correct) btn.classList.add('wrong');
+  });
   
-  showAnswerFeedback(correct, correct ? '🎉 Tuyệt vời!' : '💡 Đáp án đúng: ' + q.data.answer);
-}
-
-function answerTF(ans) {
-  var q = gameQuestions[currentQ];
-  var correct = ans === q.data.correct;
-  
-  document.getElementById('tfTrue').disabled = true;
-  document.getElementById('tfFalse').disabled = true;
-  
-  if (q.data.correct === true) document.getElementById('tfTrue').classList.add('correct');
-  else document.getElementById('tfFalse').classList.add('correct');
-  
-  if (!correct) {
-    document.getElementById(ans ? 'tfTrue' : 'tfFalse').classList.add('wrong');
-  }
-  
-  showAnswerFeedback(correct, q.data.explanation);
-}
-
-function checkSort() {
-  var q = gameQuestions[currentQ];
-  var presOk = sortedPresent.length === q.data.presentWords.length && sortedPresent.every(function(w) { return q.data.presentWords.indexOf(w) >= 0; });
-  var pastOk = sortedPast.length === q.data.pastWords.length && sortedPast.every(function(w) { return q.data.pastWords.indexOf(w) >= 0; });
-  var correct = presOk && pastOk;
-  
-  var presHtml = '';
-  for (var i = 0; i < sortedPresent.length; i++) {
-    var w = sortedPresent[i];
-    presHtml += '<span class="sorted-word ' + (q.data.presentWords.indexOf(w) >= 0 ? 'correct' : 'wrong') + '">' + w + '</span>';
-  }
-  document.getElementById('presentWords').innerHTML = presHtml;
-  
-  var pastHtml = '';
-  for (var i = 0; i < sortedPast.length; i++) {
-    var w = sortedPast[i];
-    pastHtml += '<span class="sorted-word ' + (q.data.pastWords.indexOf(w) >= 0 ? 'correct' : 'wrong') + '">' + w + '</span>';
-  }
-  document.getElementById('pastWords').innerHTML = pastHtml;
-  
-  document.getElementById('sortSubmit').style.display = 'none';
-  showAnswerFeedback(correct, correct ? '🎉 Xuất sắc!' : '💡 yesterday, last, ago → Quá khứ | every, always, now → Hiện tại');
-}
-
-function showAnswerFeedback(correct, text) {
   if (correct) {
-    score++;
-    streak++;
+    stars++;
+    correctAnswers++;
     playSound('correct');
-    if (streak >= 3) showConfetti();
+    if (stars % 3 === 0) showConfetti();
   } else {
-    streak = 0;
     playSound('wrong');
   }
   
-  document.getElementById('explanation').innerHTML = '<div class="explanation ' + (correct ? 'correct' : 'wrong') + '">' + (correct ? '🎉 ' : '💡 ') + text + '</div>' +
-    '<button class="next-btn" onclick="nextQuestion()">' + (currentQ < gameQuestions.length - 1 ? 'Câu tiếp theo →' : 'Xem kết quả 🏆') + '</button>';
+  var feedbackHtml = '<div class="feedback-box ' + (correct ? 'correct' : 'wrong') + '">' +
+    '<div class="feedback-emoji">' + (correct ? '🎉' : '💪') + '</div>' +
+    '<div class="feedback-text">' + scene.feedback + '</div>' +
+    '<div class="feedback-tip">' + scene.tip + '</div>' +
+    '<button class="next-btn" onclick="nextScene()">' +
+    (currentScene < story.scenes.length - 1 ? 'Next →' : 'Finish! 🏆') +
+    '</button></div>';
+  
+  document.getElementById('feedbackArea').innerHTML = feedbackHtml;
 }
 
-function nextQuestion() {
-  if (currentQ < gameQuestions.length - 1) {
-    currentQ++;
-    renderQuestion();
+function nextScene() {
+  var story = STORIES[currentTopic][currentStory];
+  
+  if (currentScene < story.scenes.length - 1) {
+    currentScene++;
+    showStory();
   } else {
-    playSound('complete');
-    showGameResult();
+    showResult();
   }
 }
 
-function showGameResult() {
-  var pct = Math.round(score / gameQuestions.length * 100);
-  var stars = Math.min(3, Math.floor(pct / 33));
+// ============ RESULT ============
+function showResult() {
+  playSound('complete');
+  showConfetti();
   
-  var html = '<div class="result-screen"><div class="result-card">' +
-    '<h2 class="result-title">🎉 Hoàn thành!</h2>' +
-    '<div class="result-emoji">' + (pct >= 80 ? '🏆' : pct >= 50 ? '🌟' : '💪') + '</div>' +
-    '<div class="stars-display">';
-  for (var i = 0; i < 3; i++) html += i < stars ? '⭐' : '☆';
-  html += '</div>' +
-    '<p class="result-score">Điểm: <strong>' + score + '/' + gameQuestions.length + '</strong></p>' +
-    '<p class="result-message">' + (pct >= 80 ? 'Xuất sắc! Con giỏi quá! 🎊' : pct >= 50 ? 'Tốt lắm! Cố gắng thêm nhé! 💪' : 'Cần ôn lại bài học nha! 📚') + '</p>' +
+  var percentage = Math.round((correctAnswers / totalQuestions) * 100);
+  var starCount = Math.min(3, Math.floor(percentage / 33) + (percentage > 0 ? 1 : 0));
+  var starsHtml = '';
+  for (var i = 0; i < 3; i++) {
+    starsHtml += i < starCount ? '⭐' : '☆';
+  }
+  
+  var emoji = percentage >= 80 ? '🏆' : percentage >= 50 ? '🌟' : '💪';
+  var message = percentage >= 80 ? 'Excellent! Con giỏi lắm!' : 
+                percentage >= 50 ? 'Good job! Tiếp tục nhé!' : 
+                'Keep trying! Cố gắng lên nào!';
+  
+  document.getElementById('appContainer').className = 'app-container bg-fun';
+  
+  var html = '<div class="result-content"><div class="result-card">' +
+    '<div class="result-emoji">' + emoji + '</div>' +
+    '<div class="result-title">Well Done!</div>' +
+    '<div class="result-stars">' + starsHtml + '</div>' +
+    '<div class="result-message">' + message + '</div>' +
     '<div class="result-buttons">' +
-    '<button class="menu-btn play" onclick="initGame()">🔄 Chơi lại</button>' +
-    '<button class="menu-btn learn" onclick="showLesson()">📖 Ôn bài</button>' +
-    '<button class="menu-btn learn" onclick="goHome()">🏠 Về nhà</button>' +
+    '<button class="result-btn primary" onclick="startTopic(\'' + currentTopic + '\')">Play Again 🔄</button>' +
+    '<button class="result-btn secondary" onclick="goHome()">Home 🏠</button>' +
     '</div></div></div>';
   
   document.getElementById('resultScreen').innerHTML = html;
   showScreen('resultScreen');
 }
 
-// ========== LESSON ==========
-function showLesson() {
-  var html = '<button class="back-btn" onclick="goHome()" style="margin-bottom:20px">← Về trang chủ</button>' +
+// ============ GAME MENU ============
+function showGameMenu() {
+  document.getElementById('appContainer').className = 'app-container bg-fun';
+  
+  var html = '<div class="progress-header" style="margin-bottom:20px">' +
+    '<button class="back-btn" onclick="goHome()">← Home</button>' +
+    '<div style="color:white;font-weight:700;font-size:1.2rem">🎮 Word Games</div>' +
+    '<div></div></div>' +
     
-    // === BÍ KÍP NHỚ NHANH ===
-    '<div class="lesson-card">' +
-    '<h2 class="lesson-title">🎯 BÍ KÍP NHỚ NHANH</h2>' +
-    '<div style="background:linear-gradient(135deg,#fff9c4,#ffecd2);padding:20px;border-radius:15px;margin-bottom:20px">' +
-    '<p style="font-size:1.3rem;font-weight:700;color:#8b6914;text-align:center">🧠 Hãy nhớ câu thần chú này:</p>' +
-    '<p style="font-size:1.5rem;font-weight:800;color:#d35400;text-align:center;margin:15px 0">"EVERY → Hiện tại 🌟"</p>' +
-    '<p style="font-size:1.5rem;font-weight:800;color:#8e44ad;text-align:center;margin:15px 0">"LAST / AGO → Quá khứ ⏰"</p>' +
+    '<div class="topic-grid">' +
+    '<div class="topic-card" onclick="startMatchingGame()" style="border-color:#9C27B0">' +
+    '<div class="topic-icon">🎯</div>' +
+    '<div class="topic-name">Matching</div>' +
     '</div>' +
-    '<div style="background:#e8f5e9;padding:15px;border-radius:12px;margin-bottom:10px">' +
-    '<p style="font-weight:700;color:#2e7d32">💡 Mẹo nhớ:</p>' +
-    '<p style="color:#388e3c">• Thấy <strong>EVERY</strong> (mỗi) → Việc lặp đi lặp lại → <strong>Hiện tại</strong></p>' +
-    '<p style="color:#388e3c">• Thấy <strong>LAST</strong> (trước) hoặc <strong>AGO</strong> (cách đây) → Đã xong rồi → <strong>Quá khứ</strong></p>' +
+    '<div class="topic-card" onclick="startFlashcards()" style="border-color:#FF9800">' +
+    '<div class="topic-icon">🎴</div>' +
+    '<div class="topic-name">Flashcards</div>' +
     '</div>' +
     '</div>' +
+    
+    // Visual learning section
+    '<div class="pattern-card" style="margin-top:20px">' +
+    '<div class="pattern-title"><span class="icon">💡</span> Nhớ nhanh!</div>' +
+    '<div class="compare-box">' +
+    '<div class="compare-side now">' +
+    '<div class="label">☀️ Every day</div>' +
+    '<div class="time-words"><span class="time-word">every day</span><span class="time-word">always</span></div>' +
+    '<div class="example">I <strong>go</strong> to school.</div>' +
+    '</div>' +
+    '<div class="compare-side past">' +
+    '<div class="label">🌙 Yesterday</div>' +
+    '<div class="time-words"><span class="time-word">yesterday</span><span class="time-word">last week</span></div>' +
+    '<div class="example">I <strong style="color:#E65100">went</strong> to school.</div>' +
+    '</div></div>' +
+    '<div class="tip-bubble"><span class="bulb">💡</span>' +
+    '<span class="tip-text">Thấy <strong>every</strong> → dùng từ bình thường<br>' +
+    'Thấy <strong>yesterday/last</strong> → dùng từ đặc biệt!</span></div>' +
+    '</div>';
+  
+  document.getElementById('gameScreen').innerHTML = html;
+  showScreen('gameScreen');
+}
 
-    // === THÌ HIỆN TẠI ===
-    '<div class="lesson-card">' +
-    '<h2 class="lesson-title">🌟 Thì HIỆN TẠI (Present)</h2>' +
-    '<p style="font-size:1.1rem;color:#4a5568;margin-bottom:15px"><strong>Dùng khi:</strong> Việc xảy ra <span style="color:#38a169;font-weight:700">thường xuyên, mỗi ngày</span>, hoặc là <span style="color:#38a169;font-weight:700">sự thật luôn đúng</span></p>' +
-    
-    '<div class="tense-box present">' +
-    '<h3>📌 Từ nhận biết (Gặp từ này → Dùng Hiện tại!)</h3>' +
-    '<div class="signal-words">';
+// ============ MATCHING GAME ============
+function startMatchingGame() {
+  playSound('click');
   
-  var presentSignals = ['every day', 'every morning', 'every night', 'every week', 'always', 'usually', 'often', 'sometimes', 'now'];
-  presentSignals.forEach(function(w) { html += '<span class="signal-word present">' + w + '</span>'; });
+  var words = shuffle(WORD_GAMES.matching).slice(0, 6);
+  matchCards = [];
+  selectedCard = null;
+  matchedPairs = [];
   
-  html += '</div></div>' +
-    
-    // Câu khẳng định
-    '<div style="background:#e8f5e9;padding:20px;border-radius:15px;margin:15px 0">' +
-    '<h4 style="color:#2e7d32;margin-bottom:10px">✅ Câu KHẲNG ĐỊNH (Có làm):</h4>' +
-    '<p style="color:#1b5e20;margin-bottom:8px"><strong>I / You / We / They</strong> + động từ gốc</p>' +
-    '<p style="color:#1b5e20;margin-bottom:8px"><strong>He / She / It</strong> + động từ thêm <strong>-s/-es</strong></p>' +
-    '<div class="examples">' +
-    '<p class="example-sentence">✓ I <strong>go</strong> to school every day. <span style="color:#888">(Tôi đi học mỗi ngày)</span></p>' +
-    '<p class="example-sentence">✓ She <strong>goes</strong> to school every day. <span style="color:#888">(Cô ấy đi học mỗi ngày)</span></p>' +
-    '<p class="example-sentence">✓ He <strong>watches</strong> TV every night. <span style="color:#888">(Anh ấy xem TV mỗi tối)</span></p>' +
-    '</div></div>' +
-    
-    // Câu phủ định
-    '<div style="background:#ffebee;padding:20px;border-radius:15px;margin:15px 0">' +
-    '<h4 style="color:#c62828;margin-bottom:10px">❌ Câu PHỦ ĐỊNH (Không làm):</h4>' +
-    '<p style="color:#b71c1c;margin-bottom:8px"><strong>I / You / We / They</strong> + <span style="background:#ffcdd2;padding:2px 8px;border-radius:5px">do not (don\'t)</span> + động từ gốc</p>' +
-    '<p style="color:#b71c1c;margin-bottom:8px"><strong>He / She / It</strong> + <span style="background:#ffcdd2;padding:2px 8px;border-radius:5px">does not (doesn\'t)</span> + động từ gốc</p>' +
-    '<div class="examples" style="background:#fff">' +
-    '<p class="example-sentence">✗ I <strong>don\'t go</strong> to school on Sunday. <span style="color:#888">(Tôi không đi học vào CN)</span></p>' +
-    '<p class="example-sentence">✗ She <strong>doesn\'t like</strong> spiders. <span style="color:#888">(Cô ấy không thích nhện)</span></p>' +
-    '<p class="example-sentence">✗ He <strong>doesn\'t eat</strong> vegetables. <span style="color:#888">(Anh ấy không ăn rau)</span></p>' +
-    '</div>' +
-    '<div style="background:#fff3e0;padding:12px;border-radius:10px;margin-top:10px">' +
-    '<p style="color:#e65100;font-weight:700">⚠️ CHÚ Ý: Sau don\'t/doesn\'t → động từ giữ NGUYÊN (không thêm s/es)</p>' +
-    '<p style="color:#ef6c00">❌ Sai: She doesn\'t <s>goes</s> → ✅ Đúng: She doesn\'t <strong>go</strong></p>' +
-    '</div></div>' +
-    
-    // Câu hỏi - HIỆN TẠI
-    '<div style="background:#e3f2fd;padding:20px;border-radius:15px;margin:15px 0">' +
-    '<h4 style="color:#1565c0;margin-bottom:10px">❓ Câu HỎI (Có làm không?):</h4>' +
-    '<p style="color:#0d47a1;margin-bottom:8px"><span style="background:#bbdefb;padding:2px 8px;border-radius:5px">Do</span> + <strong>I / you / we / they</strong> + động từ gốc + ...?</p>' +
-    '<p style="color:#0d47a1;margin-bottom:8px"><span style="background:#bbdefb;padding:2px 8px;border-radius:5px">Does</span> + <strong>he / she / it</strong> + động từ gốc + ...?</p>' +
-    '<div class="examples" style="background:#fff">' +
-    '<p class="example-sentence">? <strong>Do you like</strong> ice cream? <span style="color:#888">(Bạn có thích kem không?)</span></p>' +
-    '<p class="example-sentence">? <strong>Does she go</strong> to school every day? <span style="color:#888">(Cô ấy có đi học mỗi ngày không?)</span></p>' +
-    '<p class="example-sentence">? <strong>Does he play</strong> football? <span style="color:#888">(Anh ấy có chơi bóng đá không?)</span></p>' +
-    '</div>' +
-    '<div style="background:#e1f5fe;padding:12px;border-radius:10px;margin-top:10px">' +
-    '<p style="color:#0277bd;font-weight:700">⚠️ CHÚ Ý: Sau Do/Does → động từ giữ NGUYÊN (không thêm s/es)</p>' +
-    '<p style="color:#0288d1">❌ Sai: Does she <s>goes</s>? → ✅ Đúng: Does she <strong>go</strong>?</p>' +
-    '</div>' +
-    '<div style="background:#fff;padding:12px;border-radius:10px;margin-top:10px">' +
-    '<p style="font-weight:700;color:#1565c0;margin-bottom:8px">📝 Cách trả lời:</p>' +
-    '<p style="color:#1976d2">• Yes, I/you/we/they <strong>do</strong>. | No, I/you/we/they <strong>don\'t</strong>.</p>' +
-    '<p style="color:#1976d2">• Yes, he/she/it <strong>does</strong>. | No, he/she/it <strong>doesn\'t</strong>.</p>' +
-    '</div></div>' +
-    '</div>' +
+  words.forEach(function(w, i) {
+    matchCards.push({ id: 'now-' + i, text: w.now, type: 'now', pairId: i });
+    matchCards.push({ id: 'past-' + i, text: w.past, type: 'past', pairId: i });
+  });
+  matchCards = shuffle(matchCards);
+  
+  renderMatchingGame();
+}
 
-    // === THÌ QUÁ KHỨ ===
-    '<div class="lesson-card">' +
-    '<h2 class="lesson-title">⏰ Thì QUÁ KHỨ (Past)</h2>' +
-    '<p style="font-size:1.1rem;color:#4a5568;margin-bottom:15px"><strong>Dùng khi:</strong> Việc <span style="color:#e65100;font-weight:700">đã xảy ra và kết thúc</span> trong quá khứ (hôm qua, tuần trước...)</p>' +
+function renderMatchingGame() {
+  var html = '<div class="progress-header" style="margin-bottom:20px">' +
+    '<button class="back-btn" onclick="showGameMenu()">← Back</button>' +
+    '<div style="color:white;font-weight:700">🎯 Match the pairs!</div>' +
+    '<div></div></div>' +
     
-    '<div class="tense-box past">' +
-    '<h3>📌 Từ nhận biết (Gặp từ này → Dùng Quá khứ!)</h3>' +
-    '<div class="signal-words">';
+    '<div class="match-instruction">🟢 Chọn từ bình thường → 🟠 Chọn từ đặc biệt của nó!</div>' +
+    
+    '<div class="match-grid">';
   
-  var pastSignals = ['yesterday', 'last night', 'last week', 'last month', 'last year', 'ago', 'in 2020'];
-  pastSignals.forEach(function(w) { html += '<span class="signal-word past">' + w + '</span>'; });
-  
-  html += '</div></div>' +
-    
-    // Câu khẳng định
-    '<div style="background:#fff3e0;padding:20px;border-radius:15px;margin:15px 0">' +
-    '<h4 style="color:#e65100;margin-bottom:10px">✅ Câu KHẲNG ĐỊNH (Đã làm):</h4>' +
-    '<p style="color:#bf360c;margin-bottom:8px">Tất cả chủ ngữ + động từ <strong>thêm -ed</strong> (có quy tắc) hoặc <strong>đổi dạng</strong> (bất quy tắc)</p>' +
-    '<div class="examples">' +
-    '<p class="example-sentence">✓ I <strong>played</strong> games yesterday. <span style="color:#888">(play → played)</span></p>' +
-    '<p class="example-sentence">✓ She <strong>watched</strong> TV last night. <span style="color:#888">(watch → watched)</span></p>' +
-    '<p class="example-sentence">✓ We <strong>went</strong> to the zoo last week. <span style="color:#888">(go → went ⚡)</span></p>' +
-    '</div></div>' +
-    
-    // Câu phủ định
-    '<div style="background:#fce4ec;padding:20px;border-radius:15px;margin:15px 0">' +
-    '<h4 style="color:#c2185b;margin-bottom:10px">❌ Câu PHỦ ĐỊNH (Đã không làm):</h4>' +
-    '<p style="color:#880e4f;margin-bottom:8px">Tất cả chủ ngữ + <span style="background:#f8bbd9;padding:2px 8px;border-radius:5px">did not (didn\'t)</span> + động từ <strong>GỐC</strong></p>' +
-    '<div class="examples" style="background:#fff">' +
-    '<p class="example-sentence">✗ I <strong>didn\'t play</strong> games yesterday. <span style="color:#888">(Tôi đã không chơi game)</span></p>' +
-    '<p class="example-sentence">✗ She <strong>didn\'t watch</strong> TV last night. <span style="color:#888">(Cô ấy đã không xem TV)</span></p>' +
-    '<p class="example-sentence">✗ We <strong>didn\'t go</strong> to school yesterday. <span style="color:#888">(Chúng tôi đã không đi học)</span></p>' +
-    '</div>' +
-    '<div style="background:#fff3e0;padding:12px;border-radius:10px;margin-top:10px">' +
-    '<p style="color:#e65100;font-weight:700">⚠️ CHÚ Ý: Sau didn\'t → động từ về DẠNG GỐC (không chia)</p>' +
-    '<p style="color:#ef6c00">❌ Sai: I didn\'t <s>went</s> → ✅ Đúng: I didn\'t <strong>go</strong></p>' +
-    '<p style="color:#ef6c00">❌ Sai: She didn\'t <s>watched</s> → ✅ Đúng: She didn\'t <strong>watch</strong></p>' +
-    '</div></div>' +
-    
-    // Câu hỏi - QUÁ KHỨ
-    '<div style="background:#f3e5f5;padding:20px;border-radius:15px;margin:15px 0">' +
-    '<h4 style="color:#7b1fa2;margin-bottom:10px">❓ Câu HỎI (Đã làm chưa?):</h4>' +
-    '<p style="color:#6a1b9a;margin-bottom:8px"><span style="background:#e1bee7;padding:2px 8px;border-radius:5px">Did</span> + <strong>tất cả chủ ngữ</strong> + động từ <strong>GỐC</strong> + ...?</p>' +
-    '<div class="examples" style="background:#fff">' +
-    '<p class="example-sentence">? <strong>Did you go</strong> to school yesterday? <span style="color:#888">(Bạn có đi học hôm qua không?)</span></p>' +
-    '<p class="example-sentence">? <strong>Did she watch</strong> TV last night? <span style="color:#888">(Cô ấy có xem TV tối qua không?)</span></p>' +
-    '<p class="example-sentence">? <strong>Did they play</strong> football last Sunday? <span style="color:#888">(Họ có chơi bóng CN trước không?)</span></p>' +
-    '</div>' +
-    '<div style="background:#f3e5f5;padding:12px;border-radius:10px;margin-top:10px">' +
-    '<p style="color:#7b1fa2;font-weight:700">⚠️ CHÚ Ý: Sau Did → động từ về DẠNG GỐC</p>' +
-    '<p style="color:#8e24aa">❌ Sai: Did you <s>went</s>? → ✅ Đúng: Did you <strong>go</strong>?</p>' +
-    '<p style="color:#8e24aa">❌ Sai: Did she <s>watched</s>? → ✅ Đúng: Did she <strong>watch</strong>?</p>' +
-    '</div>' +
-    '<div style="background:#fff;padding:12px;border-radius:10px;margin-top:10px">' +
-    '<p style="font-weight:700;color:#7b1fa2;margin-bottom:8px">📝 Cách trả lời:</p>' +
-    '<p style="color:#8e24aa">• Yes, I/you/he/she/we/they <strong>did</strong>.</p>' +
-    '<p style="color:#8e24aa">• No, I/you/he/she/we/they <strong>didn\'t</strong>.</p>' +
-    '</div></div>' +
-    '</div>' +
-
-    // === BẢNG SO SÁNH ===
-    '<div class="lesson-card">' +
-    '<h2 class="lesson-title">📊 BẢNG TỔNG HỢP DỄ NHỚ</h2>' +
-    '<table class="irregular-table" style="margin-bottom:20px;font-size:0.9rem">' +
-    '<thead><tr><th></th><th style="background:#4caf50">🌟 Hiện tại</th><th style="background:#ff9800">⏰ Quá khứ</th></tr></thead>' +
-    '<tbody>' +
-    '<tr><td style="font-weight:700">Từ nhận biết</td><td>every day, always, usually</td><td>yesterday, last..., ago</td></tr>' +
-    '<tr style="background:#e8f5e9"><td style="font-weight:700">✅ Khẳng định (I)</td><td>I <strong>go</strong></td><td>I <strong>went</strong></td></tr>' +
-    '<tr style="background:#e8f5e9"><td style="font-weight:700">✅ Khẳng định (She)</td><td>She <strong>goes</strong></td><td>She <strong>went</strong></td></tr>' +
-    '<tr style="background:#ffebee"><td style="font-weight:700">❌ Phủ định (I)</td><td>I <strong>don\'t go</strong></td><td>I <strong>didn\'t go</strong></td></tr>' +
-    '<tr style="background:#ffebee"><td style="font-weight:700">❌ Phủ định (She)</td><td>She <strong>doesn\'t go</strong></td><td>She <strong>didn\'t go</strong></td></tr>' +
-    '<tr style="background:#e3f2fd"><td style="font-weight:700">❓ Câu hỏi (you)</td><td><strong>Do</strong> you <strong>go</strong>?</td><td><strong>Did</strong> you <strong>go</strong>?</td></tr>' +
-    '<tr style="background:#e3f2fd"><td style="font-weight:700">❓ Câu hỏi (she)</td><td><strong>Does</strong> she <strong>go</strong>?</td><td><strong>Did</strong> she <strong>go</strong>?</td></tr>' +
-    '<tr style="background:#f5f5f5"><td style="font-weight:700">Trả lời Yes</td><td>Yes, I <strong>do</strong> / she <strong>does</strong></td><td>Yes, I/she <strong>did</strong></td></tr>' +
-    '<tr style="background:#f5f5f5"><td style="font-weight:700">Trả lời No</td><td>No, I <strong>don\'t</strong> / she <strong>doesn\'t</strong></td><td>No, I/she <strong>didn\'t</strong></td></tr>' +
-    '</tbody></table>' +
-    
-    '<div style="background:linear-gradient(135deg,#e3f2fd,#bbdefb);padding:20px;border-radius:15px;margin-bottom:15px">' +
-    '<h4 style="color:#1565c0;margin-bottom:10px">🎯 QUY TẮC VÀNG:</h4>' +
-    '<p style="font-size:1.1rem;color:#0d47a1;font-weight:700;text-align:center;margin-bottom:10px">' +
-    'Sau <span style="background:#90caf9;padding:3px 10px;border-radius:8px">don\'t / doesn\'t / didn\'t</span></p>' +
-    '<p style="font-size:1.1rem;color:#0d47a1;font-weight:700;text-align:center;margin-bottom:10px">' +
-    'Sau <span style="background:#90caf9;padding:3px 10px;border-radius:8px">Do / Does / Did</span></p>' +
-    '<p style="font-size:1.3rem;color:#1565c0;font-weight:800;text-align:center">' +
-    '→ Động từ luôn ở <span style="background:#fff59d;padding:3px 10px;border-radius:8px">DẠNG GỐC</span>!</p>' +
-    '</div>' +
-    
-    // Bảng trợ động từ
-    '<div style="background:#fafafa;padding:20px;border-radius:15px">' +
-    '<h4 style="color:#424242;margin-bottom:15px">📋 TRỢ ĐỘNG TỪ THEO CHỦ NGỮ:</h4>' +
-    '<table style="width:100%;border-collapse:collapse">' +
-    '<tr style="background:#e8f5e9"><td style="padding:10px;border:1px solid #ddd"><strong>I / You / We / They</strong></td><td style="padding:10px;border:1px solid #ddd;text-align:center"><strong>do / don\'t</strong></td><td style="padding:10px;border:1px solid #ddd">Hiện tại</td></tr>' +
-    '<tr style="background:#fff3e0"><td style="padding:10px;border:1px solid #ddd"><strong>He / She / It</strong></td><td style="padding:10px;border:1px solid #ddd;text-align:center"><strong>does / doesn\'t</strong></td><td style="padding:10px;border:1px solid #ddd">Hiện tại</td></tr>' +
-    '<tr style="background:#f3e5f5"><td style="padding:10px;border:1px solid #ddd"><strong>Tất cả</strong></td><td style="padding:10px;border:1px solid #ddd;text-align:center"><strong>did / didn\'t</strong></td><td style="padding:10px;border:1px solid #ddd">Quá khứ</td></tr>' +
-    '</table></div>' +
-    '</div>' +
-
-    // === ĐỘNG TỪ BẤT QUY TẮC ===
-    '<div class="lesson-card">' +
-    '<h2 class="lesson-title">🔄 Động từ BẤT QUY TẮC (phải học thuộc!)</h2>' +
-    '<p style="color:#718096;margin-bottom:15px">Những động từ này không thêm -ed mà phải nhớ dạng riêng:</p>' +
-    '<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px">';
-  
-  var importantVerbs = [
-    {base:'go',past:'went',vn:'đi'}, {base:'eat',past:'ate',vn:'ăn'}, {base:'see',past:'saw',vn:'thấy'},
-    {base:'have',past:'had',vn:'có'}, {base:'do',past:'did',vn:'làm'}, {base:'make',past:'made',vn:'làm/tạo'},
-    {base:'take',past:'took',vn:'lấy'}, {base:'come',past:'came',vn:'đến'}, {base:'get',past:'got',vn:'lấy/được'},
-    {base:'give',past:'gave',vn:'cho'}, {base:'run',past:'ran',vn:'chạy'}, {base:'swim',past:'swam',vn:'bơi'},
-    {base:'drink',past:'drank',vn:'uống'}, {base:'sing',past:'sang',vn:'hát'}, {base:'write',past:'wrote',vn:'viết'},
-    {base:'read',past:'read',vn:'đọc'}, {base:'sleep',past:'slept',vn:'ngủ'}, {base:'buy',past:'bought',vn:'mua'}
-  ];
-  
-  importantVerbs.forEach(function(v) {
-    html += '<div style="background:#f5f5f5;padding:10px 15px;border-radius:10px;display:flex;justify-content:space-between;align-items:center">' +
-      '<span style="color:#4caf50;font-weight:700">' + v.base + '</span>' +
-      '<span style="color:#888">→</span>' +
-      '<span style="color:#ff9800;font-weight:700">' + v.past + '</span>' +
-      '<span style="color:#9e9e9e;font-size:0.85rem">(' + v.vn + ')</span></div>';
+  matchCards.forEach(function(card) {
+    var isSelected = selectedCard && selectedCard.id === card.id;
+    var isMatched = matchedPairs.indexOf(card.pairId) >= 0;
+    html += '<button class="match-card type-' + card.type + 
+      (isSelected ? ' selected' : '') + 
+      (isMatched ? ' matched' : '') + '" ' +
+      (isMatched ? 'disabled' : 'onclick="selectMatchCard(\'' + card.id + '\')"') + '>' +
+      card.text + '</button>';
   });
   
-  html += '</div></div>' +
+  html += '</div>' +
+    '<div class="match-score">✅ ' + matchedPairs.length + ' / 6</div>';
+  
+  if (matchedPairs.length >= 6) {
+    html += '<div style="text-align:center;margin-top:20px">' +
+      '<div style="font-size:50px;margin-bottom:10px">🎉</div>' +
+      '<div style="color:white;font-size:1.3rem;font-weight:700;margin-bottom:15px">Excellent!</div>' +
+      '<button class="next-btn" onclick="startMatchingGame()">Play Again 🔄</button></div>';
+  }
+  
+  document.getElementById('gameScreen').innerHTML = html;
+  showScreen('gameScreen');
+}
+
+function selectMatchCard(cardId) {
+  playSound('click');
+  
+  var card = matchCards.find(function(c) { return c.id === cardId; });
+  
+  if (!selectedCard) {
+    selectedCard = card;
+    renderMatchingGame();
+  } else {
+    if (selectedCard.id === card.id) {
+      selectedCard = null;
+      renderMatchingGame();
+      return;
+    }
     
-    '<button class="menu-btn play" onclick="initGame()" style="width:100%;margin-bottom:10px">🎮 Luyện tập ngay!</button>' +
-    '<button class="menu-btn verbs" onclick="showVerbMenu()" style="width:100%">🔄 Học động từ bất quy tắc</button>';
-  
-  document.getElementById('lessonScreen').innerHTML = html;
-  showScreen('lessonScreen');
-}
-
-// ========== VERB LEARNING ==========
-function showVerbMenu() {
-  shuffledVerbs = shuffle(IRREGULAR_VERBS.slice());
-  currentVerbIdx = 0;
-  verbMode = 'menu';
-  renderVerbScreen();
-  showScreen('verbScreen');
-}
-
-function renderVerbScreen() {
-  var html = '';
-  
-  if (verbMode === 'menu') {
-    html = '<div class="verb-menu"><h2 class="verb-title">🔄 Học Động Từ Bất Quy Tắc</h2>' +
-      '<p class="verb-subtitle">Chọn cách học phù hợp!</p>' +
-      '<div class="verb-stats"><span>📚 Tổng: ' + IRREGULAR_VERBS.length + ' từ</span></div>' +
-      '<div class="verb-mode-buttons">' +
-      '<button class="verb-mode-btn flashcard" onclick="startVerbMode(\'flashcard\')"><span class="mode-icon">🎴</span><span class="mode-name">Flashcard</span><span class="mode-desc">Lật thẻ ghi nhớ</span></button>' +
-      '<button class="verb-mode-btn match" onclick="startVerbMode(\'match\')"><span class="mode-icon">🎯</span><span class="mode-name">Nối từ</span><span class="mode-desc">Ghép đôi đúng</span></button>' +
-      '<button class="verb-mode-btn fill" onclick="startVerbMode(\'fill\')"><span class="mode-icon">✏️</span><span class="mode-name">Điền từ</span><span class="mode-desc">Viết dạng quá khứ</span></button>' +
-      '<button class="verb-mode-btn test" onclick="startVerbMode(\'test\')"><span class="mode-icon">📝</span><span class="mode-name">Kiểm tra</span><span class="mode-desc">10 câu ngẫu nhiên</span></button>' +
-      '</div><button class="back-btn" onclick="goHome()" style="margin-top:30px">← Về trang chủ</button></div>';
-  }
-  else if (verbMode === 'flashcard') {
-    var v = shuffledVerbs[currentVerbIdx];
-    html = '<div class="flashcard-mode"><div class="flashcard-header">' +
-      '<button class="back-btn" onclick="verbMode=\'menu\';renderVerbScreen()">← Về</button>' +
-      '<span class="flashcard-progress">' + (currentVerbIdx + 1) + ' / ' + shuffledVerbs.length + '</span></div>' +
-      '<div class="flashcard' + (showVerbAns ? ' flipped' : '') + '" onclick="flipCard()">' +
-      '<div class="flashcard-inner"><div class="flashcard-front"><span class="flashcard-label">Hiện tại</span><span class="flashcard-word">' + v.base + '</span><span class="flashcard-hint">👆 Chạm để lật</span></div>' +
-      '<div class="flashcard-back"><span class="flashcard-label">Quá khứ</span><span class="flashcard-word">' + v.past + '</span><span class="flashcard-pair">' + v.base + ' → ' + v.past + '</span></div></div></div>' +
-      '<div class="flashcard-buttons"><button class="flashcard-btn prev" onclick="prevCard()">← Trước</button>' +
-      '<button class="flashcard-btn shuffle" onclick="shuffleCards()">🔀 Trộn</button>' +
-      '<button class="flashcard-btn next" onclick="nextCard()">Sau →</button></div></div>';
-  }
-  else if (verbMode === 'match') {
-    html = '<div class="match-mode"><div class="match-header">' +
-      '<button class="back-btn" onclick="verbMode=\'menu\';renderVerbScreen()">← Về</button>' +
-      '<span class="match-score">✅ ' + matchedPairs.length + ' / 6</span></div>' +
-      '<h3 class="match-title">🎯 Nối từ hiện tại với quá khứ!</h3><div class="match-grid">';
-    for (var i = 0; i < matchPairs.length; i++) {
-      var c = matchPairs[i];
-      html += '<button class="match-card ' + c.type + (selectedMatch && selectedMatch.id === c.id ? ' selected' : '') + (matchedPairs.indexOf(c.pairId) >= 0 ? ' matched' : '') + '" onclick="handleMatch(\'' + c.id + '\',' + c.pairId + ',\'' + c.type + '\')"' + (matchedPairs.indexOf(c.pairId) >= 0 ? ' disabled' : '') + '>' + c.text + '</button>';
+    if (selectedCard.pairId === card.pairId && selectedCard.type !== card.type) {
+      matchedPairs.push(card.pairId);
+      playSound('correct');
+      if (matchedPairs.length >= 6) {
+        playSound('complete');
+        showConfetti();
+      }
+    } else {
+      playSound('wrong');
     }
-    html += '</div>';
-    if (matchedPairs.length >= 6) {
-      html += '<div class="match-complete"><p>🎉 Xuất sắc!</p><button class="menu-btn play" onclick="startVerbMode(\'match\')">🔄 Chơi lại</button></div>';
-    }
-    html += '</div>';
+    selectedCard = null;
+    renderMatchingGame();
   }
-  else if (verbMode === 'fill' || verbMode === 'test') {
-    var v = verbMode === 'test' ? testVerbs[testIdx] : shuffledVerbs[currentVerbIdx];
-    html = '<div class="verb-fill-mode"><div class="verb-fill-header">' +
-      '<button class="back-btn" onclick="verbMode=\'menu\';renderVerbScreen()">← Về</button>' +
-      (verbMode === 'test' ? '<span class="verb-fill-progress">Câu ' + (testIdx + 1) + ' / 10</span>' : '') +
-      '<span class="verb-fill-score">✅ ' + verbScore + ' / ' + verbTotal + '</span></div>' +
-      (verbMode === 'test' ? '<div class="progress-bar-container"><div class="progress-bar" style="width:' + ((testIdx + 1) / 10 * 100) + '%"></div></div>' : '') +
-      '<div class="verb-fill-card"><h3>' + (verbMode === 'test' ? '📝' : '✏️') + ' Viết dạng quá khứ của:</h3>' +
-      '<div class="verb-fill-word">' + v.base + '</div>' +
-      '<input type="text" class="verb-fill-input" id="verbInput" placeholder="Nhập đáp án..." onkeypress="if(event.key===\'Enter\')checkVerbFill()">' +
-      '<button class="submit-btn" id="verbSubmit" onclick="checkVerbFill()" style="width:100%">Kiểm tra</button>' +
-      '<div id="verbResult"></div></div></div>';
-  }
-  else if (verbMode === 'testResult') {
-    var pct = Math.round(verbScore / 10 * 100);
-    var stars = Math.min(3, Math.floor(pct / 33));
-    html = '<div class="result-screen"><div class="result-card"><h2 class="result-title">📝 Kết quả</h2>' +
-      '<div class="result-emoji">' + (pct >= 80 ? '🏆' : pct >= 50 ? '🌟' : '💪') + '</div><div class="stars-display">';
-    for (var i = 0; i < 3; i++) html += i < stars ? '⭐' : '☆';
-    html += '</div><p class="result-score">Điểm: <strong>' + verbScore + ' / 10</strong> (' + pct + '%)</p>' +
-      '<p class="result-message">' + (pct >= 80 ? 'Xuất sắc! 🎊' : pct >= 50 ? 'Tốt lắm! 💪' : 'Cần ôn thêm! 📚') + '</p>' +
-      '<div class="result-buttons"><button class="menu-btn play" onclick="startVerbMode(\'test\')">🔄 Thi lại</button>' +
-      '<button class="menu-btn learn" onclick="startVerbMode(\'flashcard\')">🎴 Ôn Flashcard</button>' +
-      '<button class="menu-btn learn" onclick="verbMode=\'menu\';renderVerbScreen()">← Menu</button></div></div></div>';
-  }
-  
-  document.getElementById('verbScreen').innerHTML = html;
 }
 
-function startVerbMode(mode) {
-  verbMode = mode;
-  verbScore = 0;
-  verbTotal = 0;
+// ============ FLASHCARDS ============
+function startFlashcards() {
+  playSound('click');
+  flashcardIndex = 0;
+  isFlipped = false;
+  renderFlashcards();
+}
+
+function renderFlashcards() {
+  var words = WORD_GAMES.matching;
+  var word = words[flashcardIndex];
   
-  if (mode === 'match') {
-    var sel = shuffle(IRREGULAR_VERBS.slice()).slice(0, 6);
-    var bases = sel.map(function(v, i) { return {id: 'b' + i, text: v.base, type: 'base', pairId: i}; });
-    var pasts = sel.map(function(v, i) { return {id: 'p' + i, text: v.past, type: 'past', pairId: i}; });
-    matchPairs = shuffle(bases.concat(pasts));
-    selectedMatch = null;
-    matchedPairs = [];
-  }
-  if (mode === 'test') {
-    testVerbs = shuffle(IRREGULAR_VERBS.slice()).slice(0, 10);
-    testIdx = 0;
-  }
-  if (mode === 'flashcard') {
-    shuffledVerbs = shuffle(IRREGULAR_VERBS.slice());
-    currentVerbIdx = 0;
-    showVerbAns = false;
-  }
-  if (mode === 'fill') {
-    shuffledVerbs = shuffle(IRREGULAR_VERBS.slice());
-    currentVerbIdx = 0;
-  }
+  var html = '<div class="progress-header" style="margin-bottom:20px">' +
+    '<button class="back-btn" onclick="showGameMenu()">← Back</button>' +
+    '<div style="color:white;font-weight:700">🎴 ' + (flashcardIndex + 1) + ' / ' + words.length + '</div>' +
+    '<div></div></div>' +
+    
+    '<div style="color:white;text-align:center;margin-bottom:15px;font-size:1.1rem">' +
+    '👆 Chạm thẻ để lật!</div>' +
+    
+    '<div class="flashcard-container">' +
+    '<div class="flashcard' + (isFlipped ? ' flipped' : '') + '" onclick="flipCard()">' +
+    '<div class="flashcard-face flashcard-front">' +
+    '<div class="flashcard-label">☀️ Every day</div>' +
+    '<div class="flashcard-word">' + word.now + '</div>' +
+    '<div class="flashcard-meaning">(' + word.meaning + ')</div>' +
+    '<div class="flashcard-hint">👆 Chạm để xem từ đặc biệt</div>' +
+    '</div>' +
+    '<div class="flashcard-face flashcard-back">' +
+    '<div class="flashcard-label">🌙 Yesterday</div>' +
+    '<div class="flashcard-word">' + word.past + '</div>' +
+    '<div class="flashcard-meaning">' + word.now + ' → ' + word.past + '</div>' +
+    '</div></div></div>' +
+    
+    '<div class="flashcard-nav">' +
+    '<button class="flashcard-btn" onclick="prevFlashcard()">← Trước</button>' +
+    '<button class="flashcard-btn" onclick="shuffleFlashcards()">🔀 Trộn</button>' +
+    '<button class="flashcard-btn" onclick="nextFlashcard()">Sau →</button>' +
+    '</div>' +
+    
+    '<div class="pattern-card" style="margin-top:25px">' +
+    '<div class="example-row">' +
+    '<span class="emoji">☀️</span>' +
+    '<span class="sentence">I <strong>' + word.now + '</strong> every day.</span>' +
+    '</div>' +
+    '<div class="example-row">' +
+    '<span class="emoji">🌙</span>' +
+    '<span class="sentence">I <span class="past">' + word.past + '</span> yesterday.</span>' +
+    '</div></div>';
   
-  renderVerbScreen();
+  document.getElementById('gameScreen').innerHTML = html;
+  showScreen('gameScreen');
 }
 
 function flipCard() {
   playSound('flip');
-  showVerbAns = !showVerbAns;
-  renderVerbScreen();
+  isFlipped = !isFlipped;
+  renderFlashcards();
 }
 
-function prevCard() {
-  showVerbAns = false;
-  currentVerbIdx = currentVerbIdx > 0 ? currentVerbIdx - 1 : shuffledVerbs.length - 1;
-  renderVerbScreen();
+function prevFlashcard() {
+  isFlipped = false;
+  flashcardIndex = flashcardIndex > 0 ? flashcardIndex - 1 : WORD_GAMES.matching.length - 1;
+  renderFlashcards();
 }
 
-function nextCard() {
-  showVerbAns = false;
-  currentVerbIdx = currentVerbIdx < shuffledVerbs.length - 1 ? currentVerbIdx + 1 : 0;
-  renderVerbScreen();
+function nextFlashcard() {
+  isFlipped = false;
+  flashcardIndex = flashcardIndex < WORD_GAMES.matching.length - 1 ? flashcardIndex + 1 : 0;
+  renderFlashcards();
 }
 
-function shuffleCards() {
-  shuffledVerbs = shuffle(IRREGULAR_VERBS.slice());
-  currentVerbIdx = 0;
-  showVerbAns = false;
-  renderVerbScreen();
-}
-
-function handleMatch(id, pairId, type) {
-  playSound('click');
-  
-  if (!selectedMatch) {
-    selectedMatch = {id: id, pairId: pairId, type: type};
-    renderVerbScreen();
-    return;
-  }
-  
-  if (selectedMatch.id === id) {
-    selectedMatch = null;
-    renderVerbScreen();
-    return;
-  }
-  
-  if (selectedMatch.pairId === pairId && selectedMatch.type !== type) {
-    matchedPairs.push(pairId);
-    selectedMatch = null;
-    playSound('match');
-    if (matchedPairs.length >= 6) {
-      playSound('complete');
-      showConfetti();
-    }
-  } else {
-    playSound('wrong');
-    selectedMatch = null;
-  }
-  
-  renderVerbScreen();
-}
-
-function checkVerbFill() {
-  var input = document.getElementById('verbInput');
-  var v = verbMode === 'test' ? testVerbs[testIdx] : shuffledVerbs[currentVerbIdx];
-  var correct = input.value.toLowerCase().trim() === v.past.toLowerCase();
-  
-  verbTotal++;
-  if (correct) {
-    verbScore++;
-    playSound('correct');
-  } else {
-    playSound('wrong');
-  }
-  
-  input.disabled = true;
-  document.getElementById('verbSubmit').style.display = 'none';
-  
-  document.getElementById('verbResult').innerHTML = '<div class="verb-fill-result ' + (correct ? 'correct' : 'wrong') + '">' +
-    '<p>' + (correct ? '🎉 Đúng rồi!' : '💡 Đáp án: <strong>' + v.base + ' → ' + v.past + '</strong>') + '</p>' +
-    '<button class="next-btn" onclick="nextVerbFill()">' + (verbMode === 'test' && testIdx >= 9 ? 'Xem kết quả 🏆' : 'Từ tiếp theo →') + '</button></div>';
-}
-
-function nextVerbFill() {
-  if (verbMode === 'test') {
-    if (testIdx < 9) {
-      testIdx++;
-      renderVerbScreen();
-    } else {
-      verbMode = 'testResult';
-      playSound('complete');
-      renderVerbScreen();
-    }
-  } else {
-    currentVerbIdx = currentVerbIdx < shuffledVerbs.length - 1 ? currentVerbIdx + 1 : 0;
-    renderVerbScreen();
-  }
+function shuffleFlashcards() {
+  WORD_GAMES.matching = shuffle(WORD_GAMES.matching);
+  flashcardIndex = 0;
+  isFlipped = false;
+  renderFlashcards();
 }
 </script>
 </body>
