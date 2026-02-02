@@ -1534,6 +1534,22 @@ function generateStoriesFromTemplates(count, isPastOnly) {
         { text: vPast, correct: false },
         { text: vPresent, correct: false }
       ];
+      
+      // Loại bỏ đáp án trùng
+      choices = choices.filter(function(c, idx, arr) {
+        return arr.findIndex(function(x) { return x.text === c.text; }) === idx;
+      });
+      
+      // Thêm đáp án gây nhiễu nếu thiếu
+      var extraVerbs = ['went', 'goes', 'ate', 'eats', 'took', 'takes', 'saw', 'sees'];
+      var i = 0;
+      while (choices.length < 3 && i < extraVerbs.length) {
+        if (choices.findIndex(function(c) { return c.text === extraVerbs[i]; }) < 0) {
+          choices.push({ text: extraVerbs[i], correct: false });
+        }
+        i++;
+      }
+      
       choices = shuffle(choices);
       correctIdx = choices.findIndex(function(c) { return c.correct; });
       choices = choices.map(function(c) { return c.text; });
