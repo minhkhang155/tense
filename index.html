@@ -4482,10 +4482,7 @@ var SENTENCE_TEMPLATES = [
 
   // =============== BỔ SUNG ĐỦ 93 ĐỘNG TỪ ===============
 
-  // BE (là, ở) - đặc biệt
-  { template: 'I ___ happy {signal}.', subject: 'I', verb: 'be', vn: 'Tôi vui', type: 'affirm', emoji: '🧑😊' },
-  { template: 'She ___ at home {signal}.', subject: 'She', verb: 'be', vn: 'Cô ấy ở nhà', type: 'affirm', emoji: '👧🏠' },
-  { template: 'They ___ students {signal}.', subject: 'They', verb: 'be', vn: 'Họ là học sinh', type: 'affirm', emoji: '👨‍👩‍👧📚' },
+  // BE (là, ở) - ĐÃ LOẠI BỎ vì quá đặc biệt (am/is/are/was/were), dạy riêng trong phần học
 
   // BECOME (trở thành)
   { template: 'He ___ a doctor {signal}.', subject: 'He', verb: 'become', vn: 'Anh ấy trở thành bác sĩ', type: 'affirm', emoji: '👦👨‍⚕️' },
@@ -4654,8 +4651,15 @@ function getVerbForms(verbBase) {
 }
 
 function getPresentForm(verb, subject) {
-  // Add 's' for he/she/it/singular nouns
   var subjectLower = subject.toLowerCase();
+  
+  // XỬ LÝ ĐẶC BIỆT CHO ĐỘNG TỪ "BE"
+  if (verb === 'be') {
+    if (subjectLower === 'i') return 'am';
+    if (['he', 'she', 'it', 'mom', 'dad', 'tom', 'lily', 'the baby', 'the bird', 'the tree', 'the class', 'the cat', 'the dog', 'the sun', 'the moon', 'the flower', 'the food', 'the milk', 'the phone', 'the doorbell', 'the alarm', 'the bell', 'the hen', 'the monkey', 'the thief', 'the hunter', 'the fire', 'the wind', 'water', 'the lake', 'the book', 'the trip', 'the movie', 'the show', 'the game', 'my finger', 'his nose', 'the wound', 'the earthquake', 'this word', 'someone', 'the temperature', 'the water level', 'the light', 'the plane'].indexOf(subjectLower) >= 0) return 'is';
+    // they, we, you, và các chủ ngữ số nhiều
+    return 'are';
+  }
   
   // Danh sách ngôi 3 số ít cụ thể
   var thirdPersonList = ['he', 'she', 'it', 'mom', 'dad', 'tom', 'lily', 'the baby', 'the bird', 'the tree', 'the class', 'the cat', 'the dog', 'the sun', 'the moon', 'the flower', 'the food', 'the milk', 'the phone', 'the doorbell', 'the alarm', 'the bell', 'the hen', 'the monkey', 'the thief', 'the hunter', 'the fire', 'the wind', 'water', 'the lake', 'the book', 'the trip', 'the movie', 'the show', 'the game', 'the class', 'my finger', 'his nose', 'the wound', 'the earthquake', 'this word', 'someone', 'the temperature', 'the water level', 'the light', 'the plane'];
