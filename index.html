@@ -3318,282 +3318,342 @@ var SIGNAL_WORDS = {
 };
 
 var SENTENCE_TEMPLATES = [
+  // =============== AFFIRMATIVE (Câu khẳng định) ===============
   // GO
-  { template: 'I ___ to school {signal}.', subject: 'I', verb: 'go', vn: 'Tôi đi học' },
-  { template: 'She ___ to the park {signal}.', subject: 'She', verb: 'go', vn: 'Cô ấy đi công viên' },
-  { template: 'They ___ shopping {signal}.', subject: 'They', verb: 'go', vn: 'Họ đi mua sắm' },
-  { template: 'We ___ to church {signal}.', subject: 'We', verb: 'go', vn: 'Chúng tôi đi nhà thờ' },
+  { template: 'I ___ to school {signal}.', subject: 'I', verb: 'go', vn: 'Tôi đi học', type: 'affirm' },
+  { template: 'She ___ to the park {signal}.', subject: 'She', verb: 'go', vn: 'Cô ấy đi công viên', type: 'affirm' },
+  { template: 'They ___ shopping {signal}.', subject: 'They', verb: 'go', vn: 'Họ đi mua sắm', type: 'affirm' },
+  { template: 'We ___ to church {signal}.', subject: 'We', verb: 'go', vn: 'Chúng tôi đi nhà thờ', type: 'affirm' },
   
   // EAT
-  { template: 'She ___ breakfast {signal}.', subject: 'She', verb: 'eat', vn: 'Cô ấy ăn sáng' },
-  { template: 'I ___ lunch at school {signal}.', subject: 'I', verb: 'eat', vn: 'Tôi ăn trưa ở trường' },
-  { template: 'He ___ dinner with family {signal}.', subject: 'He', verb: 'eat', vn: 'Anh ấy ăn tối với gia đình' },
-  { template: 'They ___ pizza {signal}.', subject: 'They', verb: 'eat', vn: 'Họ ăn pizza' },
+  { template: 'She ___ breakfast {signal}.', subject: 'She', verb: 'eat', vn: 'Cô ấy ăn sáng', type: 'affirm' },
+  { template: 'I ___ lunch at school {signal}.', subject: 'I', verb: 'eat', vn: 'Tôi ăn trưa ở trường', type: 'affirm' },
+  { template: 'He ___ dinner with family {signal}.', subject: 'He', verb: 'eat', vn: 'Anh ấy ăn tối với gia đình', type: 'affirm' },
+  { template: 'They ___ pizza {signal}.', subject: 'They', verb: 'eat', vn: 'Họ ăn pizza', type: 'affirm' },
   
   // READ
-  { template: 'He ___ a book {signal}.', subject: 'He', verb: 'read', vn: 'Anh ấy đọc sách' },
-  { template: 'She ___ the newspaper {signal}.', subject: 'She', verb: 'read', vn: 'Cô ấy đọc báo' },
-  { template: 'I ___ comics {signal}.', subject: 'I', verb: 'read', vn: 'Tôi đọc truyện tranh' },
+  { template: 'He ___ a book {signal}.', subject: 'He', verb: 'read', vn: 'Anh ấy đọc sách', type: 'affirm' },
+  { template: 'She ___ the newspaper {signal}.', subject: 'She', verb: 'read', vn: 'Cô ấy đọc báo', type: 'affirm' },
+  { template: 'I ___ comics {signal}.', subject: 'I', verb: 'read', vn: 'Tôi đọc truyện tranh', type: 'affirm' },
   
   // MAKE
-  { template: 'Mom ___ dinner {signal}.', subject: 'Mom', verb: 'make', vn: 'Mẹ nấu bữa tối' },
-  { template: 'She ___ a cake {signal}.', subject: 'She', verb: 'make', vn: 'Cô ấy làm bánh' },
-  { template: 'I ___ my bed {signal}.', subject: 'I', verb: 'make', vn: 'Tôi dọn giường' },
+  { template: 'Mom ___ dinner {signal}.', subject: 'Mom', verb: 'make', vn: 'Mẹ nấu bữa tối', type: 'affirm' },
+  { template: 'She ___ a cake {signal}.', subject: 'She', verb: 'make', vn: 'Cô ấy làm bánh', type: 'affirm' },
+  { template: 'I ___ my bed {signal}.', subject: 'I', verb: 'make', vn: 'Tôi dọn giường', type: 'affirm' },
   
   // DRINK
-  { template: 'I ___ milk {signal}.', subject: 'I', verb: 'drink', vn: 'Tôi uống sữa' },
-  { template: 'He ___ coffee {signal}.', subject: 'He', verb: 'drink', vn: 'Anh ấy uống cà phê' },
-  { template: 'She ___ orange juice {signal}.', subject: 'She', verb: 'drink', vn: 'Cô ấy uống nước cam' },
-  
-  // DRAW
-  { template: 'She ___ a picture {signal}.', subject: 'She', verb: 'draw', vn: 'Cô ấy vẽ tranh' },
-  { template: 'I ___ a house {signal}.', subject: 'I', verb: 'draw', vn: 'Tôi vẽ ngôi nhà' },
-  { template: 'He ___ animals {signal}.', subject: 'He', verb: 'draw', vn: 'Anh ấy vẽ động vật' },
+  { template: 'I ___ milk {signal}.', subject: 'I', verb: 'drink', vn: 'Tôi uống sữa', type: 'affirm' },
+  { template: 'He ___ coffee {signal}.', subject: 'He', verb: 'drink', vn: 'Anh ấy uống cà phê', type: 'affirm' },
+  { template: 'She ___ orange juice {signal}.', subject: 'She', verb: 'drink', vn: 'Cô ấy uống nước cam', type: 'affirm' },
   
   // SING
-  { template: 'He ___ a song {signal}.', subject: 'He', verb: 'sing', vn: 'Anh ấy hát một bài' },
-  { template: 'She ___ beautifully {signal}.', subject: 'She', verb: 'sing', vn: 'Cô ấy hát hay' },
-  { template: 'They ___ together {signal}.', subject: 'They', verb: 'sing', vn: 'Họ hát cùng nhau' },
+  { template: 'He ___ a song {signal}.', subject: 'He', verb: 'sing', vn: 'Anh ấy hát một bài', type: 'affirm' },
+  { template: 'She ___ beautifully {signal}.', subject: 'She', verb: 'sing', vn: 'Cô ấy hát hay', type: 'affirm' },
+  { template: 'They ___ together {signal}.', subject: 'They', verb: 'sing', vn: 'Họ hát cùng nhau', type: 'affirm' },
   
   // SWIM
-  { template: 'They ___ in the pool {signal}.', subject: 'They', verb: 'swim', vn: 'Họ bơi trong hồ' },
-  { template: 'I ___ at the beach {signal}.', subject: 'I', verb: 'swim', vn: 'Tôi bơi ở biển' },
-  { template: 'He ___ very fast {signal}.', subject: 'He', verb: 'swim', vn: 'Anh ấy bơi rất nhanh' },
-  
-  // SPEAK
-  { template: 'We ___ English {signal}.', subject: 'We', verb: 'speak', vn: 'Chúng tôi nói tiếng Anh' },
-  { template: 'She ___ French {signal}.', subject: 'She', verb: 'speak', vn: 'Cô ấy nói tiếng Pháp' },
-  { template: 'He ___ loudly {signal}.', subject: 'He', verb: 'speak', vn: 'Anh ấy nói to' },
+  { template: 'They ___ in the pool {signal}.', subject: 'They', verb: 'swim', vn: 'Họ bơi trong hồ', type: 'affirm' },
+  { template: 'I ___ at the beach {signal}.', subject: 'I', verb: 'swim', vn: 'Tôi bơi ở biển', type: 'affirm' },
+  { template: 'He ___ very fast {signal}.', subject: 'He', verb: 'swim', vn: 'Anh ấy bơi rất nhanh', type: 'affirm' },
   
   // DO
-  { template: 'I ___ my homework {signal}.', subject: 'I', verb: 'do', vn: 'Tôi làm bài tập' },
-  { template: 'She ___ the dishes {signal}.', subject: 'She', verb: 'do', vn: 'Cô ấy rửa bát' },
-  { template: 'They ___ exercise {signal}.', subject: 'They', verb: 'do', vn: 'Họ tập thể dục' },
+  { template: 'I ___ my homework {signal}.', subject: 'I', verb: 'do', vn: 'Tôi làm bài tập', type: 'affirm' },
+  { template: 'She ___ the dishes {signal}.', subject: 'She', verb: 'do', vn: 'Cô ấy rửa bát', type: 'affirm' },
+  { template: 'They ___ exercise {signal}.', subject: 'They', verb: 'do', vn: 'Họ tập thể dục', type: 'affirm' },
   
   // BUY
-  { template: 'She ___ a new dress {signal}.', subject: 'She', verb: 'buy', vn: 'Cô ấy mua váy mới' },
-  { template: 'I ___ some books {signal}.', subject: 'I', verb: 'buy', vn: 'Tôi mua vài quyển sách' },
-  { template: 'He ___ a gift {signal}.', subject: 'He', verb: 'buy', vn: 'Anh ấy mua quà' },
+  { template: 'She ___ a new dress {signal}.', subject: 'She', verb: 'buy', vn: 'Cô ấy mua váy mới', type: 'affirm' },
+  { template: 'I ___ some books {signal}.', subject: 'I', verb: 'buy', vn: 'Tôi mua vài quyển sách', type: 'affirm' },
+  { template: 'He ___ a gift {signal}.', subject: 'He', verb: 'buy', vn: 'Anh ấy mua quà', type: 'affirm' },
   
   // WRITE
-  { template: 'We ___ a letter {signal}.', subject: 'We', verb: 'write', vn: 'Chúng tôi viết thư' },
-  { template: 'She ___ in her diary {signal}.', subject: 'She', verb: 'write', vn: 'Cô ấy viết nhật ký' },
-  { template: 'I ___ an email {signal}.', subject: 'I', verb: 'write', vn: 'Tôi viết email' },
+  { template: 'We ___ a letter {signal}.', subject: 'We', verb: 'write', vn: 'Chúng tôi viết thư', type: 'affirm' },
+  { template: 'She ___ in her diary {signal}.', subject: 'She', verb: 'write', vn: 'Cô ấy viết nhật ký', type: 'affirm' },
+  { template: 'I ___ an email {signal}.', subject: 'I', verb: 'write', vn: 'Tôi viết email', type: 'affirm' },
   
   // MEET
-  { template: 'I ___ my friend {signal}.', subject: 'I', verb: 'meet', vn: 'Tôi gặp bạn' },
-  { template: 'She ___ her teacher {signal}.', subject: 'She', verb: 'meet', vn: 'Cô ấy gặp cô giáo' },
-  { template: 'They ___ at the cafe {signal}.', subject: 'They', verb: 'meet', vn: 'Họ gặp nhau ở quán' },
+  { template: 'I ___ my friend {signal}.', subject: 'I', verb: 'meet', vn: 'Tôi gặp bạn', type: 'affirm' },
+  { template: 'She ___ her teacher {signal}.', subject: 'She', verb: 'meet', vn: 'Cô ấy gặp cô giáo', type: 'affirm' },
+  { template: 'They ___ at the cafe {signal}.', subject: 'They', verb: 'meet', vn: 'Họ gặp nhau ở quán', type: 'affirm' },
   
   // RUN
-  { template: 'He ___ fast {signal}.', subject: 'He', verb: 'run', vn: 'Anh ấy chạy nhanh' },
-  { template: 'I ___ in the morning {signal}.', subject: 'I', verb: 'run', vn: 'Tôi chạy buổi sáng' },
-  { template: 'They ___ in the park {signal}.', subject: 'They', verb: 'run', vn: 'Họ chạy trong công viên' },
+  { template: 'He ___ fast {signal}.', subject: 'He', verb: 'run', vn: 'Anh ấy chạy nhanh', type: 'affirm' },
+  { template: 'I ___ in the morning {signal}.', subject: 'I', verb: 'run', vn: 'Tôi chạy buổi sáng', type: 'affirm' },
+  { template: 'They ___ in the park {signal}.', subject: 'They', verb: 'run', vn: 'Họ chạy trong công viên', type: 'affirm' },
   
   // GIVE
-  { template: 'I ___ a gift to mom {signal}.', subject: 'I', verb: 'give', vn: 'Tôi tặng quà cho mẹ' },
-  { template: 'She ___ me a book {signal}.', subject: 'She', verb: 'give', vn: 'Cô ấy cho tôi sách' },
-  { template: 'He ___ flowers to her {signal}.', subject: 'He', verb: 'give', vn: 'Anh ấy tặng hoa cho cô ấy' },
+  { template: 'I ___ a gift to mom {signal}.', subject: 'I', verb: 'give', vn: 'Tôi tặng quà cho mẹ', type: 'affirm' },
+  { template: 'She ___ me a book {signal}.', subject: 'She', verb: 'give', vn: 'Cô ấy cho tôi sách', type: 'affirm' },
+  { template: 'He ___ flowers to her {signal}.', subject: 'He', verb: 'give', vn: 'Anh ấy tặng hoa cho cô ấy', type: 'affirm' },
   
   // TAKE
-  { template: 'She ___ the bus {signal}.', subject: 'She', verb: 'take', vn: 'Cô ấy đi xe buýt' },
-  { template: 'I ___ a shower {signal}.', subject: 'I', verb: 'take', vn: 'Tôi tắm' },
-  { template: 'He ___ photos {signal}.', subject: 'He', verb: 'take', vn: 'Anh ấy chụp ảnh' },
+  { template: 'She ___ the bus {signal}.', subject: 'She', verb: 'take', vn: 'Cô ấy đi xe buýt', type: 'affirm' },
+  { template: 'I ___ a shower {signal}.', subject: 'I', verb: 'take', vn: 'Tôi tắm', type: 'affirm' },
+  { template: 'He ___ photos {signal}.', subject: 'He', verb: 'take', vn: 'Anh ấy chụp ảnh', type: 'affirm' },
   
   // COME
-  { template: 'We ___ home late {signal}.', subject: 'We', verb: 'come', vn: 'Chúng tôi về nhà muộn' },
-  { template: 'She ___ to my house {signal}.', subject: 'She', verb: 'come', vn: 'Cô ấy đến nhà tôi' },
-  { template: 'They ___ to the party {signal}.', subject: 'They', verb: 'come', vn: 'Họ đến bữa tiệc' },
+  { template: 'We ___ home late {signal}.', subject: 'We', verb: 'come', vn: 'Chúng tôi về nhà muộn', type: 'affirm' },
+  { template: 'She ___ to my house {signal}.', subject: 'She', verb: 'come', vn: 'Cô ấy đến nhà tôi', type: 'affirm' },
+  { template: 'They ___ to the party {signal}.', subject: 'They', verb: 'come', vn: 'Họ đến bữa tiệc', type: 'affirm' },
   
   // SEE
-  { template: 'They ___ a movie {signal}.', subject: 'They', verb: 'see', vn: 'Họ xem phim' },
-  { template: 'I ___ my grandma {signal}.', subject: 'I', verb: 'see', vn: 'Tôi gặp bà' },
-  { template: 'She ___ a bird {signal}.', subject: 'She', verb: 'see', vn: 'Cô ấy nhìn thấy con chim' },
-  
-  // KNOW
-  { template: 'He ___ the answer {signal}.', subject: 'He', verb: 'know', vn: 'Anh ấy biết câu trả lời' },
-  { template: 'I ___ her name {signal}.', subject: 'I', verb: 'know', vn: 'Tôi biết tên cô ấy' },
-  { template: 'They ___ the truth {signal}.', subject: 'They', verb: 'know', vn: 'Họ biết sự thật' },
+  { template: 'They ___ a movie {signal}.', subject: 'They', verb: 'see', vn: 'Họ xem phim', type: 'affirm' },
+  { template: 'I ___ my grandma {signal}.', subject: 'I', verb: 'see', vn: 'Tôi gặp bà', type: 'affirm' },
+  { template: 'She ___ a bird {signal}.', subject: 'She', verb: 'see', vn: 'Cô ấy nhìn thấy con chim', type: 'affirm' },
   
   // SLEEP
-  { template: 'I ___ early {signal}.', subject: 'I', verb: 'sleep', vn: 'Tôi ngủ sớm' },
-  { template: 'She ___ late {signal}.', subject: 'She', verb: 'sleep', vn: 'Cô ấy ngủ muộn' },
-  { template: 'The baby ___ well {signal}.', subject: 'The baby', verb: 'sleep', vn: 'Em bé ngủ ngon' },
-  
-  // WAKE
-  { template: 'They ___ up early {signal}.', subject: 'They', verb: 'wake', vn: 'Họ dậy sớm' },
-  { template: 'I ___ up at 6 {signal}.', subject: 'I', verb: 'wake', vn: 'Tôi dậy lúc 6 giờ' },
-  { template: 'He ___ up late {signal}.', subject: 'He', verb: 'wake', vn: 'Anh ấy dậy muộn' },
+  { template: 'I ___ early {signal}.', subject: 'I', verb: 'sleep', vn: 'Tôi ngủ sớm', type: 'affirm' },
+  { template: 'She ___ late {signal}.', subject: 'She', verb: 'sleep', vn: 'Cô ấy ngủ muộn', type: 'affirm' },
+  { template: 'The baby ___ well {signal}.', subject: 'The baby', verb: 'sleep', vn: 'Em bé ngủ ngon', type: 'affirm' },
   
   // HAVE
-  { template: 'I ___ breakfast {signal}.', subject: 'I', verb: 'have', vn: 'Tôi ăn sáng' },
-  { template: 'She ___ a dog {signal}.', subject: 'She', verb: 'have', vn: 'Cô ấy có con chó' },
-  { template: 'We ___ a party {signal}.', subject: 'We', verb: 'have', vn: 'Chúng tôi có bữa tiệc' },
+  { template: 'I ___ breakfast {signal}.', subject: 'I', verb: 'have', vn: 'Tôi ăn sáng', type: 'affirm' },
+  { template: 'She ___ a dog {signal}.', subject: 'She', verb: 'have', vn: 'Cô ấy có con chó', type: 'affirm' },
+  { template: 'We ___ a party {signal}.', subject: 'We', verb: 'have', vn: 'Chúng tôi có bữa tiệc', type: 'affirm' },
   
   // GET
-  { template: 'I ___ a present {signal}.', subject: 'I', verb: 'get', vn: 'Tôi được quà' },
-  { template: 'She ___ good grades {signal}.', subject: 'She', verb: 'get', vn: 'Cô ấy được điểm cao' },
-  { template: 'He ___ up early {signal}.', subject: 'He', verb: 'get', vn: 'Anh ấy dậy sớm' },
-  
-  // TELL
-  { template: 'Mom ___ me a story {signal}.', subject: 'Mom', verb: 'tell', vn: 'Mẹ kể chuyện cho tôi' },
-  { template: 'He ___ the truth {signal}.', subject: 'He', verb: 'tell', vn: 'Anh ấy nói sự thật' },
-  { template: 'She ___ me a secret {signal}.', subject: 'She', verb: 'tell', vn: 'Cô ấy kể bí mật' },
-  
-  // SAY
-  { template: 'He ___ hello {signal}.', subject: 'He', verb: 'say', vn: 'Anh ấy nói xin chào' },
-  { template: 'She ___ goodbye {signal}.', subject: 'She', verb: 'say', vn: 'Cô ấy nói tạm biệt' },
-  { template: 'They ___ thank you {signal}.', subject: 'They', verb: 'say', vn: 'Họ nói cảm ơn' },
+  { template: 'I ___ a present {signal}.', subject: 'I', verb: 'get', vn: 'Tôi được quà', type: 'affirm' },
+  { template: 'She ___ good grades {signal}.', subject: 'She', verb: 'get', vn: 'Cô ấy được điểm cao', type: 'affirm' },
+  { template: 'He ___ up early {signal}.', subject: 'He', verb: 'get', vn: 'Anh ấy dậy sớm', type: 'affirm' },
   
   // FEEL
-  { template: 'I ___ happy {signal}.', subject: 'I', verb: 'feel', vn: 'Tôi cảm thấy vui' },
-  { template: 'She ___ tired {signal}.', subject: 'She', verb: 'feel', vn: 'Cô ấy cảm thấy mệt' },
-  { template: 'He ___ sick {signal}.', subject: 'He', verb: 'feel', vn: 'Anh ấy cảm thấy ốm' },
+  { template: 'I ___ happy {signal}.', subject: 'I', verb: 'feel', vn: 'Tôi cảm thấy vui', type: 'affirm' },
+  { template: 'She ___ tired {signal}.', subject: 'She', verb: 'feel', vn: 'Cô ấy cảm thấy mệt', type: 'affirm' },
+  { template: 'He ___ sick {signal}.', subject: 'He', verb: 'feel', vn: 'Anh ấy cảm thấy ốm', type: 'affirm' },
   
   // FIND
-  { template: 'I ___ my keys {signal}.', subject: 'I', verb: 'find', vn: 'Tôi tìm thấy chìa khóa' },
-  { template: 'She ___ a new job {signal}.', subject: 'She', verb: 'find', vn: 'Cô ấy tìm được việc mới' },
-  { template: 'He ___ the answer {signal}.', subject: 'He', verb: 'find', vn: 'Anh ấy tìm ra đáp án' },
+  { template: 'I ___ my keys {signal}.', subject: 'I', verb: 'find', vn: 'Tôi tìm thấy chìa khóa', type: 'affirm' },
+  { template: 'She ___ a new job {signal}.', subject: 'She', verb: 'find', vn: 'Cô ấy tìm được việc mới', type: 'affirm' },
+  { template: 'He ___ the answer {signal}.', subject: 'He', verb: 'find', vn: 'Anh ấy tìm ra đáp án', type: 'affirm' },
   
   // LOSE
-  { template: 'He ___ his phone {signal}.', subject: 'He', verb: 'lose', vn: 'Anh ấy mất điện thoại' },
-  { template: 'I ___ my wallet {signal}.', subject: 'I', verb: 'lose', vn: 'Tôi mất ví' },
-  { template: 'She ___ her keys {signal}.', subject: 'She', verb: 'lose', vn: 'Cô ấy mất chìa khóa' },
+  { template: 'He ___ his phone {signal}.', subject: 'He', verb: 'lose', vn: 'Anh ấy mất điện thoại', type: 'affirm' },
+  { template: 'I ___ my wallet {signal}.', subject: 'I', verb: 'lose', vn: 'Tôi mất ví', type: 'affirm' },
+  { template: 'She ___ her keys {signal}.', subject: 'She', verb: 'lose', vn: 'Cô ấy mất chìa khóa', type: 'affirm' },
   
   // TEACH
-  { template: 'She ___ English {signal}.', subject: 'She', verb: 'teach', vn: 'Cô ấy dạy tiếng Anh' },
-  { template: 'He ___ me math {signal}.', subject: 'He', verb: 'teach', vn: 'Anh ấy dạy tôi toán' },
-  { template: 'They ___ students {signal}.', subject: 'They', verb: 'teach', vn: 'Họ dạy học sinh' },
-  
-  // LEARN
-  { template: 'I ___ English {signal}.', subject: 'I', verb: 'learn', vn: 'Tôi học tiếng Anh' },
-  { template: 'She ___ to swim {signal}.', subject: 'She', verb: 'learn', vn: 'Cô ấy học bơi' },
-  { template: 'They ___ new words {signal}.', subject: 'They', verb: 'learn', vn: 'Họ học từ mới' },
+  { template: 'She ___ English {signal}.', subject: 'She', verb: 'teach', vn: 'Cô ấy dạy tiếng Anh', type: 'affirm' },
+  { template: 'He ___ me math {signal}.', subject: 'He', verb: 'teach', vn: 'Anh ấy dạy tôi toán', type: 'affirm' },
   
   // THINK
-  { template: 'I ___ about you {signal}.', subject: 'I', verb: 'think', vn: 'Tôi nghĩ về bạn' },
-  { template: 'She ___ hard {signal}.', subject: 'She', verb: 'think', vn: 'Cô ấy suy nghĩ nhiều' },
-  { template: 'He ___ it was good {signal}.', subject: 'He', verb: 'think', vn: 'Anh ấy nghĩ nó tốt' },
+  { template: 'I ___ about you {signal}.', subject: 'I', verb: 'think', vn: 'Tôi nghĩ về bạn', type: 'affirm' },
+  { template: 'She ___ hard {signal}.', subject: 'She', verb: 'think', vn: 'Cô ấy suy nghĩ nhiều', type: 'affirm' },
   
   // BRING
-  { template: 'I ___ my book {signal}.', subject: 'I', verb: 'bring', vn: 'Tôi mang sách' },
-  { template: 'She ___ food {signal}.', subject: 'She', verb: 'bring', vn: 'Cô ấy mang đồ ăn' },
-  { template: 'He ___ flowers {signal}.', subject: 'He', verb: 'bring', vn: 'Anh ấy mang hoa' },
-  
-  // CATCH
-  { template: 'He ___ the ball {signal}.', subject: 'He', verb: 'catch', vn: 'Anh ấy bắt bóng' },
-  { template: 'I ___ a fish {signal}.', subject: 'I', verb: 'catch', vn: 'Tôi bắt được cá' },
-  { template: 'She ___ the bus {signal}.', subject: 'She', verb: 'catch', vn: 'Cô ấy bắt kịp xe buýt' },
-  
-  // THROW
-  { template: 'He ___ the ball {signal}.', subject: 'He', verb: 'throw', vn: 'Anh ấy ném bóng' },
-  { template: 'I ___ a party {signal}.', subject: 'I', verb: 'throw', vn: 'Tôi tổ chức tiệc' },
-  { template: 'She ___ it away {signal}.', subject: 'She', verb: 'throw', vn: 'Cô ấy vứt nó đi' },
-  
-  // FLY
-  { template: 'The bird ___ high {signal}.', subject: 'The bird', verb: 'fly', vn: 'Con chim bay cao' },
-  { template: 'We ___ to Japan {signal}.', subject: 'We', verb: 'fly', vn: 'Chúng tôi bay đến Nhật' },
-  { template: 'They ___ home {signal}.', subject: 'They', verb: 'fly', vn: 'Họ bay về nhà' },
-  
-  // GROW
-  { template: 'She ___ flowers {signal}.', subject: 'She', verb: 'grow', vn: 'Cô ấy trồng hoa' },
-  { template: 'I ___ vegetables {signal}.', subject: 'I', verb: 'grow', vn: 'Tôi trồng rau' },
-  { template: 'The tree ___ fast {signal}.', subject: 'The tree', verb: 'grow', vn: 'Cây mọc nhanh' },
-  
-  // WEAR
-  { template: 'She ___ a dress {signal}.', subject: 'She', verb: 'wear', vn: 'Cô ấy mặc váy' },
-  { template: 'I ___ jeans {signal}.', subject: 'I', verb: 'wear', vn: 'Tôi mặc quần jeans' },
-  { template: 'He ___ a hat {signal}.', subject: 'He', verb: 'wear', vn: 'Anh ấy đội mũ' },
+  { template: 'I ___ my book {signal}.', subject: 'I', verb: 'bring', vn: 'Tôi mang sách', type: 'affirm' },
+  { template: 'She ___ food {signal}.', subject: 'She', verb: 'bring', vn: 'Cô ấy mang đồ ăn', type: 'affirm' },
   
   // WIN
-  { template: 'He ___ the game {signal}.', subject: 'He', verb: 'win', vn: 'Anh ấy thắng trận' },
-  { template: 'She ___ a prize {signal}.', subject: 'She', verb: 'win', vn: 'Cô ấy thắng giải' },
-  { template: 'They ___ the match {signal}.', subject: 'They', verb: 'win', vn: 'Họ thắng trận đấu' },
+  { template: 'He ___ the game {signal}.', subject: 'He', verb: 'win', vn: 'Anh ấy thắng trận', type: 'affirm' },
+  { template: 'She ___ a prize {signal}.', subject: 'She', verb: 'win', vn: 'Cô ấy thắng giải', type: 'affirm' },
   
-  // BREAK
-  { template: 'He ___ the window {signal}.', subject: 'He', verb: 'break', vn: 'Anh ấy làm vỡ cửa sổ' },
-  { template: 'I ___ my phone {signal}.', subject: 'I', verb: 'break', vn: 'Tôi làm vỡ điện thoại' },
-  { template: 'She ___ the rule {signal}.', subject: 'She', verb: 'break', vn: 'Cô ấy phá luật' },
+  // WEAR
+  { template: 'She ___ a dress {signal}.', subject: 'She', verb: 'wear', vn: 'Cô ấy mặc váy', type: 'affirm' },
+  { template: 'He ___ a hat {signal}.', subject: 'He', verb: 'wear', vn: 'Anh ấy đội mũ', type: 'affirm' },
   
-  // CHOOSE
-  { template: 'I ___ the red one {signal}.', subject: 'I', verb: 'choose', vn: 'Tôi chọn cái đỏ' },
-  { template: 'She ___ her dress {signal}.', subject: 'She', verb: 'choose', vn: 'Cô ấy chọn váy' },
-  { template: 'He ___ the best {signal}.', subject: 'He', verb: 'choose', vn: 'Anh ấy chọn cái tốt nhất' },
+  // =============== NEGATIVE (Câu phủ định) ===============
+  // GO
+  { template: 'I ___ go to school {signal}.', subject: 'I', verb: 'go', vn: 'Tôi không đi học', type: 'negative' },
+  { template: 'She ___ go to the park {signal}.', subject: 'She', verb: 'go', vn: 'Cô ấy không đi công viên', type: 'negative' },
+  { template: 'They ___ go shopping {signal}.', subject: 'They', verb: 'go', vn: 'Họ không đi mua sắm', type: 'negative' },
+  { template: 'He ___ go to work {signal}.', subject: 'He', verb: 'go', vn: 'Anh ấy không đi làm', type: 'negative' },
   
-  // FORGET
-  { template: 'I ___ my homework {signal}.', subject: 'I', verb: 'forget', vn: 'Tôi quên bài tập' },
-  { template: 'She ___ her keys {signal}.', subject: 'She', verb: 'forget', vn: 'Cô ấy quên chìa khóa' },
-  { template: 'He ___ my birthday {signal}.', subject: 'He', verb: 'forget', vn: 'Anh ấy quên sinh nhật tôi' },
+  // EAT
+  { template: 'She ___ eat breakfast {signal}.', subject: 'She', verb: 'eat', vn: 'Cô ấy không ăn sáng', type: 'negative' },
+  { template: 'I ___ eat meat {signal}.', subject: 'I', verb: 'eat', vn: 'Tôi không ăn thịt', type: 'negative' },
+  { template: 'He ___ eat vegetables {signal}.', subject: 'He', verb: 'eat', vn: 'Anh ấy không ăn rau', type: 'negative' },
+  { template: 'They ___ eat fast food {signal}.', subject: 'They', verb: 'eat', vn: 'Họ không ăn đồ ăn nhanh', type: 'negative' },
   
-  // BEGIN
-  { template: 'The class ___ at 8 {signal}.', subject: 'The class', verb: 'begin', vn: 'Lớp bắt đầu lúc 8 giờ' },
-  { template: 'I ___ to study {signal}.', subject: 'I', verb: 'begin', vn: 'Tôi bắt đầu học' },
-  { template: 'She ___ her work {signal}.', subject: 'She', verb: 'begin', vn: 'Cô ấy bắt đầu làm việc' },
+  // DRINK
+  { template: 'I ___ drink coffee {signal}.', subject: 'I', verb: 'drink', vn: 'Tôi không uống cà phê', type: 'negative' },
+  { template: 'She ___ drink soda {signal}.', subject: 'She', verb: 'drink', vn: 'Cô ấy không uống nước ngọt', type: 'negative' },
+  { template: 'He ___ drink alcohol {signal}.', subject: 'He', verb: 'drink', vn: 'Anh ấy không uống rượu', type: 'negative' },
   
-  // SEND
-  { template: 'I ___ an email {signal}.', subject: 'I', verb: 'send', vn: 'Tôi gửi email' },
-  { template: 'She ___ a message {signal}.', subject: 'She', verb: 'send', vn: 'Cô ấy gửi tin nhắn' },
-  { template: 'He ___ a letter {signal}.', subject: 'He', verb: 'send', vn: 'Anh ấy gửi thư' },
+  // DO
+  { template: 'I ___ do my homework {signal}.', subject: 'I', verb: 'do', vn: 'Tôi không làm bài tập', type: 'negative' },
+  { template: 'She ___ do the dishes {signal}.', subject: 'She', verb: 'do', vn: 'Cô ấy không rửa bát', type: 'negative' },
+  { template: 'They ___ do exercise {signal}.', subject: 'They', verb: 'do', vn: 'Họ không tập thể dục', type: 'negative' },
   
-  // SPEND
-  { template: 'I ___ money {signal}.', subject: 'I', verb: 'spend', vn: 'Tôi tiêu tiền' },
-  { template: 'She ___ time with family {signal}.', subject: 'She', verb: 'spend', vn: 'Cô ấy dành thời gian với gia đình' },
-  { template: 'We ___ the weekend together {signal}.', subject: 'We', verb: 'spend', vn: 'Chúng tôi ở cùng nhau cuối tuần' },
+  // HAVE
+  { template: 'I ___ have breakfast {signal}.', subject: 'I', verb: 'have', vn: 'Tôi không ăn sáng', type: 'negative' },
+  { template: 'She ___ have time {signal}.', subject: 'She', verb: 'have', vn: 'Cô ấy không có thời gian', type: 'negative' },
+  { template: 'We ___ have money {signal}.', subject: 'We', verb: 'have', vn: 'Chúng tôi không có tiền', type: 'negative' },
   
-  // LEAVE
-  { template: 'I ___ home early {signal}.', subject: 'I', verb: 'leave', vn: 'Tôi rời nhà sớm' },
-  { template: 'She ___ the party {signal}.', subject: 'She', verb: 'leave', vn: 'Cô ấy rời bữa tiệc' },
-  { template: 'He ___ his job {signal}.', subject: 'He', verb: 'leave', vn: 'Anh ấy nghỉ việc' },
+  // SLEEP
+  { template: 'I ___ sleep well {signal}.', subject: 'I', verb: 'sleep', vn: 'Tôi không ngủ ngon', type: 'negative' },
+  { template: 'She ___ sleep late {signal}.', subject: 'She', verb: 'sleep', vn: 'Cô ấy không ngủ muộn', type: 'negative' },
+  { template: 'He ___ sleep enough {signal}.', subject: 'He', verb: 'sleep', vn: 'Anh ấy không ngủ đủ', type: 'negative' },
   
-  // BUILD
-  { template: 'They ___ a house {signal}.', subject: 'They', verb: 'build', vn: 'Họ xây nhà' },
-  { template: 'He ___ a sandcastle {signal}.', subject: 'He', verb: 'build', vn: 'Anh ấy xây lâu đài cát' },
-  { template: 'We ___ a treehouse {signal}.', subject: 'We', verb: 'build', vn: 'Chúng tôi xây nhà trên cây' },
+  // COME
+  { template: 'She ___ come to the party {signal}.', subject: 'She', verb: 'come', vn: 'Cô ấy không đến tiệc', type: 'negative' },
+  { template: 'He ___ come home early {signal}.', subject: 'He', verb: 'come', vn: 'Anh ấy không về nhà sớm', type: 'negative' },
+  { template: 'They ___ come to school {signal}.', subject: 'They', verb: 'come', vn: 'Họ không đến trường', type: 'negative' },
   
-  // SIT
-  { template: 'I ___ on the chair {signal}.', subject: 'I', verb: 'sit', vn: 'Tôi ngồi trên ghế' },
-  { template: 'She ___ next to me {signal}.', subject: 'She', verb: 'sit', vn: 'Cô ấy ngồi cạnh tôi' },
-  { template: 'They ___ in the front {signal}.', subject: 'They', verb: 'sit', vn: 'Họ ngồi phía trước' },
+  // SEE
+  { template: 'I ___ see the movie {signal}.', subject: 'I', verb: 'see', vn: 'Tôi không xem phim', type: 'negative' },
+  { template: 'She ___ see him {signal}.', subject: 'She', verb: 'see', vn: 'Cô ấy không gặp anh ấy', type: 'negative' },
+  { template: 'They ___ see anything {signal}.', subject: 'They', verb: 'see', vn: 'Họ không thấy gì', type: 'negative' },
   
-  // STAND
-  { template: 'I ___ up {signal}.', subject: 'I', verb: 'stand', vn: 'Tôi đứng dậy' },
-  { template: 'She ___ in line {signal}.', subject: 'She', verb: 'stand', vn: 'Cô ấy đứng xếp hàng' },
-  { template: 'He ___ near the door {signal}.', subject: 'He', verb: 'stand', vn: 'Anh ấy đứng gần cửa' },
+  // KNOW
+  { template: 'I ___ know the answer {signal}.', subject: 'I', verb: 'know', vn: 'Tôi không biết câu trả lời', type: 'negative' },
+  { template: 'She ___ know him {signal}.', subject: 'She', verb: 'know', vn: 'Cô ấy không biết anh ấy', type: 'negative' },
+  { template: 'They ___ know the way {signal}.', subject: 'They', verb: 'know', vn: 'Họ không biết đường', type: 'negative' },
   
-  // PAY
-  { template: 'I ___ the bill {signal}.', subject: 'I', verb: 'pay', vn: 'Tôi trả hóa đơn' },
-  { template: 'She ___ for the food {signal}.', subject: 'She', verb: 'pay', vn: 'Cô ấy trả tiền đồ ăn' },
-  { template: 'He ___ by card {signal}.', subject: 'He', verb: 'pay', vn: 'Anh ấy trả bằng thẻ' },
+  // MAKE
+  { template: 'I ___ make mistakes {signal}.', subject: 'I', verb: 'make', vn: 'Tôi không mắc lỗi', type: 'negative' },
+  { template: 'She ___ make dinner {signal}.', subject: 'She', verb: 'make', vn: 'Cô ấy không nấu bữa tối', type: 'negative' },
+  { template: 'He ___ make noise {signal}.', subject: 'He', verb: 'make', vn: 'Anh ấy không làm ồn', type: 'negative' },
   
-  // SELL
-  { template: 'She ___ flowers {signal}.', subject: 'She', verb: 'sell', vn: 'Cô ấy bán hoa' },
-  { template: 'He ___ his car {signal}.', subject: 'He', verb: 'sell', vn: 'Anh ấy bán xe' },
-  { template: 'They ___ fruits {signal}.', subject: 'They', verb: 'sell', vn: 'Họ bán trái cây' },
+  // TAKE
+  { template: 'I ___ take the bus {signal}.', subject: 'I', verb: 'take', vn: 'Tôi không đi xe buýt', type: 'negative' },
+  { template: 'She ___ take photos {signal}.', subject: 'She', verb: 'take', vn: 'Cô ấy không chụp ảnh', type: 'negative' },
+  { template: 'He ___ take a break {signal}.', subject: 'He', verb: 'take', vn: 'Anh ấy không nghỉ ngơi', type: 'negative' },
   
-  // CUT
-  { template: 'I ___ the paper {signal}.', subject: 'I', verb: 'cut', vn: 'Tôi cắt giấy' },
-  { template: 'She ___ her hair {signal}.', subject: 'She', verb: 'cut', vn: 'Cô ấy cắt tóc' },
-  { template: 'He ___ the cake {signal}.', subject: 'He', verb: 'cut', vn: 'Anh ấy cắt bánh' },
+  // WRITE
+  { template: 'I ___ write letters {signal}.', subject: 'I', verb: 'write', vn: 'Tôi không viết thư', type: 'negative' },
+  { template: 'She ___ write emails {signal}.', subject: 'She', verb: 'write', vn: 'Cô ấy không viết email', type: 'negative' },
   
-  // PUT
-  { template: 'I ___ it on the table {signal}.', subject: 'I', verb: 'put', vn: 'Tôi đặt nó lên bàn' },
-  { template: 'She ___ on her shoes {signal}.', subject: 'She', verb: 'put', vn: 'Cô ấy đi giày' },
-  { template: 'He ___ the book away {signal}.', subject: 'He', verb: 'put', vn: 'Anh ấy cất sách' },
+  // READ
+  { template: 'I ___ read books {signal}.', subject: 'I', verb: 'read', vn: 'Tôi không đọc sách', type: 'negative' },
+  { template: 'He ___ read newspapers {signal}.', subject: 'He', verb: 'read', vn: 'Anh ấy không đọc báo', type: 'negative' },
   
-  // KEEP
-  { template: 'I ___ it secret {signal}.', subject: 'I', verb: 'keep', vn: 'Tôi giữ bí mật' },
-  { template: 'She ___ the money {signal}.', subject: 'She', verb: 'keep', vn: 'Cô ấy giữ tiền' },
-  { template: 'He ___ his promise {signal}.', subject: 'He', verb: 'keep', vn: 'Anh ấy giữ lời hứa' },
+  // SPEAK
+  { template: 'I ___ speak French {signal}.', subject: 'I', verb: 'speak', vn: 'Tôi không nói tiếng Pháp', type: 'negative' },
+  { template: 'She ___ speak loudly {signal}.', subject: 'She', verb: 'speak', vn: 'Cô ấy không nói to', type: 'negative' },
   
-  // HOLD
-  { template: 'I ___ the baby {signal}.', subject: 'I', verb: 'hold', vn: 'Tôi bế em bé' },
-  { template: 'She ___ my hand {signal}.', subject: 'She', verb: 'hold', vn: 'Cô ấy nắm tay tôi' },
-  { template: 'He ___ the door {signal}.', subject: 'He', verb: 'hold', vn: 'Anh ấy giữ cửa' },
+  // BUY
+  { template: 'I ___ buy expensive things {signal}.', subject: 'I', verb: 'buy', vn: 'Tôi không mua đồ đắt', type: 'negative' },
+  { template: 'She ___ buy clothes {signal}.', subject: 'She', verb: 'buy', vn: 'Cô ấy không mua quần áo', type: 'negative' },
   
-  // HEAR
-  { template: 'I ___ a noise {signal}.', subject: 'I', verb: 'hear', vn: 'Tôi nghe thấy tiếng động' },
-  { template: 'She ___ the news {signal}.', subject: 'She', verb: 'hear', vn: 'Cô ấy nghe tin' },
-  { template: 'He ___ music {signal}.', subject: 'He', verb: 'hear', vn: 'Anh ấy nghe nhạc' }
+  // GIVE
+  { template: 'I ___ give up {signal}.', subject: 'I', verb: 'give', vn: 'Tôi không bỏ cuộc', type: 'negative' },
+  { template: 'She ___ give money {signal}.', subject: 'She', verb: 'give', vn: 'Cô ấy không cho tiền', type: 'negative' },
+  
+  // FIND
+  { template: 'I ___ find my keys {signal}.', subject: 'I', verb: 'find', vn: 'Tôi không tìm thấy chìa khóa', type: 'negative' },
+  { template: 'She ___ find the answer {signal}.', subject: 'She', verb: 'find', vn: 'Cô ấy không tìm ra đáp án', type: 'negative' },
+  
+  // FEEL
+  { template: 'I ___ feel good {signal}.', subject: 'I', verb: 'feel', vn: 'Tôi không cảm thấy tốt', type: 'negative' },
+  { template: 'She ___ feel tired {signal}.', subject: 'She', verb: 'feel', vn: 'Cô ấy không thấy mệt', type: 'negative' },
+  
+  // WIN
+  { template: 'We ___ win the game {signal}.', subject: 'We', verb: 'win', vn: 'Chúng tôi không thắng', type: 'negative' },
+  { template: 'He ___ win the match {signal}.', subject: 'He', verb: 'win', vn: 'Anh ấy không thắng trận', type: 'negative' },
+  
+  // =============== QUESTION (Câu hỏi) ===============
+  // GO
+  { template: '___ you go to school {signal}?', subject: 'you', verb: 'go', vn: 'Bạn có đi học không?', type: 'question' },
+  { template: '___ she go to the park {signal}?', subject: 'she', verb: 'go', vn: 'Cô ấy có đi công viên không?', type: 'question' },
+  { template: '___ they go shopping {signal}?', subject: 'they', verb: 'go', vn: 'Họ có đi mua sắm không?', type: 'question' },
+  { template: '___ he go to work {signal}?', subject: 'he', verb: 'go', vn: 'Anh ấy có đi làm không?', type: 'question' },
+  
+  // EAT
+  { template: '___ she eat breakfast {signal}?', subject: 'she', verb: 'eat', vn: 'Cô ấy có ăn sáng không?', type: 'question' },
+  { template: '___ you eat lunch {signal}?', subject: 'you', verb: 'eat', vn: 'Bạn có ăn trưa không?', type: 'question' },
+  { template: '___ he eat dinner {signal}?', subject: 'he', verb: 'eat', vn: 'Anh ấy có ăn tối không?', type: 'question' },
+  { template: '___ they eat pizza {signal}?', subject: 'they', verb: 'eat', vn: 'Họ có ăn pizza không?', type: 'question' },
+  
+  // DRINK
+  { template: '___ you drink milk {signal}?', subject: 'you', verb: 'drink', vn: 'Bạn có uống sữa không?', type: 'question' },
+  { template: '___ she drink coffee {signal}?', subject: 'she', verb: 'drink', vn: 'Cô ấy có uống cà phê không?', type: 'question' },
+  { template: '___ he drink tea {signal}?', subject: 'he', verb: 'drink', vn: 'Anh ấy có uống trà không?', type: 'question' },
+  
+  // DO
+  { template: '___ you do homework {signal}?', subject: 'you', verb: 'do', vn: 'Bạn có làm bài tập không?', type: 'question' },
+  { template: '___ she do exercise {signal}?', subject: 'she', verb: 'do', vn: 'Cô ấy có tập thể dục không?', type: 'question' },
+  { template: '___ they do the dishes {signal}?', subject: 'they', verb: 'do', vn: 'Họ có rửa bát không?', type: 'question' },
+  
+  // HAVE
+  { template: '___ you have breakfast {signal}?', subject: 'you', verb: 'have', vn: 'Bạn có ăn sáng không?', type: 'question' },
+  { template: '___ she have a car {signal}?', subject: 'she', verb: 'have', vn: 'Cô ấy có xe hơi không?', type: 'question' },
+  { template: '___ they have fun {signal}?', subject: 'they', verb: 'have', vn: 'Họ có vui không?', type: 'question' },
+  
+  // SLEEP
+  { template: '___ you sleep well {signal}?', subject: 'you', verb: 'sleep', vn: 'Bạn có ngủ ngon không?', type: 'question' },
+  { template: '___ she sleep early {signal}?', subject: 'she', verb: 'sleep', vn: 'Cô ấy có ngủ sớm không?', type: 'question' },
+  { template: '___ he sleep late {signal}?', subject: 'he', verb: 'sleep', vn: 'Anh ấy có ngủ muộn không?', type: 'question' },
+  
+  // COME
+  { template: '___ she come to the party {signal}?', subject: 'she', verb: 'come', vn: 'Cô ấy có đến tiệc không?', type: 'question' },
+  { template: '___ he come home early {signal}?', subject: 'he', verb: 'come', vn: 'Anh ấy có về sớm không?', type: 'question' },
+  { template: '___ they come to school {signal}?', subject: 'they', verb: 'come', vn: 'Họ có đến trường không?', type: 'question' },
+  
+  // SEE
+  { template: '___ you see the movie {signal}?', subject: 'you', verb: 'see', vn: 'Bạn có xem phim không?', type: 'question' },
+  { template: '___ she see him {signal}?', subject: 'she', verb: 'see', vn: 'Cô ấy có gặp anh ấy không?', type: 'question' },
+  { template: '___ they see the show {signal}?', subject: 'they', verb: 'see', vn: 'Họ có xem show không?', type: 'question' },
+  
+  // KNOW
+  { template: '___ you know the answer {signal}?', subject: 'you', verb: 'know', vn: 'Bạn có biết câu trả lời không?', type: 'question' },
+  { template: '___ she know him {signal}?', subject: 'she', verb: 'know', vn: 'Cô ấy có biết anh ấy không?', type: 'question' },
+  { template: '___ they know the truth {signal}?', subject: 'they', verb: 'know', vn: 'Họ có biết sự thật không?', type: 'question' },
+  
+  // MAKE
+  { template: '___ you make dinner {signal}?', subject: 'you', verb: 'make', vn: 'Bạn có nấu bữa tối không?', type: 'question' },
+  { template: '___ she make a cake {signal}?', subject: 'she', verb: 'make', vn: 'Cô ấy có làm bánh không?', type: 'question' },
+  { template: '___ he make mistakes {signal}?', subject: 'he', verb: 'make', vn: 'Anh ấy có mắc lỗi không?', type: 'question' },
+  
+  // TAKE
+  { template: '___ you take the bus {signal}?', subject: 'you', verb: 'take', vn: 'Bạn có đi xe buýt không?', type: 'question' },
+  { template: '___ she take photos {signal}?', subject: 'she', verb: 'take', vn: 'Cô ấy có chụp ảnh không?', type: 'question' },
+  { template: '___ he take a shower {signal}?', subject: 'he', verb: 'take', vn: 'Anh ấy có tắm không?', type: 'question' },
+  
+  // WRITE
+  { template: '___ you write a letter {signal}?', subject: 'you', verb: 'write', vn: 'Bạn có viết thư không?', type: 'question' },
+  { template: '___ she write emails {signal}?', subject: 'she', verb: 'write', vn: 'Cô ấy có viết email không?', type: 'question' },
+  
+  // READ
+  { template: '___ you read books {signal}?', subject: 'you', verb: 'read', vn: 'Bạn có đọc sách không?', type: 'question' },
+  { template: '___ he read newspapers {signal}?', subject: 'he', verb: 'read', vn: 'Anh ấy có đọc báo không?', type: 'question' },
+  
+  // SPEAK
+  { template: '___ you speak English {signal}?', subject: 'you', verb: 'speak', vn: 'Bạn có nói tiếng Anh không?', type: 'question' },
+  { template: '___ she speak French {signal}?', subject: 'she', verb: 'speak', vn: 'Cô ấy có nói tiếng Pháp không?', type: 'question' },
+  
+  // BUY
+  { template: '___ you buy a gift {signal}?', subject: 'you', verb: 'buy', vn: 'Bạn có mua quà không?', type: 'question' },
+  { template: '___ she buy clothes {signal}?', subject: 'she', verb: 'buy', vn: 'Cô ấy có mua quần áo không?', type: 'question' },
+  
+  // GIVE
+  { template: '___ you give him money {signal}?', subject: 'you', verb: 'give', vn: 'Bạn có cho anh ấy tiền không?', type: 'question' },
+  { template: '___ she give a present {signal}?', subject: 'she', verb: 'give', vn: 'Cô ấy có tặng quà không?', type: 'question' },
+  
+  // MEET
+  { template: '___ you meet her {signal}?', subject: 'you', verb: 'meet', vn: 'Bạn có gặp cô ấy không?', type: 'question' },
+  { template: '___ they meet at school {signal}?', subject: 'they', verb: 'meet', vn: 'Họ có gặp nhau ở trường không?', type: 'question' },
+  
+  // RUN
+  { template: '___ you run in the morning {signal}?', subject: 'you', verb: 'run', vn: 'Bạn có chạy buổi sáng không?', type: 'question' },
+  { template: '___ he run fast {signal}?', subject: 'he', verb: 'run', vn: 'Anh ấy có chạy nhanh không?', type: 'question' },
+  
+  // SWIM
+  { template: '___ you swim {signal}?', subject: 'you', verb: 'swim', vn: 'Bạn có bơi không?', type: 'question' },
+  { template: '___ she swim well {signal}?', subject: 'she', verb: 'swim', vn: 'Cô ấy có bơi giỏi không?', type: 'question' },
+  
+  // SING
+  { template: '___ you sing songs {signal}?', subject: 'you', verb: 'sing', vn: 'Bạn có hát không?', type: 'question' },
+  { template: '___ she sing well {signal}?', subject: 'she', verb: 'sing', vn: 'Cô ấy có hát hay không?', type: 'question' },
+  
+  // WIN
+  { template: '___ you win the game {signal}?', subject: 'you', verb: 'win', vn: 'Bạn có thắng không?', type: 'question' },
+  { template: '___ they win the match {signal}?', subject: 'they', verb: 'win', vn: 'Họ có thắng trận không?', type: 'question' },
+  
+  // FEEL
+  { template: '___ you feel better {signal}?', subject: 'you', verb: 'feel', vn: 'Bạn có thấy khỏe hơn không?', type: 'question' },
+  { template: '___ she feel happy {signal}?', subject: 'she', verb: 'feel', vn: 'Cô ấy có thấy vui không?', type: 'question' },
+  
+  // FIND
+  { template: '___ you find your keys {signal}?', subject: 'you', verb: 'find', vn: 'Bạn có tìm thấy chìa khóa không?', type: 'question' },
+  { template: '___ she find the answer {signal}?', subject: 'she', verb: 'find', vn: 'Cô ấy có tìm ra đáp án không?', type: 'question' },
+  
+  // THINK
+  { template: '___ you think about it {signal}?', subject: 'you', verb: 'think', vn: 'Bạn có nghĩ về nó không?', type: 'question' },
+  { template: '___ she think it was good {signal}?', subject: 'she', verb: 'think', vn: 'Cô ấy có nghĩ nó tốt không?', type: 'question' },
+  
+  // BRING
+  { template: '___ you bring your book {signal}?', subject: 'you', verb: 'bring', vn: 'Bạn có mang sách không?', type: 'question' },
+  { template: '___ she bring food {signal}?', subject: 'she', verb: 'bring', vn: 'Cô ấy có mang đồ ăn không?', type: 'question' }
 ];
 
 function getVerbForms(verbBase) {
@@ -3645,37 +3705,63 @@ function generateQuizQuestions(count) {
     
     var template = SENTENCE_TEMPLATES[templateIndex];
     var verbForms = getVerbForms(template.verb);
+    var sentenceType = template.type || 'affirm';
     
     // Randomly choose present or past
     var isPast = Math.random() > 0.5;
     var signalList = isPast ? SIGNAL_WORDS.past : SIGNAL_WORDS.present;
     var signalObj = signalList[Math.floor(Math.random() * signalList.length)];
     
-    var correctAnswer = isPast ? verbForms.past : getPresentForm(verbForms.base, template.subject);
+    var correctAnswer, wrongAnswers = [];
+    var subject = template.subject.toLowerCase();
+    var isThirdPerson = ['he', 'she', 'it', 'mom', 'dad', 'the baby', 'the bird', 'the tree', 'the class'].indexOf(subject) >= 0;
     
-    // Generate 3 wrong answers
-    var wrongAnswers = [];
+    if (sentenceType === 'affirm') {
+      // Câu khẳng định: điền động từ
+      correctAnswer = isPast ? verbForms.past : getPresentForm(verbForms.base, template.subject);
+      
+      // Wrong answers
+      var opposite = isPast ? getPresentForm(verbForms.base, template.subject) : verbForms.past;
+      if (opposite !== correctAnswer) wrongAnswers.push(opposite);
+      
+    } else if (sentenceType === 'negative') {
+      // Câu phủ định: điền don't/doesn't/didn't
+      if (isPast) {
+        correctAnswer = "didn't";
+        wrongAnswers = ["don't", "doesn't", "isn't"];
+      } else {
+        correctAnswer = isThirdPerson ? "doesn't" : "don't";
+        wrongAnswers = isThirdPerson ? ["don't", "didn't", "isn't"] : ["doesn't", "didn't", "aren't"];
+      }
+      
+    } else if (sentenceType === 'question') {
+      // Câu hỏi: điền Do/Does/Did
+      if (isPast) {
+        correctAnswer = "Did";
+        wrongAnswers = ["Do", "Does", "Is"];
+      } else {
+        correctAnswer = isThirdPerson ? "Does" : "Do";
+        wrongAnswers = isThirdPerson ? ["Do", "Did", "Is"] : ["Does", "Did", "Are"];
+      }
+    }
     
-    // Wrong answer 1: opposite tense of correct verb
-    var opposite = isPast ? getPresentForm(verbForms.base, template.subject) : verbForms.past;
-    if (opposite !== correctAnswer) wrongAnswers.push(opposite);
-    
-    // Wrong answer 2 & 3: random verbs from other irregular verbs
-    var shuffledVerbs = shuffle(allVerbs);
-    for (var j = 0; j < shuffledVerbs.length && wrongAnswers.length < 3; j++) {
-      var wrongVerb = shuffledVerbs[j];
-      if (wrongVerb.base !== template.verb) {
-        var wrongForm = isPast ? wrongVerb.past : getPresentForm(wrongVerb.base, template.subject);
-        // Make sure it's not duplicate
-        if (wrongForm !== correctAnswer && wrongAnswers.indexOf(wrongForm) < 0) {
-          wrongAnswers.push(wrongForm);
+    // Add more wrong answers from other verbs if needed (for affirm type)
+    if (sentenceType === 'affirm') {
+      var shuffledVerbs = shuffle(allVerbs);
+      for (var j = 0; j < shuffledVerbs.length && wrongAnswers.length < 3; j++) {
+        var wrongVerb = shuffledVerbs[j];
+        if (wrongVerb.base !== template.verb) {
+          var wrongForm = isPast ? wrongVerb.past : getPresentForm(wrongVerb.base, template.subject);
+          if (wrongForm !== correctAnswer && wrongAnswers.indexOf(wrongForm) < 0) {
+            wrongAnswers.push(wrongForm);
+          }
         }
       }
     }
     
     // Ensure we have 3 wrong answers
     while (wrongAnswers.length < 3) {
-      wrongAnswers.push(verbForms.base + 'ed'); // fallback
+      wrongAnswers.push(verbForms.base + 'ed');
     }
     
     var sentence = template.template.replace('{signal}', signalObj.signal);
@@ -3690,7 +3776,8 @@ function generateQuizQuestions(count) {
       verbVn: verbForms.vn,
       correctAnswer: correctAnswer,
       wrongAnswers: wrongAnswers.slice(0, 3),
-      subject: template.subject
+      subject: template.subject,
+      type: sentenceType
     });
   }
   
@@ -3780,6 +3867,10 @@ function renderSentenceQuiz() {
     dotsHtml += '<div class="' + dotClass + '"></div>';
   }
   
+  // Underline the signal word in sentence
+  var displaySentence = q.sentence.replace(q.signal, '<u style="text-decoration:underline;text-decoration-color:#FF9800;text-decoration-thickness:2px;font-weight:700">' + q.signal + '</u>');
+  displaySentence = displaySentence.replace('___', '<span class="blank">?</span>');
+  
   var html = '<div class="progress-header">' +
     '<button class="back-btn" onclick="startVerbSentenceQuiz()">← Back</button>' +
     '<div class="progress-dots">' + dotsHtml + '</div>' +
@@ -3788,22 +3879,14 @@ function renderSentenceQuiz() {
     
     '<div class="sentence-quiz-card">' +
     
-    // Signal word badge
-    '<div class="sentence-quiz-signal">' +
-    '<span class="signal-badge ' + (q.isPast ? 'past' : 'present') + '">' +
-    (q.isPast ? '🌙 ' : '☀️ ') + q.signal +
-    '</span>' +
-    '<div style="font-size:0.85rem;color:#666;margin-top:5px">(' + q.signalVn + ')</div>' +
-    '</div>' +
-    
-    // Sentence with blank
+    // Sentence with blank and underlined signal
     '<div class="sentence-quiz-sentence">' +
-    q.sentence.replace('___', '<span class="blank">?</span>') +
+    displaySentence +
     '</div>' +
     
     // Sentence meaning
     '<div class="sentence-quiz-meaning">' +
-    '📖 ' + q.sentenceVn + ' (<strong>' + q.verb + '</strong> - ' + q.verbVn + ')' +
+    '📖 ' + q.sentenceVn +
     '</div>' +
     
     // 4 Choices
@@ -3866,13 +3949,26 @@ function checkSentenceAnswer(choiceIdx, isCorrect) {
     playSound('wrong');
   }
   
+  // Explanation based on type
+  var explanation = '';
+  if (q.type === 'affirm') {
+    explanation = q.isPast ? 
+      '🌙 <strong>' + q.signal + '</strong> → dùng Simple Past: <strong>' + q.correctAnswer + '</strong>' :
+      '☀️ <strong>' + q.signal + '</strong> → dùng hiện tại: <strong>' + q.correctAnswer + '</strong>';
+  } else if (q.type === 'negative') {
+    explanation = q.isPast ?
+      '🚫🌙 Phủ định quá khứ → <strong>didn\'t</strong> + động từ gốc' :
+      '🚫☀️ Phủ định hiện tại → <strong>' + q.correctAnswer + '</strong> + động từ gốc';
+  } else if (q.type === 'question') {
+    explanation = q.isPast ?
+      '❓🌙 Câu hỏi quá khứ → <strong>Did</strong> + S + động từ gốc?' :
+      '❓☀️ Câu hỏi hiện tại → <strong>' + q.correctAnswer + '</strong> + S + động từ gốc?';
+  }
+  
   var feedbackHtml = '<div class="sentence-feedback ' + (isCorrect ? 'correct' : 'wrong') + '">' +
     '<div class="emoji">' + (isCorrect ? '🎉' : '💪') + '</div>' +
     '<div class="message">' + (isCorrect ? 'Chính xác!' : 'Chưa đúng rồi!') + '</div>' +
-    '<div class="explanation">' +
-    (q.isPast ? '🌙 <strong>' + q.signal + '</strong> → dùng Simple Past: <strong>' + q.correctAnswer + '</strong>' :
-               '☀️ <strong>' + q.signal + '</strong> → dùng hiện tại: <strong>' + q.correctAnswer + '</strong>') +
-    '</div>' +
+    '<div class="explanation">' + explanation + '</div>' +
     '<button class="next-btn" onclick="nextSentenceQuestion()">' +
     (sentenceQuizState.currentIndex < sentenceQuizState.level - 1 ? 'Tiếp theo →' : 'Xem kết quả 🏆') +
     '</button>' +
