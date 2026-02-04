@@ -64,6 +64,7 @@
     .topic-card.yesterday { border-color: #FF9800; }
     .topic-card.stories { border-color: #E91E63; }
     .topic-card.games { border-color: #9C27B0; }
+    .topic-card.quiz { border-color: #2196F3; }
     
     .streak-banner {
       background: linear-gradient(135deg, #FFD700, #FFA500);
@@ -1003,14 +1004,21 @@
             <div class="topic-icon">📖</div>
             <div class="topic-name">Mix Stories</div>
           </div>
-          <div class="topic-card" onclick="showLearnScreen()" style="border-color:#4CAF50">
-            <div class="topic-icon">📚</div>
-            <div class="topic-name">Học kiến thức</div>
+          <div class="topic-card quiz" onclick="startVerbSentenceQuiz()">
+            <div class="topic-icon">📝</div>
+            <div class="topic-name">Trắc nghiệm</div>
           </div>
           <div class="topic-card games" onclick="startTopic('games')">
             <div class="topic-icon">🎮</div>
             <div class="topic-name">Word Games</div>
           </div>
+          <div class="topic-card" onclick="showLearnScreen()" style="border-color:#4CAF50">
+            <div class="topic-icon">📚</div>
+            <div class="topic-name">Học kiến thức</div>
+          </div>
+        </div>
+        
+        <div id="motivationalMsg" style="margin-top:25px;padding:14px 20px;background:rgba(255,255,255,0.15);border-radius:15px;text-align:center;color:white;font-size:0.95rem;line-height:1.5;backdrop-filter:blur(5px)">
         </div>
       </div>
     </div>
@@ -1522,6 +1530,15 @@ function showLevelSelect(topic) {
     '</div>' +
     '<div class="level-time">15 câu • 12 phút</div>' +
     '</div>' +
+    
+    '<div class="level-card" onclick="startWithLevel(20)" style="border-color:#FF6D00;background:linear-gradient(135deg,#FFF8E1,#FFECB3)">' +
+    '<div class="level-icon">🔥</div>' +
+    '<div class="level-info">' +
+    '<div class="level-name" style="color:#E65100">Huyền thoại</div>' +
+    '<div class="level-desc">Boss cuối đây rồi! 👾</div>' +
+    '</div>' +
+    '<div class="level-time">20 câu • 15 phút</div>' +
+    '</div>' +
     '</div></div>';
   
   document.getElementById('levelScreen').innerHTML = html;
@@ -1637,12 +1654,12 @@ function generateStoriesFromTemplates(count, isPastOnly) {
       
       // Thêm đáp án gây nhiễu nếu thiếu
       var extraVerbs = ['went', 'goes', 'ate', 'eats', 'took', 'takes', 'saw', 'sees'];
-      var i = 0;
-      while (choices.length < 3 && i < extraVerbs.length) {
-        if (choices.findIndex(function(c) { return c.text === extraVerbs[i]; }) < 0) {
-          choices.push({ text: extraVerbs[i], correct: false });
+      var ei = 0;
+      while (choices.length < 3 && ei < extraVerbs.length) {
+        if (choices.findIndex(function(c) { return c.text === extraVerbs[ei]; }) < 0) {
+          choices.push({ text: extraVerbs[ei], correct: false });
         }
-        i++;
+        ei++;
       }
       
       choices = shuffle(choices);
@@ -1676,13 +1693,13 @@ function generateStoriesFromTemplates(count, isPastOnly) {
       
       // Nếu vẫn chưa đủ 3, thêm từ động từ phổ biến khác
       var extraVerbs = ['went', 'goes', 'go', 'ate', 'eats', 'eat', 'took', 'takes', 'take', 'saw', 'sees', 'see'];
-      var i = 0;
-      while (choices.length < 3 && i < extraVerbs.length) {
-        var extra = extraVerbs[i];
+      var ej = 0;
+      while (choices.length < 3 && ej < extraVerbs.length) {
+        var extra = extraVerbs[ej];
         if (choices.findIndex(function(c) { return c.text === extra; }) < 0 && extra !== correctAnswer) {
           choices.push({ text: extra, correct: false });
         }
-        i++;
+        ej++;
       }
       
       // Chỉ lấy 3 đáp án (1 đúng + 2 sai)
@@ -1875,12 +1892,12 @@ function generateMixStoryQuestions(count) {
       
       // Thêm từ động từ khác nếu cần
       var extraVerbs = ['went', 'goes', 'go', 'ate', 'eats', 'eat', 'took', 'takes', 'take'];
-      var i = 0;
-      while (choices.length < 3 && i < extraVerbs.length) {
-        if (choices.findIndex(function(c) { return c.text === extraVerbs[i]; }) < 0 && extraVerbs[i] !== correctAnswer) {
-          choices.push({ text: extraVerbs[i], correct: false });
+      var ej = 0;
+      while (choices.length < 3 && ej < extraVerbs.length) {
+        if (choices.findIndex(function(c) { return c.text === extraVerbs[ej]; }) < 0 && extraVerbs[ej] !== correctAnswer) {
+          choices.push({ text: extraVerbs[ej], correct: false });
         }
-        i++;
+        ej++;
       }
       
       // Chỉ lấy 3 đáp án
@@ -2170,6 +2187,7 @@ function showScreen(id) {
 function goHome() {
   document.getElementById('appContainer').className = 'app-container bg-fun';
   updateStarDisplay();
+  showMotivationalMessage();
   showScreen('homeScreen');
 }
 
@@ -2198,9 +2216,40 @@ function updateStarDisplay() {
 }
 
 // Khởi tạo khi load trang
+var MOTIVATIONAL_MESSAGES = [
+  "🌱 Kiên trì mỗi ngày — con đang tiến bộ từng bước rồi đấy!",
+  "💪 Sai không sao, quan trọng là con không bỏ cuộc!",
+  "🚀 Hôm nay con học thêm một chút, mai con sẽ bay xa hơn!",
+  "🧩 Mỗi câu con làm đúng là một mảnh ghép hoàn thành!",
+  "⏰ 10 phút mỗi ngày, một năm sau con sẽ bất ngờ với chính mình!",
+  "🐢 Chậm mà chắc — con rùa luôn về đích!",
+  "🌈 Khó hôm nay, dễ ngày mai — cứ tiếp tục thôi!",
+  "🔥 Mỗi lần luyện tập, não con lại mạnh thêm một chút!",
+  "🎯 Không cần hoàn hảo, chỉ cần mỗi ngày tốt hơn một xíu!",
+  "🌟 Con đã dám bắt đầu — đó là điều tuyệt vời nhất rồi!",
+  "🏃 Đừng so với ai, hãy so với con của ngày hôm qua!",
+  "🎸 Học tiếng Anh giống như tập đàn — càng chơi càng hay!",
+  "🧠 Não con đang ghi nhớ dù con không biết đấy — cứ tiếp tục nhé!",
+  "🌻 Hạt giống hôm nay, cây lớn ngày mai — con đang gieo trồng rồi!",
+  "💎 Kiến thức là kho báu không ai lấy được của con!",
+  "🐝 Chăm chỉ như ong — từng chút mật ngọt sẽ thành!",
+  "📈 Nhìn lại tuần trước xem — con đã biết thêm bao nhiêu từ rồi!",
+  "🎮 Học mà vui, vui mà học — cứ thế thôi nào!",
+  "🦋 Hôm nay con là sâu chăm chỉ, mai con sẽ là bướm xinh!",
+  "✨ Mỗi ngày học là một ngày con trở nên đặc biệt hơn!"
+];
+
+function showMotivationalMessage() {
+  var el = document.getElementById('motivationalMsg');
+  if (el) {
+    el.textContent = MOTIVATIONAL_MESSAGES[Math.floor(Math.random() * MOTIVATIONAL_MESSAGES.length)];
+  }
+}
+
 window.addEventListener('load', function() {
   loadStarData();
   updateStarDisplay();
+  showMotivationalMessage();
 });
 
 // ============ SHUFFLE ============
@@ -2996,10 +3045,6 @@ function showLearnScreen() {
     '<button class="study-mode-btn" onclick="startTripleMatch()" style="background:#E3F2FD;color:#1565C0">' +
     '<span class="icon">🔗</span>' +
     '<span>Triple Match</span>' +
-    '</button>' +
-    '<button class="study-mode-btn" onclick="startVerbSentenceQuiz()" style="background:#FFF3E0;color:#E65100">' +
-    '<span class="icon">📝</span>' +
-    '<span>Trắc nghiệm</span>' +
     '</button>' +
     '</div>' +
     
@@ -4804,15 +4849,16 @@ function generateQuizQuestions(count) {
       // Câu hỏi mới: đã có Do/Does/Did, cần điền động từ GỐC
       correctAnswer = verbForms.base; // Luôn là V gốc sau Do/Does/Did
       
-      // Wrong answers: V-s/es hoặc V2
-      wrongAnswers.push(verbForms.past); // V2
-      wrongAnswers.push(getPresentForm(verbForms.base, 'She')); // V-s/es
+      // Wrong answers: V-s/es hoặc V2 (nhưng phải KHÁC correctAnswer)
+      if (verbForms.past !== correctAnswer) wrongAnswers.push(verbForms.past);
+      var vPresent = getPresentForm(verbForms.base, 'She');
+      if (vPresent !== correctAnswer && wrongAnswers.indexOf(vPresent) < 0) wrongAnswers.push(vPresent);
       
-      // Thêm 1 đáp án sai khác
+      // Thêm đáp án sai từ các động từ khác
       var shuffledVerbs = shuffle(allVerbs);
       for (var k = 0; k < shuffledVerbs.length && wrongAnswers.length < 3; k++) {
         var wv = shuffledVerbs[k];
-        if (wv.base !== template.verb && wrongAnswers.indexOf(wv.base) < 0) {
+        if (wv.base !== template.verb && wv.past !== correctAnswer && wrongAnswers.indexOf(wv.past) < 0) {
           wrongAnswers.push(wv.past);
         }
       }
@@ -4832,9 +4878,14 @@ function generateQuizQuestions(count) {
       }
     }
     
-    // Ensure we have 3 wrong answers
-    while (wrongAnswers.length < 3) {
-      wrongAnswers.push(verbForms.base + 'ed');
+    // Ensure we have 3 wrong answers - add smart distractors
+    var fallbackWrongs = ['went', 'goes', 'ate', 'eats', 'took', 'takes', 'saw', 'sees', 'came', 'comes', 'gave', 'gives', 'ran', 'runs', 'made', 'makes'];
+    var fi = 0;
+    while (wrongAnswers.length < 3 && fi < fallbackWrongs.length) {
+      if (fallbackWrongs[fi] !== correctAnswer && wrongAnswers.indexOf(fallbackWrongs[fi]) < 0) {
+        wrongAnswers.push(fallbackWrongs[fi]);
+      }
+      fi++;
     }
     
     var sentence = template.template.replace('{signal}', signalObj.signal);
@@ -4862,7 +4913,7 @@ function startVerbSentenceQuiz() {
   playSound('click');
   
   var html = '<div class="progress-header" style="margin-bottom:15px">' +
-    '<button class="back-btn" onclick="showLearnScreen()">← Back</button>' +
+    '<button class="back-btn" onclick="goHome()">← Home</button>' +
     '<div style="color:white;font-weight:700;font-size:1.1rem">📝 Trắc nghiệm</div>' +
     '<div></div></div>' +
     
@@ -4899,6 +4950,13 @@ function startVerbSentenceQuiz() {
     '<div class="level-info">' +
     '<div class="level-name">15 câu</div>' +
     '<div class="level-desc">Thử thách</div>' +
+    '</div></div>' +
+    
+    '<div class="easy-match-level" onclick="startSentenceQuizGame(20)" style="border-color:#FF6D00;background:linear-gradient(135deg,#FFF8E1,#FFECB3)">' +
+    '<div class="level-icon">🔥</div>' +
+    '<div class="level-info">' +
+    '<div class="level-name">20 câu</div>' +
+    '<div class="level-desc">Boss cuối đây rồi! 👾</div>' +
     '</div></div>' +
     '</div></div>';
   
@@ -4967,7 +5025,9 @@ function renderSentenceQuiz() {
     { answer: q.correctAnswer, isCorrect: true }
   ];
   q.wrongAnswers.forEach(function(wrong) {
-    allChoices.push({ answer: wrong, isCorrect: false });
+    if (wrong !== q.correctAnswer && !allChoices.some(function(c) { return c.answer === wrong; })) {
+      allChoices.push({ answer: wrong, isCorrect: false });
+    }
   });
   allChoices = shuffle(allChoices);
   
@@ -5432,11 +5492,14 @@ function renderMistakeReview() {
     if (m.type === 'affirm') {
       var verbForms = getVerbForms(m.verb);
       if (m.isPast) {
-        choices.push({ answer: getPresentForm(verbForms.base, m.subject), isCorrect: false });
+        var presentForm = getPresentForm(verbForms.base, m.subject);
+        if (presentForm !== m.correctAnswer) choices.push({ answer: presentForm, isCorrect: false });
       } else {
-        choices.push({ answer: verbForms.past, isCorrect: false });
+        if (verbForms.past !== m.correctAnswer) choices.push({ answer: verbForms.past, isCorrect: false });
       }
-      choices.push({ answer: verbForms.base, isCorrect: false });
+      if (verbForms.base !== m.correctAnswer && !choices.some(function(c) { return c.answer === verbForms.base; })) {
+        choices.push({ answer: verbForms.base, isCorrect: false });
+      }
     } else if (m.type === 'negative') {
       var negatives = ["don't", "doesn't", "didn't"];
       negatives.forEach(function(n) {
@@ -5444,8 +5507,23 @@ function renderMistakeReview() {
       });
     } else if (m.type === 'question' || m.type === 'question_verb') {
       var verbForms = getVerbForms(m.verb);
-      choices.push({ answer: verbForms.past, isCorrect: false });
-      choices.push({ answer: getPresentForm(verbForms.base, 'She'), isCorrect: false });
+      if (verbForms.past !== m.correctAnswer && !choices.some(function(c) { return c.answer === verbForms.past; })) {
+        choices.push({ answer: verbForms.past, isCorrect: false });
+      }
+      var vPresent = getPresentForm(verbForms.base, 'She');
+      if (vPresent !== m.correctAnswer && !choices.some(function(c) { return c.answer === vPresent; })) {
+        choices.push({ answer: vPresent, isCorrect: false });
+      }
+    }
+    
+    // Nếu chưa đủ đáp án (do no-change verb), thêm từ nhiễu
+    var distractors = ['went', 'goes', 'ate', 'eats', 'took', 'takes', 'saw', 'sees', 'came', 'comes'];
+    var di = 0;
+    while (choices.length < 4 && di < distractors.length) {
+      if (distractors[di] !== m.correctAnswer && !choices.some(function(c) { return c.answer === distractors[di]; })) {
+        choices.push({ answer: distractors[di], isCorrect: false });
+      }
+      di++;
     }
     
     // Shuffle và hiển thị
