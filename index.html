@@ -1492,7 +1492,7 @@ function showLevelSelect(topic) {
                   topic === 'yesterday' ? '🌙 Yesterday' : '📖 Mix Stories';
   
   var html = '<div class="level-content">' +
-    '<button class="back-btn" onclick="goHome()" style="position:absolute;top:20px;left:20px">← Home</button>' +
+    '<div style="text-align:left;margin-bottom:10px"><button class="back-btn" onclick="goHome()">← Home</button></div>' +
     '<div style="font-size:60px;margin-bottom:15px">' + 
     (topic === 'daily' ? '☀️' : topic === 'yesterday' ? '🌙' : '📖') + '</div>' +
     '<div class="level-title">' + topicName + '</div>' +
